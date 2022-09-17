@@ -1,4 +1,6 @@
-package projetopi.finddevservice;
+package projetopi.finddevservice.models;
+
+import projetopi.finddevservice.enums.Status;
 
 public class UsuarioDesenvolvedor extends Usuario {
 

@@ -1,4 +1,4 @@
-package projetopi.finddevservice;
+package projetopi.finddevservice.enums;
 
 public enum PlanoAssinatura {
     BASIC,
