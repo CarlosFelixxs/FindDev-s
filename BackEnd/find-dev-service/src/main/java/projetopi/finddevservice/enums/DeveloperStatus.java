@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum Status {
+public enum DeveloperStatus {
     WORKING,
     AVAILABLE
 }

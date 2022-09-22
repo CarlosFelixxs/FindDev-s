@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum PlanoAssinatura {
+public enum SubscriptionPlans {
     BASIC,
     STANDARD,
     PREMIUM
