@@ -1,5 +1,6 @@
-import { Header } from "../components/Header";
+import { Header } from "../../shared/components/Header";
 import styles from './home.module.css'
+
 
 export default function Home() {
   return (
