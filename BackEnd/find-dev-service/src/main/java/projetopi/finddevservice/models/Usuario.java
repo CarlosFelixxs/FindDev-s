@@ -2,11 +2,17 @@ package projetopi.finddevservice.models;
 
 import projetopi.finddevservice.enums.PlanoAssinatura;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Map;
-
+//@Entity
 public abstract class Usuario {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nome;
     private String email;
     private String senha;
@@ -15,7 +21,12 @@ public abstract class Usuario {
 
     public abstract void avaliar(Usuario usuario, Integer nota);
 
-    public int getId() {
+//    public boolean autenticar(String usuario, String senha) {
+//        autenticado = usuario.equals(this.usuario) && senha.equals(this.senha);
+//        return autenticado;
+//    }
+
+    public long getId() {
         return id;
     }
 
