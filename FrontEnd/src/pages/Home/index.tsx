@@ -1,5 +1,6 @@
 import { Header } from "../../shared/components/Header";
 import styles from './home.module.css'
+import imagemBanner from "../../assets/images/imgBanner.png";
 
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
           <button className={styles.btnComoFunciona}>como funciona</button>
         </div>
         <div className={styles.containerImg}>
-          <img className={styles.imgBanner} src="/imgBanner.png" alt="imagem do banner" />
+          <img className={styles.imgBanner} src={imagemBanner} alt="imagem do banner" />
         </div>
       </section>
     </>
