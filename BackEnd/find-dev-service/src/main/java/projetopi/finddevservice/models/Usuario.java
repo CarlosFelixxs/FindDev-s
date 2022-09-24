@@ -1,19 +1,19 @@
 package projetopi.finddevservice.models;
 
+import org.hibernate.validator.constraints.Length;
 import projetopi.finddevservice.enums.PlanoAssinatura;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import java.util.Map;
 //@Entity
 public abstract class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Length(min = 4)
     private String nome;
+    @Email
     private String email;
     private String senha;
     private Map<Usuario, Integer> mapAvaliacoes;
