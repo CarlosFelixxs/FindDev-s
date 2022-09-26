@@ -1,10 +1,8 @@
 package projetopi.finddevservice.enums;
 
-public enum TiposVagas {
-
+public enum DeveloperRoles {
     BACKEND,
     FRONTEND,
-    DEVOPS,
-    DBA
-
+    FULLSTACK,
+    DEVOPS
 }
