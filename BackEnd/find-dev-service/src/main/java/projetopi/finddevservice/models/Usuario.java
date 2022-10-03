@@ -3,20 +3,24 @@ package projetopi.finddevservice.models;
 import org.hibernate.validator.constraints.Length;
 import projetopi.finddevservice.enums.PlanoAssinatura;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import java.util.Map;
-//@Entity
+@Entity
 public abstract class Usuario {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @Length(min = 4)
     private String nome;
     @Email
     private String email;
     private String senha;
-    private Map<Usuario, Integer> mapAvaliacoes;
+//    private Map<Usuario, Integer> mapAvaliacoes;
     private PlanoAssinatura plano;
 
     public abstract void avaliar(Usuario usuario, Integer nota);
@@ -42,13 +46,13 @@ public abstract class Usuario {
         return senha;
     }
 
-    public Map<Usuario, Integer> getMapAvaliacoes() {
-        return mapAvaliacoes;
-    }
-
-    public double getMediaAvaliacoes() {
-        return (double) mapAvaliacoes.values().stream().reduce(0, Integer::sum) / mapAvaliacoes.size();
-    }
+//    public Map<Usuario, Integer> getMapAvaliacoes() {
+//        return mapAvaliacoes;
+//    }
+//
+//    public double getMediaAvaliacoes() {
+//        return (double) mapAvaliacoes.values().stream().reduce(0, Integer::sum) / mapAvaliacoes.size();
+//    }
 
     public PlanoAssinatura getPlano() {
         return plano;

@@ -1,8 +1,10 @@
 package projetopi.finddevservice.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.models.Usuario;
+import projetopi.finddevservice.repositories.UsuaioRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +13,27 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-
-    private List<Usuario> usuarios = new ArrayList<>();
+    @Autowired
+    private UsuaioRepository repository;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity postUsuario(@RequestBody Usuario novoUsuario) {
-            usuarios.add(novoUsuario);
-            return ResponseEntity.status(201).body(novoUsuario);
-
-        return ResponseEntity.status(400)
-                .body("usuario e senha devem ter 3+ letras");
+    public ResponseEntity<Usuario> post(@RequestBody Usuario newCarro) {
+        repository.save(newCarro);
+        return ResponseEntity.status(201).body(newCarro);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Usuario>> get() {
+        List<Usuario> lista = repository.findAll();
+        return lista.isEmpty()
+                ? ResponseEntity.status(204).build()
+                : ResponseEntity.status(200).body(lista);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> get(@PathVariable long id){
+        return ResponseEntity.of(repository.findById(id));
+    }
 
 
 }
