@@ -11,15 +11,19 @@ import static projetopi.finddevservice.enums.SubscriptionPlan.BASIC;
 import static projetopi.finddevservice.enums.DeveloperStatus.WORKING;
 
 @Entity
+@Table(name ="TB_USER_COMPANY")
 public class Company extends User {
 
     private final List<Role> vacancies;
     private final List<Developer> hiredDevelopers;
 
+
     public Company() {
         this.vacancies = new ArrayList<>();
         this.hiredDevelopers = new ArrayList<>();
     }
+
+//    falta um constutor????
 
     public void addVacancy(Role role) {
         vacancies.add(role);
