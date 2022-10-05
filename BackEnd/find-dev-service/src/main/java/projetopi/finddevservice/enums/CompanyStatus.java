@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum StatusEmpresa {
+public enum CompanyStatus {
     HIRING,
-    NOVACANCY
+    NO_VACANCY
 }
