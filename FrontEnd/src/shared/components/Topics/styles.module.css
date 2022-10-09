@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  height: 30%;
+  justify-content: space-between;
+}
+
+.img {
+  width: 10%;
+  height: auto;
+}
+
+.textTitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  font-variant: small-caps;
+  line-height: 29px;
+  color: #fff;
+}
+
+.textSubTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  font-variant: small-caps;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
