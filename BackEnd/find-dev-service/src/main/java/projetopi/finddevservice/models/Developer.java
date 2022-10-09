@@ -1,42 +1,50 @@
 package projetopi.finddevservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 import projetopi.finddevservice.enums.DeveloperStatus;
 import projetopi.finddevservice.enums.SubscriptionPlan;
 
-import javax.persistence.Entity;
-import javax.persistence.SecondaryTable;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import java.util.Map;
-
-import static projetopi.finddevservice.enums.DeveloperStatus.AVAILABLE;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name ="TB_USER_DEVELOP")
-//@SecondaryTable( ) <== usar essa ou criar mais de uma tabela?
+@Table(name ="Desenvolvedor")
+@PrimaryKeyJoinColumn(name = "idUser")
 public class Developer extends User {
 
-    @Getter @Setter
-    private DeveloperStatus status = AVAILABLE;
 
-    @Transient @Getter @Setter
-    private Role role;
+    @CPF
+    @Size(max = 11)
+    private String cpf;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private DeveloperStatus status;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "plano")
+    private SubscriptionPlan plano;
 
-    public Developer() {
+    public DeveloperStatus getStatus() {
+        return status;
     }
 
-    public Developer(String name, String email, String password, Map<User, Integer> mapRates, SubscriptionPlan subscriptionPlan, DeveloperStatus status, Role role) {
-        super(name, email, password, mapRates, subscriptionPlan);
+    public void setStatus(DeveloperStatus status) {
         this.status = status;
-        this.role = role;
     }
 
-    @Override
-    public void rate(User user, Integer rate) {
-        user.getMapRates().put(this, rate);
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public SubscriptionPlan getPlano() {
+        return plano;
+    }
+
+    public void setPlano(SubscriptionPlan plano) {
+        this.plano = plano;
     }
 }

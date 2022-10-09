@@ -1,55 +1,103 @@
 package projetopi.finddevservice.models;
 
-import lombok.Data;
-import projetopi.finddevservice.enums.SubscriptionPlan;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.Map;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.UUID;
 
-@Data
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name ="TB_USER")
-public abstract class User {
+@Table(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected UUID id;
-
-    @Size(min = 3, max = 45)
-    protected String name;
-
+    private UUID idUser;
+    @Size(min = 3, max = 255)
+    @Column(nullable = false, length = 255)
+    private String name;
     @Email
-    protected String email;
+    private String email;
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+            , message = "Informe uma senha valida!")
+    private String password;
+    @Column(nullable = false, length = 30)
+    private String estado;
+    @Column(nullable = false, length = 30)
+    private String cidade;
+    @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})"  // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
+            , message = "Informe um telefone válido com ou sem DDD")
+    private String telefone;
+    @PastOrPresent
+    @NotNull
+    @Column(nullable = false)
+    private LocalDate dataNascimento;
 
-    @Pattern(
-        regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
-    )
-    protected String password;
-    protected Map<User, Integer> mapRates;
-//   Pode usar map jpa para criaçao ???
-    protected SubscriptionPlan subscriptionPlan;
 
-    public User() {
+    public UUID getIdUser() {
+        return idUser;
     }
 
-    public User(String name, String email, String password, Map<User, Integer> mapRates, SubscriptionPlan subscriptionPlan) {
+    public void setIdUser(UUID idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.mapRates = mapRates;
-        this.subscriptionPlan = subscriptionPlan;
     }
 
-    public abstract void rate(User user, Integer nota);
+    public String getEmail() {
+        return email;
+    }
 
-    public double getAverageRating() {
-        return (double) mapRates.values()
-                .stream()
-                .reduce(0, Integer::sum) / mapRates.size();
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
+
