@@ -74,7 +74,7 @@
   align-items: center;
 }
 .h1Topics {
-  width: 45%;
+  width: 50%;
   text-align: center;
   padding: 5%;
   padding-bottom: 1%;
@@ -107,4 +107,12 @@
 }
 .sectionTopics h1 {
   color: #ffffff;
+}
+
+.sectionCards{
+  height: 720px;
+}
+
+.contCards{
+
 }
