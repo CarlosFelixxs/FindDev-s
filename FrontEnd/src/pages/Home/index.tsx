@@ -2,6 +2,7 @@ import { Header } from "../../shared/components/Header";
 import styles from './home.module.css'
 import imagemBanner from "../../assets/images/imgBanner.png";
 import { TopicOne, TopicTwo, TopicTree, TopicFour } from '../../shared/components/Topics'
+import { Cards } from "../../shared/components/Cards";
 
 export default function Home() {
   return (
@@ -30,6 +31,14 @@ export default function Home() {
             <TopicTwo />
             <TopicFour />
           </div>
+        </div>
+      </section>
+      <section className={styles.sectionCards}>
+      <div className={styles.contH1}>
+          <h1 className={styles.h1Topics}>E como funcionamos?</h1>
+        </div>
+        <div className={styles.contCards}>
+          <Cards />
         </div>
       </section>
     </>
