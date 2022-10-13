@@ -1,10 +1,16 @@
 package projetopi.finddevservice.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import projetopi.finddevservice.enums.StatusDesenvolvedor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Perfil")
+@Getter
+@Setter
 public class Perfil {
 
     @Id
@@ -18,28 +24,8 @@ public class Perfil {
     @Column(length = 2600, unique = true)
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 25)
+    private StatusDesenvolvedor status;
 
-    public Integer getIdPerfil() {
-        return idPerfil;
-    }
-
-    public void setIdPerfil(Integer idPerfil) {
-        this.idPerfil = idPerfil;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 }

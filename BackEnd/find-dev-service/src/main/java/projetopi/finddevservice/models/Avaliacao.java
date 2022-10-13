@@ -1,10 +1,15 @@
 package projetopi.finddevservice.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Avaliacao")
+@Getter
+@Setter
 public class Avaliacao {
 
     @Id
@@ -15,10 +20,9 @@ public class Avaliacao {
     private Integer nota;
 
     @Column(length = 2600)
-    private String comentario ;
+    private String comentario;
 
     @ManyToOne
     @JoinColumn(name="idUser")
-    private User user;
-
+    private Usuario usuario;
 }

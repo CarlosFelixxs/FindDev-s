@@ -3,37 +3,37 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.*;
-//import projetopi.finddevservice.Exceptions.HiringException;
-//import projetopi.finddevservice.models.Company;
+//import projetopi.finddevservice.Exceptions.ContratacaoException;
+//import projetopi.finddevservice.models.Empresa;
 //import projetopi.finddevservice.models.Developer;
-//import projetopi.finddevservice.models.User;
-//import projetopi.finddevservice.repositories.UserRepository;
+//import projetopi.finddevservice.models.Usuario;
+//import projetopi.finddevservice.repositories.UsuarioRepository;
 //
 //import java.util.List;
 //
 //@RestController
 //@RequestMapping("/user")
-//public class UserController {
+//public class UsuarioController {
 //
 //    @Autowired
-//    private UserRepository repository;
+//    private UsuarioRepository repository;
 //
 //    @PostMapping
-//    public ResponseEntity<User> post(@RequestBody User user) {
-//        repository.save(user);
-//        return ResponseEntity.status(201).body(user);
+//    public ResponseEntity<Usuario> post(@RequestBody Usuario usuario) {
+//        repository.save(usuario);
+//        return ResponseEntity.status(201).body(usuario);
 //    }
 //
 //    @GetMapping
-//    public ResponseEntity<List<User>> get() {
-//        List<User> users = repository.findAll();
-//        return users.isEmpty()
+//    public ResponseEntity<List<Usuario>> get() {
+//        List<Usuario> usuarios = repository.findAll();
+//        return usuarios.isEmpty()
 //                ? ResponseEntity.status(204).build()
-//                : ResponseEntity.status(200).body(users);
+//                : ResponseEntity.status(200).body(usuarios);
 //    }
 //
 //    @GetMapping("/{id}")
-//    public ResponseEntity<User> get(@PathVariable long id){
+//    public ResponseEntity<Usuario> get(@PathVariable long id){
 //        return ResponseEntity.of(repository.findById(id));
 //    }
 //
@@ -41,11 +41,11 @@
 //    public ResponseEntity<Double> getAverageRating(@PathVariable long id) {
 //        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
 //
-//        return ResponseEntity.ok().body(repository.findById(id).get().getAverageRating());
+//        return ResponseEntity.ok().body(repository.findById(id).get().);
 //    }
 //
 //    @PatchMapping("/{id}/id-avaliado/{idAvaliado}/nota/{nota}")
-//    public ResponseEntity<User> rate(
+//    public ResponseEntity<Usuario> rate(
 //            @PathVariable long id,
 //            @PathVariable int nota,
 //            @PathVariable long idAvaliado
@@ -55,10 +55,10 @@
 //            return ResponseEntity.notFound().build();
 //        }
 //
-//        User ratedUser = repository.findById(idAvaliado).get();
+//        Usuario ratedUsuario = repository.findById(idAvaliado).get();
 //
-//        repository.findById(id).get().rate(ratedUser, nota);
-//        return ResponseEntity.ok().body(ratedUser);
+//        repository.findById(id).get().rate(ratedUsuario, nota);
+//        return ResponseEntity.ok().body(ratedUsuario);
 //    }
 //
 //    @GetMapping("/company/{id}/number-of-vacancies")
@@ -66,12 +66,12 @@
 //        if (!repository.existsById(id)) {
 //            return ResponseEntity.notFound().build();
 //        }
-//        User user = repository.findById(id).get();
-//        if (!(user instanceof Company)) {
+//        Usuario usuario = repository.findById(id).get();
+//        if (!(usuario instanceof Empresa)) {
 //            return ResponseEntity.status(405).build();
 //        }
 //
-//        return ResponseEntity.ok().body(((Company) user).getNumberOfVacancies());
+//        return ResponseEntity.ok().body(((Empresa) usuario).getNumberOfVacancies());
 //    }
 //
 //    @GetMapping("/company/{id}/number-of-hired")
@@ -79,30 +79,30 @@
 //        if (!repository.existsById(id)) {
 //            return ResponseEntity.notFound().build();
 //        }
-//        User user = repository.findById(id).get();
-//        if (!(user instanceof Company)) {
+//        Usuario usuario = repository.findById(id).get();
+//        if (!(usuario instanceof Empresa)) {
 //            return ResponseEntity.status(405).build();
 //        }
 //
-//        return ResponseEntity.ok().body(((Company) user).getNumberOfHiredDevelopers());
+//        return ResponseEntity.ok().body(((Empresa) usuario).getNumberOfHiredDevelopers());
 //    }
 //
 //    @PostMapping("/company/{id}/hire")
 //    public ResponseEntity<Developer> hireDeveloper(
 //        @RequestBody Developer dev,
 //        @PathVariable long id
-//    ) throws HiringException {
+//    ) throws ContratacaoException {
 //
 //        if (!repository.existsById(id)) {
 //            return ResponseEntity.notFound().build();
 //        }
-//        User user = repository.findById(id).get();
-//        if (!(user instanceof Company)) {
+//        Usuario usuario = repository.findById(id).get();
+//        if (!(usuario instanceof Empresa)) {
 //            return ResponseEntity.status(405).build();
 //        }
 //
 //        return ResponseEntity.ok().body(
-//            ((Company) user).hire(dev, dev.getRole())
+//            ((Empresa) usuario).hire(dev, dev.getRole())
 //        );
 //    }
 //}

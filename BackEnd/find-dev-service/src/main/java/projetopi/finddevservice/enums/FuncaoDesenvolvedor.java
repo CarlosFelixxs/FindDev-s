@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum DeveloperRole {
+public enum FuncaoDesenvolvedor {
     BACKEND,
     FRONTEND,
     FULLSTACK,

@@ -1,5 +1,7 @@
 package projetopi.finddevservice.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Column;
@@ -10,12 +12,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="Empresa")
 @PrimaryKeyJoinColumn(name = "idUser")
-public class Company extends User {
+@Getter
+@Setter
+public class Empresa extends Usuario {
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String bairro;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String endereco;
 
     @Column(nullable = false, length = 30)
@@ -23,8 +27,4 @@ public class Company extends User {
 
     @CNPJ
     private String cnpj;
-
-
-
-
 }

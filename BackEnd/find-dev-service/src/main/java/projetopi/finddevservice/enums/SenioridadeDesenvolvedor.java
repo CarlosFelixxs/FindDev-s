@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum DeveloperSeniority {
+public enum SenioridadeDesenvolvedor {
     JUNIOR,
     PLENO,
     SENIOR,
