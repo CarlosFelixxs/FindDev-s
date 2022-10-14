@@ -1,7 +1,7 @@
 .container {
   width: 100vw;
   color: white;
-  background-color: #09090A;
+  background-color: #09090a;
   height: 4rem;
   width: 100%;
   display: flex;
@@ -16,25 +16,53 @@
 }
 
 .nav {
+  position: relative;
   width: 50%;
+  height: auto;
   display: flex;
   justify-content: space-evenly;
 }
 
-.nav1 {
+a {
+  position: relative;
   line-height: 22px;
   font-style: normal;
+  font-variant: small-caps;
   color: #ffffff;
   text-decoration: none;
   list-style: none;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 16px;
+}
+a:before,
+a:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 0;
+  background-color: #00b37e;
+  transition: 0.5s;
+}
+a:after {
+  left: 0;
+  bottom: -5px;
+}
+a:before{
+  right: 0;
+  top: -5px;
+}
+a:hover {
+  color: #ffffff;
+}
+a:hover:after,
+a:hover:before{
+  width: 100%;
 }
 .btnLogin {
   width: 140px;
   height: 40px;
   color: #ffffff;
-  background-color: #09090A;
+  background-color: #09090a;
   padding: 10px 40px;
   border: 2px solid #00b37e;
   border-radius: 4px;
@@ -43,7 +71,7 @@
   font-weight: 700;
   font-variant: small-caps;
 }
-.btnLogin:hover{
+.btnLogin:hover {
   background-color: #00b37e;
   color: black;
   cursor: pointer;
