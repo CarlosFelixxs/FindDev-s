@@ -5,7 +5,7 @@
 //import org.springframework.web.bind.annotation.*;
 //import projetopi.finddevservice.Exceptions.ContratacaoException;
 //import projetopi.finddevservice.models.Empresa;
-//import projetopi.finddevservice.models.Developer;
+//import projetopi.finddevservice.models.Desenvolvedor;
 //import projetopi.finddevservice.models.Usuario;
 //import projetopi.finddevservice.repositories.UsuarioRepository;
 //
@@ -88,8 +88,8 @@
 //    }
 //
 //    @PostMapping("/company/{id}/hire")
-//    public ResponseEntity<Developer> hireDeveloper(
-//        @RequestBody Developer dev,
+//    public ResponseEntity<Desenvolvedor> hireDeveloper(
+//        @RequestBody Desenvolvedor dev,
 //        @PathVariable long id
 //    ) throws ContratacaoException {
 //

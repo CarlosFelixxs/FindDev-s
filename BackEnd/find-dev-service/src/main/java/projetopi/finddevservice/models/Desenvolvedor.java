@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @PrimaryKeyJoinColumn(name = "idUser")
 @Getter
 @Setter
-public class Developer extends Usuario {
+public class Desenvolvedor extends Usuario {
 
     @CPF
     @Size(max = 11)
