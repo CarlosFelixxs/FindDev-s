@@ -7,8 +7,10 @@ import { Banner } from "../../shared/components/Banner";
 export default function Home() {
   return (
     <>
-      <Header />
-      <Banner />
+      <section className={styles.container}>
+        <Header />
+        <Banner />
+      </section>
       <section className={styles.sectionTopics}>
         <div className={styles.contH1}>
           <h1 className={styles.h1Topics}>Por que escolher a FindDev?</h1>
@@ -26,7 +28,7 @@ export default function Home() {
       </section>
       <section className={styles.sectionCards}>
         <div className={styles.contH1}>
-          <h1 className={styles.h1Topics}>E como funcionamos?</h1>
+          <h1 className={styles.h1Topics}>E como funciona?</h1>
         </div>
         <div className={styles.contCards}>
           <Cards />
