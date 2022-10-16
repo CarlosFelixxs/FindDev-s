@@ -25,4 +25,18 @@ public class Avaliacao {
     @ManyToOne
     @JoinColumn(name="idUser")
     private Usuario usuario;
+
+    public Avaliacao() {
+
+    }
+
+    public Avaliacao(int nota) {
+        this.nota = nota;
+    }
+
+    public Avaliacao(int nota, String comentario, Usuario usuario) {
+        this.nota = nota;
+        this.comentario = comentario;
+        this.usuario = usuario;
+    }
 }
