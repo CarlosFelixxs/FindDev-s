@@ -39,19 +39,19 @@ export function Footer() {
           <span>Redes Sociais</span>
           <div className={styles.contImagens}>
             <div>
-            <a target='_blank' className={styles.imgBanner} href="https://www.instagram.com/carloshfelix__/"><img src={Instagram} alt="Logo" /></a>
+              <a target='_blank' className={styles.imgBanner} href="https://www.instagram.com/carloshfelix__/"><img src={Instagram} alt="Logo" /></a>
             </div>
             <div>
-            <a target='_blank' className={styles.imgBanner} href="https://github.com/CarlosFelixxs/FindDev-s"><img src={Git} alt="Logo" /></a>
+              <a target='_blank' className={styles.imgBanner} href="https://github.com/CarlosFelixxs/FindDev-s"><img src={Git} alt="Logo" /></a>
             </div>
             <div>
-            <a target='_blank' className={styles.imgBanner} href="https://www.linkedin.com/"><img src={Linkedin} alt="Logo" /></a>
+              <a target='_blank' className={styles.imgBanner} href="https://www.linkedin.com/"><img src={Linkedin} alt="Logo" /></a>
             </div>
             <div>
-            <a target='_blank' className={styles.imgBanner} href="https://discord.gg/bwYbEbK7"><img src={Discord} alt="Logo" /></a>
+              <a target='_blank' className={styles.imgBanner} href="https://discord.gg/bwYbEbK7"><img src={Discord} alt="Logo" /></a>
             </div>
             <div>
-            <a target='_blank' className={styles.imgBanner} href="https://www.facebook.com/"><img src={Facebook} alt="Logo" /></a>
+              <a target='_blank' className={styles.imgBanner} href="https://www.facebook.com/"><img src={Facebook} alt="Logo" /></a>
             </div>
           </div>
         </div>
