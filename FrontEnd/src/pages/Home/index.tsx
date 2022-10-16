@@ -3,6 +3,7 @@ import styles from './home.module.css'
 import { TopicOne, TopicTwo, TopicTree, TopicFour } from '../../shared/components/Topics'
 import { Cards } from "../../shared/components/Cards";
 import { Banner } from "../../shared/components/Banner";
+import { Footer } from "../../shared/components/Footer";
 
 export default function Home() {
   return (
@@ -32,6 +33,9 @@ export default function Home() {
         </div>
         <div className={styles.contCards}>
           <Cards />
+        </div>
+        <div className={styles.contFooter}>
+          <Footer />
         </div>
       </section>
     </>

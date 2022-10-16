@@ -23,7 +23,7 @@
   justify-content: space-evenly;
 }
 
-a {
+.nav a {
   position: relative;
   line-height: 22px;
   font-style: normal;
@@ -34,8 +34,8 @@ a {
   font-weight: 500;
   font-size: 16px;
 }
-a:before,
-a:after {
+.nav a:before,
+.nav a:after {
   content: "";
   position: absolute;
   height: 3px;
@@ -43,19 +43,19 @@ a:after {
   background-color: #00b37e;
   transition: 0.5s;
 }
-a:after {
+.nav a:after {
   left: 0;
   bottom: -5px;
 }
-a:before{
+.nav a:before{
   right: 0;
   top: -5px;
 }
-a:hover {
+.nav a:hover {
   color: #ffffff;
 }
-a:hover:after,
-a:hover:before{
+.nav a:hover:after,
+.nav a:hover:before{
   width: 100%;
 }
 .btnLogin {

@@ -1,0 +1,78 @@
+.container {
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.contLogo {
+  display: flex;
+  flex-direction: column;
+}
+.imgBanner {
+  width: 100%;
+  height: auto;
+}
+.textLogo {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #c5c5c5;
+}
+.separador {
+  width: 10%;
+}
+.contDesenvolvedores {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  flex-direction: column;
+  color: #c5c5c5;
+  align-items: center;
+  justify-content: space-between;
+}
+.contDesenvolvedores span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #c5c5c5;
+}
+.contDesenvolvedores ul {
+}
+.nomes {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.contRedes {
+  width: 25%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.contRedes span {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #c5c5c5;
+}
+.contImagens {
+  width: 100%;
+  display: flex;
+  height: 80%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.contImagens div a img{
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #323238;
+  border-radius: 5px;
+}
