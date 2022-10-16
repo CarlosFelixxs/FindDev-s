@@ -1,0 +1,283 @@
+.container {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.plano1 {
+  width: 240px;
+  height: 535px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+}
+.plano1 h1 {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  font-variant: small-caps;
+  padding: 10px;
+}
+.plano2 {
+  width: 240px;
+  height: 535px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+}
+.plano2 h1 {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  font-variant: small-caps;
+  padding: 10px;
+}
+.plano3 {
+  width: 240px;
+  height: 535px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+}
+.plano3 h1 {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  font-variant: small-caps;
+  padding: 10px;
+}
+.contImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.precoAntigo {
+  width: 100%;
+  padding: 10px;
+}
+.precoAntigo span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.5rem;
+  line-height: 10px;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: line-through;
+}
+.precoAntigo span text {
+  color: #00b37e;
+}
+
+.precoAntigo2 {
+  width: 100%;
+  padding: 10px;
+}
+.precoAntigo2 span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.5rem;
+  line-height: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+.precoAntigo2 span text {
+  color: #00b37e;
+}
+.precoAntigo3 {
+  width: 100%;
+  padding: 10px;
+}
+.precoAntigo3 span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.5rem;
+  line-height: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+.precoAntigo3 span text {
+  color: #9747ff;
+}
+.precoAtual {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.precoAtual span {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+}
+.precoAtual2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.precoAtual2 span {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+  width: 53%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.precoAtual2 span text {
+  font-size: 0.813rem;
+  line-height: 16px;
+  text-align: center;
+  color: #8D8D99;
+  
+}
+.contButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 30px;
+  margin-bottom: 5px;
+  gap: 10px;
+}
+.contButton button {
+  background: #121214;
+  width: 160px;
+  height: 55px;
+  border: 2px solid #00b37e;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: small-caps;
+  color: #ffffff;
+  cursor: pointer;
+}
+.contButton button:hover {
+  cursor: pointer;
+  background-color: #00b37e;
+}
+.contButton2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 30px;
+  margin-bottom: 5px;
+  gap: 10px;
+}
+.contButton2 button {
+  background-color: #00b37e;
+  width: 160px;
+  height: 55px;
+  border: 2px solid #00b37e;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: small-caps;
+  color: #ffffff;
+  cursor: pointer;
+}
+.contButton2 button:hover {
+  cursor: pointer;
+  background-color: #00875f;
+  border: 2px solid #00875f;
+}
+.contButton3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 30px;
+  margin-bottom: 5px;
+  gap: 10px;
+}
+.contButton3 button {
+  background: #8257e5;
+  width: 160px;
+  height: 55px;
+  border: 2px solid #8257e5;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: small-caps;
+  color: #ffffff;
+  cursor: pointer;
+}
+.contButton3 button:hover {
+  cursor: pointer;
+  background-color: #633bbc;
+  border: 2px solid #633bbc;
+}
+.separador {
+  width: 100%;
+  border: 2px solid #fff;
+}
+.contBeneficios {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 5%;
+  align-items: flex-start;
+  align-content: center;
+}
+.text {
+  width: 100%;
+  display: flex;
+}
+.barraVerde {
+  margin-top: 4px;
+  margin-right: 5px;
+  border-radius: 1px;
+  width: 5%;
+  height: 0;
+  border: 2px solid #00b37e;
+}
+.barraRoxa {
+  margin-top: 4px;
+  margin-right: 5px;
+  border-radius: 1px;
+  width: 5%;
+  height: 0;
+  border: 2px solid #8257e5;
+}
+.contBeneficios span {
+  font-weight: 700;
+  font-size: 0.625rem;
+  line-height: 12px;
+  text-align: center;
+  color: #ffffff;
+}
+.separadorH {
+  height: 20px;
+}
