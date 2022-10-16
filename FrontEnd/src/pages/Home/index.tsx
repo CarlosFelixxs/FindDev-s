@@ -10,11 +10,11 @@ import Topo from "../../assets/images/VoltarTopo.png";
 export default function Home() {
   return (
     <>
+      <Header />
       <section className={styles.container}>
-        <Header />
         <Banner />
       </section>
-      <section className={styles.sectionTopics}>
+      <section id="sectionTopics" className={styles.sectionTopics}>
         <div className={styles.contH1}>
           <h1 className={styles.h1Topics}>Por que escolher a FindDev?</h1>
         </div>
@@ -29,7 +29,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className={styles.sectionCards}>
+      <section id="sectionCards" className={styles.sectionCards}>
         <div className={styles.contH1}>
           <h1 className={styles.h1Topics}>E como funciona?</h1>
         </div>
@@ -37,7 +37,7 @@ export default function Home() {
           <Cards />
         </div>
       </section>
-      <section className={styles.sectionPlans}>
+      <section id="sectionPlans" className={styles.sectionPlans}>
         <div className={styles.contH1}>
           <h1 className={styles.h1Topics}>Planos</h1>
         </div>
