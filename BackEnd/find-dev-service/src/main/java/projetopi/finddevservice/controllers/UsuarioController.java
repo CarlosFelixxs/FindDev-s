@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.PostPerfilDtos;
 import projetopi.finddevservice.models.Perfil;
 import projetopi.finddevservice.models.Usuario;
+import projetopi.finddevservice.repositories.PerfilRepository;
 import projetopi.finddevservice.repositories.UsuarioRepository;
 
 import javax.validation.Valid;
@@ -22,29 +23,57 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository userRepository;
 
-//    @PostMapping("/login/{nome}/{senha}")
-//    public Object logonUsuario(@PathVariable String nome,
-//                                @PathVariable String senha) {
-//        List<Usuario> users = userRepository.findByNomeIgnoreCaseAndSenhaIgnoreCase(nome,senha);
-//            for (int i = 0; i < users.size()- 1; i++) {
-//                users.get(i).getPerfil().setAtivo(true);
-//            }
-//        return users.isEmpty()
-//                ? ResponseEntity.status(204).body("User not found!")
-//                : ResponseEntity.status(200).body("user logged in successfully!");
-//    }
-//
-//    @DeleteMapping("/logoff/{nome}")
-//    public Object logoffUsuario(@PathVariable String nome) {
-//        List<Usuario> users = userRepository.findByNomeIgnoreCase(nome);
-//        for (int i = 0; i < users.size()- 1; i++) {
-//            users.get(i).getPerfil().setAtivo(false);
-//        }
-//        return users.isEmpty()
-//                ? ResponseEntity.status(204).body("User not found!")
-//                : ResponseEntity.status(200).body("user logged out in successfully!");
-//    }
+    @Autowired
+    private PerfilRepository perfilRepository;
 
+    @PostMapping("/login/{nome}/{senha}")
+    public ResponseEntity<Usuario> logonUsuario(
+        @PathVariable String nome,
+        @PathVariable String senha
+    ) {
+        Optional<Usuario> user = userRepository.findByNomeIgnoreCaseAndSenhaIgnoreCase(nome,senha)
+            .stream()
+            .findFirst();
 
+//        Optional<Perfil> perfil = perfilRepository.findById()
 
+        if (user.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Usuario userEncontrado = user.get();
+
+        if (userEncontrado.pegarAtivo()) {
+            return ResponseEntity.status(403).build();
+        }
+
+        userEncontrado.setarAtivo(true);
+
+        userRepository.save(userEncontrado);
+
+        return ResponseEntity.ok().body(userEncontrado);
+    }
+
+    @DeleteMapping("/logoff/{nome}")
+    public Object logoffUsuario(@PathVariable String nome) {
+        Optional<Usuario> user = userRepository.findByNomeIgnoreCase(nome)
+                .stream()
+                .findFirst();
+
+        if (user.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Usuario userEncontrado = user.get();
+
+        if (userEncontrado.pegarAtivo()) {
+            return ResponseEntity.status(403).build();
+        }
+
+        userEncontrado.setarAtivo(false);
+
+        userRepository.save(userEncontrado);
+
+        return ResponseEntity.ok().body(userEncontrado);
+    }
 }

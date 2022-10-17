@@ -1,5 +1,8 @@
 package projetopi.finddevservice.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -9,19 +12,21 @@ import java.util.UUID;
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter @Setter
     private UUID idUsuario;
 
     @Size(min = 3, max = 255)
     @Column(nullable = false)
+    @Getter @Setter
     private String nome;
 
     @Email
+    @Getter @Setter
     private String email;
 
     @Pattern(
@@ -31,9 +36,11 @@ public abstract class Usuario implements Serializable {
     private String senha;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String estado;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String cidade;
 
     @Pattern(
@@ -41,79 +48,24 @@ public abstract class Usuario implements Serializable {
         // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
         message = "Informe um telefone válido com ou sem DDD"
     )
+    @Getter @Setter
     private String telefone;
 
     @PastOrPresent
     @NotNull
     @Column(nullable = false)
+    @Getter @Setter
     private LocalDate dataNascimento;
 
+    @Column(name = "userAtivo", length = 25)
+//    @Getter @Setter
+    private Boolean isAtivo = false;
 
-
-
-    public UUID getIdUsuario() {
-        return idUsuario;
+    public boolean pegarAtivo() {
+        return isAtivo;
     }
 
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setarAtivo(boolean isAtivo) {
+        this.isAtivo = isAtivo;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String recuperaSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
 }
-
