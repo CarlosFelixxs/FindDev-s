@@ -22,43 +22,29 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository userRepository;
 
-    @PostMapping("/login/{nome}/{senha}")
-    public Object logonUsuario(@PathVariable String nome,
-                                @PathVariable String senha) {
-        List<Usuario> users = userRepository.findByNomeIgnoreCaseAndSenhaIgnoreCase(nome,senha);
-            for (int i = 0; i < users.size()- 1; i++) {
-                users.get(i).getPerfil().setAtivo(true);
-            }
-        return users.isEmpty()
-                ? ResponseEntity.status(204).body("User not found!")
-                : ResponseEntity.status(200).body("user logged in successfully!");
-    }
+//    @PostMapping("/login/{nome}/{senha}")
+//    public Object logonUsuario(@PathVariable String nome,
+//                                @PathVariable String senha) {
+//        List<Usuario> users = userRepository.findByNomeIgnoreCaseAndSenhaIgnoreCase(nome,senha);
+//            for (int i = 0; i < users.size()- 1; i++) {
+//                users.get(i).getPerfil().setAtivo(true);
+//            }
+//        return users.isEmpty()
+//                ? ResponseEntity.status(204).body("User not found!")
+//                : ResponseEntity.status(200).body("user logged in successfully!");
+//    }
+//
+//    @DeleteMapping("/logoff/{nome}")
+//    public Object logoffUsuario(@PathVariable String nome) {
+//        List<Usuario> users = userRepository.findByNomeIgnoreCase(nome);
+//        for (int i = 0; i < users.size()- 1; i++) {
+//            users.get(i).getPerfil().setAtivo(false);
+//        }
+//        return users.isEmpty()
+//                ? ResponseEntity.status(204).body("User not found!")
+//                : ResponseEntity.status(200).body("user logged out in successfully!");
+//    }
 
-    @DeleteMapping("/logoff/{nome}")
-    public Object logoffUsuario(@PathVariable String nome) {
-        List<Usuario> users = userRepository.findByNomeIgnoreCase(nome);
-        for (int i = 0; i < users.size()- 1; i++) {
-            users.get(i).getPerfil().setAtivo(false);
-        }
-        return users.isEmpty()
-                ? ResponseEntity.status(204).body("User not found!")
-                : ResponseEntity.status(200).body("user logged out in successfully!");
-    }
-
-    @PutMapping("/adicionar-perfil/{id}")
-    public Object atualizaPerfil(@RequestBody @Valid PostPerfilDtos perfilDtos,
-                                @PathVariable(value = "id") UUID id){
-
-        Optional<Usuario> usersModelOptionall = userRepository.findById(id);
-        if (!usersModelOptionall.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
-        }
-
-        usersModelOptionall.get().getPerfil().setTitulo(perfilDtos.getTitulo());
-        usersModelOptionall.get().getPerfil().setDescricao(perfilDtos.getDescricao());
-        return ResponseEntity.status(HttpStatus.OK).body(usersModelOptionall);
-
-    }
 
 
 }

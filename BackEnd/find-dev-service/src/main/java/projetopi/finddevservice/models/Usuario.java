@@ -49,9 +49,7 @@ public abstract class Usuario implements Serializable {
     private LocalDate dataNascimento;
 
 
-    @OneToOne
-    @JoinColumn(name = "idPerfil")
-    private Perfil perfil;
+
 
     public UUID getIdUsuario() {
         return idUsuario;
@@ -117,12 +115,5 @@ public abstract class Usuario implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public Perfil getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
-    }
 }
 

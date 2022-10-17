@@ -1,16 +1,20 @@
 package projetopi.finddevservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import projetopi.finddevservice.dtos.UsuarioPerfilDtos;
 import projetopi.finddevservice.enums.StatusDesenvolvedor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Perfil")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Perfil {
 
     @Id
@@ -30,6 +34,10 @@ public class Perfil {
 
     @Column(name = "userAtivo", length = 25)
     private boolean isAtivo = false;
+
+    @OneToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
 
 }
