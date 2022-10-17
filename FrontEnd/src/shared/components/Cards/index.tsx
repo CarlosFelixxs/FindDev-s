@@ -9,38 +9,36 @@ export function Cards() {
   return (
     <>
       <section className={styles.container}>
-        <div className={styles.cont}>
-          <div className={styles.contCard}>
+          <div className={styles.contCard1}>
             <div className={styles.contImg}>
               <img className={styles.imagemP} src={Img1} alt="" />
             </div>
-            <div className={styles.contText}>
+            <div className={styles.contText1}>
               <p className={styles.textCards}>O desenvolvedor e o cliente se cadastram na FindDev e criam seus perfis.</p>
             </div>
           </div>
           <div className={styles.seta}>
             <img src={Seta} alt="" />
           </div>
-          <div className={styles.contCard}>
+          <div className={styles.contCard2}>
             <div className={styles.contImg}>
               <img className={styles.imagemP} src={Img2} alt="" />
             </div>
-            <div className={styles.contText}>
+            <div className={styles.contText2}>
               <p className={styles.textCards}>O cliente procura pelo freelancer que atende às necessidades do projeto.</p>
             </div>
           </div>
           <div className={styles.seta}>
             <img src={Seta} alt="" />
           </div>
-          <div className={styles.contCard}>
+          <div className={styles.contCard3}>
             <div className={styles.contImg}>
               <img className={styles.imagemP} src={Img3} alt="" />
             </div>
-            <div className={styles.contText}>
+            <div className={styles.contText3}>
               <p className={styles.textCards}>Após o match, o profissional e o cliente fecham negócio através da FindDev.</p>
             </div>
           </div>
-        </div>
       </section>
     </>
   )

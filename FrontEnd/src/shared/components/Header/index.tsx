@@ -25,9 +25,9 @@ export function Header( props: any ) {
         {props.isHomePage && (
           <ul className={styles.nav}>
             <a href="#Inicio">INICIO</a>
-            <a href="#Conheça">CONHEÇA</a>
-            <a href="#Como_funciona">COMO FUNCIONA</a>
-            <a href="#Planos">PLANOS</a>
+            <a href="#sectionTopics">CONHEÇA</a>
+            <a href="#sectionCards">COMO FUNCIONA</a>
+            <a href="#sectionPlans">PLANOS</a>
           </ul>
         )
         }
