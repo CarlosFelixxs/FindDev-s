@@ -10,7 +10,7 @@ import Topo from "../../assets/images/VoltarTopo.png";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header isLoginScreen = {false} isHomePage = {true}/>
       <section className={styles.container}>
         <Banner />
       </section>
