@@ -23,6 +23,6 @@ public class Avaliacao {
     private String comentario;
 
     @ManyToOne
-    @JoinColumn(name="idUser")
+    @JoinColumn(name="idUsuario")
     private Usuario usuario;
 }

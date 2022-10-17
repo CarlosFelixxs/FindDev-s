@@ -10,9 +10,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name ="Desenvolvedor")
-@PrimaryKeyJoinColumn(name = "idUser")
-@Getter
-@Setter
+@PrimaryKeyJoinColumn(name = "idUsuario")
+
 public class Desenvolvedor extends Usuario {
 
     @CPF
@@ -21,5 +20,21 @@ public class Desenvolvedor extends Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "plano")
-    private PlanoDesenvolvedor plano;
+    private PlanoDesenvolvedor plano = PlanoDesenvolvedor.GRATUITO;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public PlanoDesenvolvedor getPlano() {
+        return plano;
+    }
+
+    public void setPlano(PlanoDesenvolvedor plano) {
+        this.plano = plano;
+    }
 }

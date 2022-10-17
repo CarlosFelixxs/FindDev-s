@@ -28,4 +28,8 @@ public class Perfil {
     @Column(name = "status", length = 25)
     private StatusDesenvolvedor status;
 
+    @Column(name = "userAtivo", length = 25)
+    private boolean isAtivo = false;
+
+
 }
