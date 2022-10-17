@@ -7,7 +7,7 @@ import { Cards } from "../../shared/components/Cards";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header isLoginScreen = {false} isHomePage = {true}/>
       <section className={styles.container}>
         <div className={styles.container_banner}>
           <h1 className={styles.h1}>conectando quem sabe com quem precisa</h1>
