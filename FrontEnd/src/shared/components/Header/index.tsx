@@ -1,13 +1,17 @@
 import styles from './styles.module.css';
 import Logo from "../../../assets/images/Logo.png";
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export function Header( props: any ) {
+export function Header(props: any) {
 
   const navigate = useNavigate();
-  
-  const routeChange = () =>{ 
+
+  const routeChange = () => {
     const path = props.isLoginScreen === true ? "/cadastro" : "/login";
+    navigate(path);
+  }
+
+  const routeChanger = (path : string) =>{ 
     navigate(path);
   }
 
@@ -17,11 +21,11 @@ export function Header( props: any ) {
     }
     return styles.container;
   }
-  
+
   return (
     <>
       <header className={styleContainer()}>
-        <img className={styles.image} src={Logo} alt="logo do site" />
+        <img onClick={() => routeChanger("/")} className={styles.image} src={Logo} alt="logo do site" />
         {props.isHomePage && (
           <ul className={styles.nav}>
             <a href="#Inicio">INICIO</a>
@@ -32,20 +36,20 @@ export function Header( props: any ) {
         )
         }
         {props.isLoginScreen === true ? (
-            <button 
-              className={styles.btnCadastro}
-              onClick={routeChange}
-            >
-              Cadastre-se
-            </button>
-          ) : (
-            <button 
-              className={styles.btnLogin}
-              onClick={routeChange}
-            >
-              login
-            </button>
-          )
+          <button
+            className={styles.btnCadastro}
+            onClick={routeChange}
+          >
+            CADASTRO
+          </button>
+        ) : (
+          <button
+            className={styles.btnLogin}
+            onClick={routeChange}
+          >
+            LOGIN
+          </button>
+        )
         }
       </header>
     </>
