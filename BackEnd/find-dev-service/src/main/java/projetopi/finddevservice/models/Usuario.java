@@ -30,7 +30,8 @@ public abstract class Usuario implements Serializable {
 
     @Pattern(
         regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
-        message = "Informe uma senha com pelo menos um caractere especial, um número e uma letra maiuscula!"
+        message = "Informe uma senha de no mínimo 8 dígitos," +
+                " com pelo menos um caractere especial, um número e uma letra maiuscula"
     )
     private String senha;
 

@@ -1,18 +1,32 @@
 .container {
-  width: 100vw;
-  color: white;
-  background-color: #09090a;
-  height: 4rem;
   width: 100%;
+  color: white;
+  padding: 0 9.5%;
+  background-color: #09090a;
+  height: 6.25%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.containerHome{
+  width: 100%;
+  color: white;
+  background-color: #09090a;
+  height: 6.25%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .image {
   margin-top: 15px;
   width: 150px;
+  cursor: pointer;
 }
 
 .nav {
@@ -23,7 +37,7 @@
   justify-content: space-evenly;
 }
 
-a {
+.nav a {
   position: relative;
   line-height: 22px;
   font-style: normal;
@@ -34,8 +48,8 @@ a {
   font-weight: 500;
   font-size: 16px;
 }
-a:before,
-a:after {
+.nav a:before,
+.nav a:after {
   content: "";
   position: absolute;
   height: 3px;
@@ -43,19 +57,19 @@ a:after {
   background-color: #00b37e;
   transition: 0.5s;
 }
-a:after {
+.nav a:after {
   left: 0;
   bottom: -5px;
 }
-a:before{
+.nav a:before{
   right: 0;
   top: -5px;
 }
-a:hover {
+.nav a:hover {
   color: #ffffff;
 }
-a:hover:after,
-a:hover:before{
+.nav a:hover:after,
+.nav a:hover:before{
   width: 100%;
 }
 .btnLogin {
@@ -70,9 +84,25 @@ a:hover:before{
   padding-top: 8px;
   font-weight: 700;
   font-variant: small-caps;
+  transition: 0.3s;
 }
-.btnLogin:hover {
+.btnLogin:hover, .btnCadastro:hover {
   background-color: #00b37e;
   color: black;
   cursor: pointer;
+}
+
+.btnCadastro {
+  width: 140px;
+  height: 40px;
+  color: #ffffff;
+  background-color: #09090a;
+  padding: 10px;
+  border: 2px solid #00b37e;
+  border-radius: 4px;
+  font-size: 18px;
+  padding-top: 8px;
+  font-weight: 700;
+  font-variant: small-caps;
+  transition: 0.3s;
 }
