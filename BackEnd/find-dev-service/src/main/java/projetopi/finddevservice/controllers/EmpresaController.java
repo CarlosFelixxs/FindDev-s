@@ -1,7 +1,6 @@
 package projetopi.finddevservice.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.models.Empresa;
@@ -9,7 +8,6 @@ import projetopi.finddevservice.repositories.EmpresaRepository;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -34,25 +32,16 @@ public class EmpresaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID id){
-        Optional<Empresa> empresa = empresaRepository.findById(id);
-
-        return empresa.<ResponseEntity<Object>>map(
-            value -> ResponseEntity.status(HttpStatus.OK).body(value)
-        ).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Develop not found."));
+    public ResponseEntity<Empresa> getById(@PathVariable(value = "id") UUID id){
+        Empresa empresa = empresaRepository.findById(id).orElse(null);
+        return empresa == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(empresa);
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteDevelop(@PathVariable(value = "id")UUID id){
-        Optional<Empresa> empresa = empresaRepository.findById(id);
+    public ResponseEntity<Empresa> deleteEmpresa(@PathVariable(value = "id")UUID id){
+        Empresa empresa = empresaRepository.deleteByIdUsuario(id);
 
-        if (empresa.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
-        }
-
-        empresaRepository.deleteByIdUsuario(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body("Company deleted successfully.");
+        return empresa == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(empresa);
     }
 }

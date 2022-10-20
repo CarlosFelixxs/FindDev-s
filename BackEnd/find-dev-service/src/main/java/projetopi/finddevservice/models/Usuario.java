@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -57,15 +56,11 @@ public abstract class Usuario implements Serializable {
     @Getter @Setter
     private LocalDate dataNascimento;
 
-    @Column(name = "userAtivo", length = 25)
-//    @Getter @Setter
-    private Boolean isAtivo = false;
-
-    public boolean pegarAtivo() {
-        return isAtivo;
+    public String senhaGetter() {
+        return senha;
     }
 
-    public void setarAtivo(boolean isAtivo) {
-        this.isAtivo = isAtivo;
+    public void senhaSetter(String senha) {
+        this.senha = senha;
     }
 }

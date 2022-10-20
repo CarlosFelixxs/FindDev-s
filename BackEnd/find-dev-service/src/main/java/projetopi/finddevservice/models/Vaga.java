@@ -8,20 +8,25 @@ import projetopi.finddevservice.enums.SenioridadeDesenvolvedor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ROLE")
 @Getter
 @Setter
-public class Cargo {
+public class Vaga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(length = 45)
     private String titulo;
+
+    @Column(length = 200)
     private String descricao;
+
     private FuncaoDesenvolvedor funcao;
+
     private SenioridadeDesenvolvedor senioridade;
 
-    public Cargo(
+    public Vaga(
         String titulo,
         String descricao,
         FuncaoDesenvolvedor funcao,
@@ -33,7 +38,7 @@ public class Cargo {
         this.senioridade = senioridade;
     }
 
-    public Cargo() {
+    public Vaga() {
 
     }
 }

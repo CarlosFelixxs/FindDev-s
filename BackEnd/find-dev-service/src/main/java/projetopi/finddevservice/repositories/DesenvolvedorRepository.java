@@ -14,7 +14,6 @@ public interface DesenvolvedorRepository extends JpaRepository<Desenvolvedor, UU
 
     @Transactional
     @Modifying
-    void deleteByIdUsuario (UUID uuid);
-
+    Desenvolvedor deleteByIdUsuario (UUID uuid);
 
 }

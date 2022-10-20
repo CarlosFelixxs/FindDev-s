@@ -14,21 +14,21 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/dev")
-public class DeveloperController {
+public class DesenvolvedorController {
 
     @Autowired
-    private DesenvolvedorRepository devRepository;
+    private DesenvolvedorRepository repository;
 
     @PostMapping
     public ResponseEntity<Desenvolvedor> save(@RequestBody @Valid Desenvolvedor dev) {
-        devRepository.save(dev);
+        repository.save(dev);
 
         return ResponseEntity.status(201).body(dev);
     }
 
     @GetMapping
     public ResponseEntity<List<Desenvolvedor>> getAll() {
-        List<Desenvolvedor> desenvolvedor = devRepository.findAll();
+        List<Desenvolvedor> desenvolvedor = repository.findAll();
 
         return desenvolvedor.isEmpty()
                 ? ResponseEntity.status(204).build()
@@ -36,25 +36,14 @@ public class DeveloperController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID id){
-        Optional<Desenvolvedor> desenvolvedor = devRepository.findById(id);
-
-        return desenvolvedor.<ResponseEntity<Object>>map(
-            value -> ResponseEntity.status(HttpStatus.OK).body(value)
-        ).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found."));
+    public ResponseEntity<Desenvolvedor> getById(@PathVariable(value = "id") UUID id){
+        Desenvolvedor desenvolvedor = repository.findById(id).orElse(null);
+        return desenvolvedor == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(desenvolvedor);
     }
 
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable(value = "id")UUID id){
-        Optional<Desenvolvedor> desenvolvedor = devRepository.findById(id);
-
-        if (desenvolvedor.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found.");
-        }
-
-        devRepository.deleteByIdUsuario(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body("Developer deleted successfully.");
+    public ResponseEntity<Desenvolvedor> delete(@PathVariable(value = "id") UUID id){
+        Desenvolvedor desenvolvedor = repository.deleteByIdUsuario(id);
+        return desenvolvedor == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(desenvolvedor);
     }
 }

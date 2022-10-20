@@ -10,8 +10,7 @@ import java.util.UUID;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
 
-    List<Usuario> findByNomeIgnoreCaseAndSenhaIgnoreCase(String nome ,String senha);
-    List<Usuario>findByNomeIgnoreCase (String nome);
-
+    Usuario findByNomeIgnoreCaseAndSenhaIgnoreCase(String nome ,String senha);
+    Usuario findByNomeIgnoreCase(String nome);
 
 }

@@ -31,13 +31,13 @@ public class PerfilController {
         @RequestBody @Valid PostPerfilDtos perfilDto
     ) {
 
-        Optional<Usuario> user = usuarioRepository.findById(idUser);
+        Usuario user = usuarioRepository.findById(idUser).orElse(null);
 
-        if (user.isEmpty()) {
+        if (user == null) {
             return ResponseEntity.notFound().build();
         }
 
-        Perfil perfil = new Perfil(perfilDto.getTitulo(), perfilDto.getDescricao(), user.get());
+        Perfil perfil = new Perfil(perfilDto.getTitulo(), perfilDto.getDescricao(), user);
 
         perfilRepository.save(perfil);
 

@@ -13,5 +13,5 @@ public interface EmpresaRepository extends JpaRepository <Empresa, UUID> {
 
     @Transactional
     @Modifying
-    void deleteByIdUsuario (UUID uuid);
+    Empresa deleteByIdUsuario (UUID uuid);
 }

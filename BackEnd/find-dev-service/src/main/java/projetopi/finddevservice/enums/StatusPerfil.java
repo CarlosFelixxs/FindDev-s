@@ -1,7 +1,8 @@
 package projetopi.finddevservice.enums;
 
-public enum StatusDesenvolvedor {
+public enum StatusPerfil {
+    CONTRATANDO,
+    SEM_VAGAS,
     TRABALHANDO,
     DISPONIVEL
-
 }
