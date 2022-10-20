@@ -1,0 +1,42 @@
+package projetopi.finddevservice.models;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "Avaliacao")
+@Getter
+@Setter
+public class Avaliacao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idAvaliacao;
+
+    @NotNull
+    private Integer nota;
+
+    @Column(length = 2600)
+    private String comentario;
+
+    @ManyToOne
+    @JoinColumn(name="idUser")
+    private Usuario usuario;
+
+    public Avaliacao() {
+
+    }
+
+    public Avaliacao(int nota) {
+        this.nota = nota;
+    }
+
+    public Avaliacao(int nota, String comentario, Usuario usuario) {
+        this.nota = nota;
+        this.comentario = comentario;
+        this.usuario = usuario;
+    }
+}

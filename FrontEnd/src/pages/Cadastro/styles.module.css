@@ -1,0 +1,133 @@
+.container{
+    height: 90vh;
+    display: flex;
+}
+
+.right {
+    width:50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    width:50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .text{
+    margin-bottom: 3.563rem;
+}
+
+.left .title {
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    font-weight: 700;
+    margin-bottom: 3.563rem;
+}
+
+.left .subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #9747FF;
+    margin-top: 1.688rem;
+    cursor: pointer;
+}
+
+.right .cardSignup {
+    height: 80.75%;
+    width: 62%;
+    background: #121214;
+    border: 2px solid #00B37E;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right .cardSignup .cardContent h1 {
+    font-size: 2.5rem;
+}
+
+.right .cardSignup .cardContent {
+    width: 88%;
+    height:85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.formSignup{
+    width: 88%;
+    height:85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leabelInput {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.leabelInput .input{
+    width: 100%;
+    height: 3.2rem;
+    border: 1px solid #9747FF;
+    border-radius: 0.938rem;
+    background-color: #121214;
+    padding: 0.813rem 1.5rem;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.leabelInput .input:focus  {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border: 1px solid #00B37E;
+}
+
+.submit{
+    width: 40%;
+    height: 13%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 164px;
+    height: 56px;
+    left: 815px;
+    top: 469px;
+    border: 1px solid #00b37e;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-variant: small-caps;
+    color: #ffffff;
+    background-color: #121214;
+    cursor: pointer;
+}
+
+.submit:hover  {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    background-color: #00B37E;
+}
+.separador{
+    height: 5px;
+}
