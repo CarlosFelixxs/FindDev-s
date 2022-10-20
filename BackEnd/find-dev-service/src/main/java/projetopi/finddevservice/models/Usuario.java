@@ -10,22 +10,22 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter
-@Setter
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter @Setter
     private UUID idUsuario;
 
     @Size(min = 3, max = 255)
     @Column(nullable = false)
+    @Getter @Setter
     private String nome;
 
     @Email
+    @Getter @Setter
     private String email;
 
     @Pattern(
@@ -36,9 +36,11 @@ public abstract class Usuario implements Serializable {
     private String senha;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String estado;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String cidade;
 
     @Pattern(
@@ -46,10 +48,20 @@ public abstract class Usuario implements Serializable {
         // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
         message = "Informe um telefone válido com ou sem DDD"
     )
+    @Getter @Setter
     private String telefone;
 
     @PastOrPresent
     @NotNull
     @Column(nullable = false)
+    @Getter @Setter
     private LocalDate dataNascimento;
+
+    public String senhaGetter() {
+        return senha;
+    }
+
+    public void senhaSetter(String senha) {
+        this.senha = senha;
+    }
 }
