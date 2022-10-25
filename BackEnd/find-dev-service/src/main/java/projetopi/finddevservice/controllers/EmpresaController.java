@@ -39,9 +39,19 @@ public class EmpresaController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Empresa> deleteEmpresa(@PathVariable(value = "id")UUID id){
+    public ResponseEntity<Empresa> deleteEmpresa(@PathVariable(value = "id") UUID id){
         Empresa empresa = empresaRepository.deleteByIdUsuario(id);
 
         return empresa == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(empresa);
+    }
+
+    @PutMapping("/atualizacao/{id}")
+    public ResponseEntity<Empresa> updateEmpresa(@PathVariable(value = "id") UUID id) {
+        Empresa empresa = empresaRepository.findById(id).orElse(null);
+
+        if (empresa == null) return ResponseEntity.notFound().build();
+
+        empresaRepository.save(empresa);
+        return ResponseEntity.ok().body(empresa);
     }
 }

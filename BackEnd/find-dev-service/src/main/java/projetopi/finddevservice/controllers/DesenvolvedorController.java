@@ -1,7 +1,6 @@
 package projetopi.finddevservice.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.models.Desenvolvedor;
@@ -9,7 +8,6 @@ import projetopi.finddevservice.repositories.DesenvolvedorRepository;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -22,7 +20,6 @@ public class DesenvolvedorController {
     @PostMapping
     public ResponseEntity<Desenvolvedor> save(@RequestBody @Valid Desenvolvedor dev) {
         repository.save(dev);
-
         return ResponseEntity.status(201).body(dev);
     }
 
@@ -42,8 +39,19 @@ public class DesenvolvedorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Desenvolvedor> delete(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Desenvolvedor> deleteById(@PathVariable(value = "id") UUID id){
         Desenvolvedor desenvolvedor = repository.deleteByIdUsuario(id);
         return desenvolvedor == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(desenvolvedor);
+    }
+
+    @PutMapping("/atualizacao/{id}/")
+    public ResponseEntity<Desenvolvedor> updateDesenvolvedor(@PathVariable(value = "id") UUID id) {
+
+        Desenvolvedor desenvolvedor = repository.findById(id).orElse(null);
+
+        if (desenvolvedor == null) return ResponseEntity.notFound().build();
+
+        repository.save(desenvolvedor);
+        return ResponseEntity.ok().body(desenvolvedor);
     }
 }
