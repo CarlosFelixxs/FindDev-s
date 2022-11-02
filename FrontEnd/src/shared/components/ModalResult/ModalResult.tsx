@@ -6,17 +6,19 @@ import styles from './styles.module.css';
 import CheckCircle from "../../../assets/images/CheckCircle.png";
 
 type ModalTypes = {
-    title : string;
-    text : string;
-    path: string;
+    title: string;
+    text: string;
+    path?: string;
 }
 
 export default function Modal({title, text, path}: ModalTypes) {
 
   const navigate = useNavigate();
 
-  const routeChange = () =>{ 
-    navigate(path);
+  const routeChange = () =>{
+    if (path) {
+      navigate(path);
+    }
   }
 
   return (
