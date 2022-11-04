@@ -1,5 +1,6 @@
 package projetopi.finddevservice.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/dev")
+@RequestMapping("/api/v1/dev")
+@Tag(name = "Developer",description = "Endpoints for Managing devs")
 public class DevelopController {
 
     @Autowired
