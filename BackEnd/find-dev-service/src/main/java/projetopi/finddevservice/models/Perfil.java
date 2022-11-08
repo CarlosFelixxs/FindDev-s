@@ -1,16 +1,17 @@
 package projetopi.finddevservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import projetopi.finddevservice.enums.StatusDesenvolvedor;
+import lombok.*;
+import projetopi.finddevservice.enums.StatusPerfil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Perfil")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Perfil {
 
     @Id
@@ -18,14 +19,24 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPerfil;
 
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String titulo;
 
-    @Column(length = 2600, unique = true)
+    @Column(length = 2600)
     private String descricao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 25)
-    private StatusDesenvolvedor status;
+    private StatusPerfil status;
+
+    @OneToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Perfil(String titulo, String descricao, Usuario usuario) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.usuario = usuario;
+    }
 
 }

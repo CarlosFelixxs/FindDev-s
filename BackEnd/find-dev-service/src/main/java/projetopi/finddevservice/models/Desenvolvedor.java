@@ -9,8 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name ="Desenvolvedor")
-@PrimaryKeyJoinColumn(name = "idUser")
+@PrimaryKeyJoinColumn(name = "idUsuario")
 @Getter
 @Setter
 public class Desenvolvedor extends Usuario {
@@ -21,5 +20,5 @@ public class Desenvolvedor extends Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "plano")
-    private PlanoDesenvolvedor plano;
+    private PlanoDesenvolvedor plano = PlanoDesenvolvedor.GRATUITO;
 }

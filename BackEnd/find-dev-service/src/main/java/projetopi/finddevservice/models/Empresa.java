@@ -10,8 +10,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="Empresa")
-@PrimaryKeyJoinColumn(name = "idUser")
+@PrimaryKeyJoinColumn(name = "idUsuario")
 @Getter
 @Setter
 public class Empresa extends Usuario {
@@ -25,6 +24,5 @@ public class Empresa extends Usuario {
     @Column(nullable = false, length = 30)
     private String complemento;
 
-    @CNPJ
     private String cnpj;
 }

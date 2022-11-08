@@ -10,22 +10,22 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter
-@Setter
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter @Setter
     private UUID idUsuario;
 
     @Size(min = 3, max = 255)
     @Column(nullable = false)
+    @Getter @Setter
     private String nome;
 
     @Email
+    @Getter @Setter
     private String email;
 
     @Pattern(
@@ -36,9 +36,11 @@ public abstract class Usuario implements Serializable {
     private String senha;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String estado;
 
     @Column(nullable = false, length = 30)
+    @Getter @Setter
     private String cidade;
 
     @Pattern(
@@ -46,42 +48,20 @@ public abstract class Usuario implements Serializable {
         // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
         message = "Informe um telefone válido com ou sem DDD"
     )
+    @Getter @Setter
     private String telefone;
 
     @PastOrPresent
     @NotNull
     @Column(nullable = false)
+    @Getter @Setter
     private LocalDate dataNascimento;
 
-    private final ListaObj<Avaliacao> avaliacoes = new ListaObj<>(5);
-
-    public void addAvaliacao(Avaliacao a) {
-        avaliacoes.adiciona(a);
+    public String senhaGetter() {
+        return senha;
     }
 
-    public ListaObj<Avaliacao> ordenarAvaliacoes() {
-        int indMenor;
-
-        for (int i = 0; i < avaliacoes.getTamanho(); i++) {
-            indMenor = i;
-            for (int j = i + 1; j < avaliacoes.getTamanho(); j++) {
-                if (avaliacoes.getElemento(j).getNota() < avaliacoes.getElemento(indMenor).getNota()) {
-                    indMenor = j;
-                }
-            }
-            Avaliacao maior = avaliacoes.getElemento(i);
-            Avaliacao menor = avaliacoes.getElemento(indMenor);
-            avaliacoes.set(i, menor);
-            avaliacoes.set(indMenor, maior);
-        }
-
-        return avaliacoes;
-    }
-
-    public void exibeAvaliacoes() {
-        for (int i = 0; i < avaliacoes.getTamanho(); i++) {
-            System.out.println("Avaliacao \n\tNota: " + avaliacoes.getElemento(i).getNota());
-        }
+    public void senhaSetter(String senha) {
+        this.senha = senha;
     }
 }
-
