@@ -24,5 +24,5 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
-    private Usuario usuario;
+    private UsuarioModel usuario;
 }

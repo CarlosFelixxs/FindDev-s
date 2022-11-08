@@ -1,7 +1,5 @@
 package projetopi.finddevservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import projetopi.finddevservice.enums.PlanoDesenvolvedor;
 
@@ -12,7 +10,7 @@ import javax.validation.constraints.Size;
 @Table(name ="Desenvolvedor")
 @PrimaryKeyJoinColumn(name = "idUsuario")
 
-public class Desenvolvedor extends Usuario {
+public class DesenvolvedorModel extends UsuarioModel {
 
     @CPF
     @Size(max = 11)

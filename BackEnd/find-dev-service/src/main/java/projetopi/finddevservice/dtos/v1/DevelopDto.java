@@ -1,55 +1,33 @@
-package projetopi.finddevservice.models;
+package projetopi.finddevservice.dtos.v1;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
-@Table(name = "Usuario")
-@Inheritance(strategy = InheritanceType.JOINED)
+public class DevelopDto implements Serializable {
 
-public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idUsuario;
+        private UUID idUsuario;
 
-    @Size(min = 3, max = 255)
-    @Column(nullable = false)
-    private String nome;
+        private String nome;
 
-    @Email
-    private String email;
+        private String email;
 
-    @Pattern(
-        regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
-        message = "Informe uma senha com pelo menos um caractere especial, um número e uma letra maiuscula!"
-    )
-    private String senha;
+        private String senha;
 
-    @Column(nullable = false, length = 30)
-    private String estado;
+        private String estado;
 
-    @Column(nullable = false, length = 30)
-    private String cidade;
+        private String cidade;
 
-    @Pattern(
-        regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
-        // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
-        message = "Informe um telefone válido com ou sem DDD"
-    )
-    private String telefone;
+        private String telefone;
 
-    @PastOrPresent
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
+        private LocalDate dataNascimento;
 
+        private String cpf;
 
-
+    public DevelopDto() {
+    }
 
     public UUID getIdUsuario() {
         return idUsuario;
@@ -75,7 +53,7 @@ public abstract class Usuario implements Serializable {
         this.email = email;
     }
 
-    public String recuperaSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -115,5 +93,12 @@ public abstract class Usuario implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-}
+    public String getCpf() {
+        return cpf;
+    }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+}

@@ -1,12 +1,10 @@
 package projetopi.finddevservice.models;
 
 import lombok.*;
-import projetopi.finddevservice.dtos.UsuarioPerfilDtos;
 import projetopi.finddevservice.enums.StatusDesenvolvedor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
 
 @Entity
 @Table(name = "Perfil")
@@ -15,7 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Perfil {
+public class PerfilModel {
 
     @Id
     @NotNull
@@ -37,7 +35,7 @@ public class Perfil {
 
     @OneToOne
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private UsuarioModel usuario;
 
 
 }

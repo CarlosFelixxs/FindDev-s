@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.models.Empresa;
+import projetopi.finddevservice.models.EmpresaModel;
 import projetopi.finddevservice.repositories.EmpresaRepository;
 
 import javax.validation.Valid;
@@ -22,14 +22,14 @@ public class EmpresaController {
     private EmpresaRepository companyRepository;
 
     @PostMapping
-    public ResponseEntity<Empresa> post(@RequestBody @Valid Empresa empresa) {
+    public ResponseEntity<EmpresaModel> post(@RequestBody @Valid EmpresaModel empresa) {
         companyRepository.save(empresa);
         return ResponseEntity.status(201).body(empresa);
     }
 
     @GetMapping
-    public ResponseEntity<List<Empresa>> getAllDevs() {
-        List<Empresa> empresa = companyRepository.findAll();
+    public ResponseEntity<List<EmpresaModel>> getAllDevs() {
+        List<EmpresaModel> empresa = companyRepository.findAll();
         return empresa.isEmpty()
                 ? ResponseEntity.status(204).build()
                 : ResponseEntity.status(200).body(empresa);
@@ -37,7 +37,7 @@ public class EmpresaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getId(@PathVariable(value = "id") UUID id){
-        Optional<Empresa> empresa = companyRepository.findById(id);
+        Optional<EmpresaModel> empresa = companyRepository.findById(id);
         if (!empresa.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Develop not found.");
         }
@@ -47,7 +47,7 @@ public class EmpresaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDevelop(@PathVariable(value = "id")UUID id){
-        Optional<Empresa> empresa = companyRepository.findById(id);
+        Optional<EmpresaModel> empresa = companyRepository.findById(id);
         if (!empresa.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
         }
