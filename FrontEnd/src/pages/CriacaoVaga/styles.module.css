@@ -42,12 +42,12 @@
     justify-content: space-evenly;
 }
 
-.leabelInput {
+.labelInput {
     display: flex;
     flex-direction: column;
 }
 
-.leabelInput .input{
+.labelInput .input{
     width: 80%;
     height: 3.2rem;
     border: 1px solid #9747FF;
@@ -79,7 +79,7 @@
     outline:none;
 }
 
-.leabelInput .input:focus, .textArea:focus {
+.labelInput .input:focus, .textArea:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
     border: 1px solid #00B37E;

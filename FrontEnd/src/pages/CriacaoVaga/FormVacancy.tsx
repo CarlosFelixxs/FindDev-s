@@ -23,7 +23,7 @@ export default function FormVacancy() {
         }, 5000);
     }
 
-    const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial."
+    const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial.";
 
   return (
     <>
@@ -35,12 +35,12 @@ export default function FormVacancy() {
                     <div className={styles.inputsGroupForm}>
                         <div className={styles.inputsLeft}>
 
-                            <div className={styles.leabelInput}>
+                            <div className={styles.labelInput}>
                                 <label>TITULO DA VAGA</label>
                                 <input type="text" className={styles.input} {...register("titulo")}/>
                             </div>
                             
-                            <div className={styles.leabelInput}>
+                            <div className={styles.labelInput}>
                             <label htmlFor="senioridade">SENIORIDADE</label>
                             <select className={styles.input} id="senioridade" {...register("senioridade")}>
                                 <option value="" selected disabled></option>
@@ -50,7 +50,7 @@ export default function FormVacancy() {
                             </select>
                             </div>
 
-                            <div className={styles.leabelInput}>
+                            <div className={styles.labelInput}>
                             <label htmlFor="frente">Frente</label>
                             <select className={styles.input} id="frente" {...register("frente")}>
                                 <option value="" selected disabled></option>
