@@ -25,7 +25,8 @@ public class CompanyService {
 
         logger.info("Finding all Devs!");
 
-        return DozerMapper.parseListObjects(repository.findAll(),CompanyDto.class);
+        return
+                DozerMapper.parseListObjects(repository.findAll(),CompanyDto.class);
     }
 
     public CompanyDto findById(UUID id){
@@ -42,7 +43,7 @@ public class CompanyService {
 
         if (person == null) throw new RequiredObjectIsNullException();
 
-        logger.info("Create a Dev!");
+        logger.info("Create a Company!");
         var entity = DozerMapper.parseObject(person, EmpresaModel.class);
         var dto= DozerMapper.parseObject(repository.save(entity),CompanyDto.class);
 
@@ -53,13 +54,12 @@ public class CompanyService {
     public  CompanyDto update(CompanyDto person) {
 
         if (person == null) throw new RequiredObjectIsNullException();
-        logger.info("updating a Dev!");
+        logger.info("updating a Company!");
         var entity = repository.findById(person.getKey()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
 
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
-        entity.setSenha(person.getSenha());
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());
@@ -76,7 +76,7 @@ public class CompanyService {
 
     public  void delete(UUID id){
 
-        logger.info("Deleting one person!");
+        logger.info("Deleting one Company!");
         var entity = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
 

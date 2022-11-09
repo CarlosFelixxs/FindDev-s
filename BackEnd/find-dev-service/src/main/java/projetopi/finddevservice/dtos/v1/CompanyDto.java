@@ -1,18 +1,21 @@
 package projetopi.finddevservice.dtos.v1;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class CompanyDto implements Serializable {
+@JsonPropertyOrder({"idUsuario","nome","email","cnpj","estado","cidade","telefone","dataNascimento","bairro","endereco","complemento"})
+public class CompanyDto extends RepresentationModel<CompanyDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-        @Mapping("id")
-        @JsonProperty("id")
+        @Mapping("idUsuario")
+        @JsonProperty("idUsuario")
         private UUID key;
 
         private String nome;
@@ -65,7 +68,7 @@ public class CompanyDto implements Serializable {
         this.email = email;
     }
 
-    public String getSenha() {
+    public String recuperaSenha() {
         return senha;
     }
 
