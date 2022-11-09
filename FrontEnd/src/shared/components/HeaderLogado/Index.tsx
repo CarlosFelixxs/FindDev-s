@@ -20,7 +20,7 @@ export default function HeaderLogado({nome}: TypesHeader) {
     <div className={styles.container}>
         <div className={styles.content}>
             <img onClick={() => routeChange("/menuCompany")} className={styles.image} src={Logo} alt="logo do site" />
-            <div className={styles.nome}>Olá, {nome}</div>
+            <div className={styles.nome}>Bem vindo, {nome}</div>
         </div>
     </div>
   )
