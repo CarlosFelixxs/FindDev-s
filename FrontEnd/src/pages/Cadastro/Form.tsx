@@ -125,17 +125,17 @@ export default function Form({button, step, userType} : FormType) {
                 <>
                     <h1>CADASTRO</h1>
                     <form className={styles.formSignup} onSubmit={handleSubmit(onSubmitFirstStep)}>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>EMAIL</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("email")} placeholder="exemplo@email.com"/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>SENHA</label>
                             <div className={styles.separador}></div>
                             <input type="password" className={styles.input} {...register("senha")} placeholder="*************"/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>CONFIRMAÇÃO DE SENHA</label>
                             <div className={styles.separador}></div>
                             <input type="password" className={styles.input} {...register("confirmacao")} placeholder="*************"/>
@@ -162,17 +162,17 @@ export default function Form({button, step, userType} : FormType) {
                 <>
                     <h1>CADASTRO</h1>
                     <form className={styles.formSignup} onSubmit={handleSubmit(onSubmitThirdStepDev)}>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>NOME</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("nome")}/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>CPF</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("CPF")}/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>TELEFONE</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("telefone")} placeholder="(11) 912345678"/>
@@ -186,17 +186,17 @@ export default function Form({button, step, userType} : FormType) {
                 <>
                     <h1>CADASTRO</h1>
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitThirdStepCompany)}>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("razaoSocial")}/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>TELEFONE</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("telefone")} placeholder="(11) 912345678"/>
                         </div>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label>CNPJ</label>
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("CNPJ")}/>
@@ -210,26 +210,26 @@ export default function Form({button, step, userType} : FormType) {
                 <>
                     <h1>CADASTRO</h1>
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitFourthStepDev)}>
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label htmlFor="state">ESTADO</label>
                             <div className={styles.separador}></div>
-                            <select className={styles.input} id="state"  onChange={handleInputStatesChange}>
+                            <select className={styles.input} id="state" {...register("estadoDev")} onChange={handleInputStatesChange}>
                                 <option value="" selected disabled>Selecione um estado...</option>
                                 {states.map((state)=>{
                                     const {sigla, nome} = state;
-                                    return(<option key={sigla} value={sigla} {...register("estadoDev")}>{nome}</option>)
+                                    return(<option key={sigla} value={sigla} >{nome}</option>)
                                 })}
                             </select>
                         </div>
 
-                        <div className={styles.leabelInput}>
+                        <div className={styles.labelInput}>
                             <label htmlFor="city">CIDADE</label>
                             <div className={styles.separador}></div>
-                            <select className={styles.input} id="city">
+                            <select className={styles.input} id="city" {...register("cidadeDev")}>
                                 <option value="" selected disabled>Selecione uma cidade...</option>
                                 {cities.map((city)=>{
                                     const {id, nome} = city;
-                                    return(<option key={id} value={nome} {...register("cidadeDev")}>{nome}</option>)
+                                    return(<option key={id} value={nome}>{nome}</option>)
                                 })}
                             </select>
                         </div>
@@ -244,19 +244,19 @@ export default function Form({button, step, userType} : FormType) {
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitFourthStepCompany)}>
                         <div className={styles.thirdStepContent}>
                             <div className={styles.sideThirdStep}>
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>CEP</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("cep")} onBlur={checkCEP}/>
                                 </div>
 
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>CIDADE</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("cidadeCompany")}/>
                                 </div>
 
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>LOGRADOURO</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("logradouro")}/>
@@ -264,19 +264,19 @@ export default function Form({button, step, userType} : FormType) {
                             </div>
 
                             <div className={styles.sideThirdStep}>
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>ESTADO</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("estadoCompany")}/>
                                 </div>
 
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>BAIRRO</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("bairro")}/>
                                 </div>
 
-                                <div className={styles.leabelInput}>
+                                <div className={styles.labelInput}>
                                     <label>NÚMERO</label>
                                     <div className={styles.separador}></div>
                                     <input type="text" className={styles.input} {...register("numero")}/>
