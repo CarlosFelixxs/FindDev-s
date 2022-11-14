@@ -2,8 +2,9 @@ package projetopi.finddevservice.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import projetopi.finddevservice.enums.FuncaoDesenvolvedor;
-import projetopi.finddevservice.enums.SenioridadeDesenvolvedor;
+import projetopi.finddevservice.enums.FuncaoDev;
+import projetopi.finddevservice.enums.SenioridadeDev;
+
 
 import javax.persistence.*;
 
@@ -18,14 +19,14 @@ public class Cargo {
     private Integer id;
     private String titulo;
     private String descricao;
-    private FuncaoDesenvolvedor funcao;
-    private SenioridadeDesenvolvedor senioridade;
+    private FuncaoDev funcao;
+    private SenioridadeDev senioridade;
 
     public Cargo(
         String titulo,
         String descricao,
-        FuncaoDesenvolvedor funcao,
-        SenioridadeDesenvolvedor senioridade
+        FuncaoDev funcao,
+        SenioridadeDev senioridade
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
