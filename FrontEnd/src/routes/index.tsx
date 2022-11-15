@@ -5,6 +5,7 @@ import DevSearchVacancyResult from "../pages/DevSearchVacancyResult/DevSearchVac
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Perfil from "../pages/PerfilDev";
+import OptionDev from "../pages/OptionDev"
 
 export const RoutesApp = () => {
   return (
@@ -17,6 +18,7 @@ export const RoutesApp = () => {
           <Route path="/formulario-vaga" element={<FormVacancy />} />
           <Route path="/resultado-busca-vaga" element={<DevSearchVacancyResult />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/option-dev" element = {<OptionDev />}/>
        </Routes>
       </BrowserRouter>
     </>
