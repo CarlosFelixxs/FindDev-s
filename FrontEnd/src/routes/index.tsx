@@ -8,8 +8,6 @@ import Login from "../pages/Login";
 import Perfil from "../pages/PerfilDev";
 import OptionDev from "../pages/OptionLog/Dev";
 import OptionEmp from "../pages/OptionLog/emp";
-import FormVacancy from "../pages/CriacaoVaga/FormVacancy";
-import DevSearchVacancyResult from "../pages/DevSearchVacancyResult/DevSearchVacancyResult";
 
 export const RoutesApp = () => {
   return (
