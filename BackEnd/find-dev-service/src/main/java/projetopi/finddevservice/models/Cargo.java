@@ -5,7 +5,6 @@ import lombok.Setter;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -23,10 +22,10 @@ public class Cargo {
     private SenioridadeDev senioridade;
 
     public Cargo(
-        String titulo,
-        String descricao,
-        FuncaoDev funcao,
-        SenioridadeDev senioridade
+            String titulo,
+            String descricao,
+            FuncaoDev funcao,
+            SenioridadeDev senioridade
     ) {
         this.titulo = titulo;
         this.descricao = descricao;

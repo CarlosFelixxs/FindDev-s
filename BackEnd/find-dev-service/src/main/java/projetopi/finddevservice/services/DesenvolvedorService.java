@@ -1,8 +1,6 @@
 package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.DevelopController;
 import projetopi.finddevservice.dtos.v1.DevelopDto;
@@ -15,6 +13,9 @@ import projetopi.finddevservice.repositories.DesenvolvedorRepository;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @Service
@@ -60,7 +61,8 @@ public class DesenvolvedorService {
 
         logger.info("Create a Dev!");
         var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
-        var dto= DozerMapper.parseObject(repository.save(entity),DevelopDto.class);
+        repository.save(entity);
+        var dto= DozerMapper.parseObject(entity,DevelopDto.class);
             dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 

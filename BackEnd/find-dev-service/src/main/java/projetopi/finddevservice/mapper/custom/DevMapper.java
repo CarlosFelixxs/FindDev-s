@@ -11,7 +11,7 @@ public class DevMapper {
     public DevelopDto convertEntityToDto(DesenvolvedorModel person){
 
         DevelopDto dto = new DevelopDto();
-        dto.setKey(person.getIdUsuario());
+        dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
         dto.setSenha(person.recuperaSenha());
@@ -27,10 +27,10 @@ public class DevMapper {
     public DesenvolvedorModel convertDtoToEntity(DevelopDto person){
 
         DesenvolvedorModel entity = new DesenvolvedorModel();
-        entity.setIdUsuario(person.getKey());
+        entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
-        entity.setSenha(person.recuperaSenha());
+        entity.setSenha(person.getSenha());
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());

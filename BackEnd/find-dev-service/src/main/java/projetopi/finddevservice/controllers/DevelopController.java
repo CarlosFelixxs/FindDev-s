@@ -76,7 +76,7 @@ public class DevelopController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public DevelopDto post(@RequestBody @Valid DevelopDto dev) {
+    public DevelopDto create(@RequestBody @Valid DevelopDto dev) {
         return service.create(dev);
     }
 

@@ -80,7 +80,7 @@ public class EmpresaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public CompanyDto post(@RequestBody @Valid CompanyDto dev) {
+    public CompanyDto post(@RequestBody @Valid CompanyDto dev) throws Exception {
         return service.create(dev);
     }
 

@@ -39,7 +39,7 @@ public class CompanyService {
 
     }
 
-    public CompanyDto create(CompanyDto person){
+    public CompanyDto create(CompanyDto person) throws Exception {
 
         if (person == null) throw new RequiredObjectIsNullException();
 

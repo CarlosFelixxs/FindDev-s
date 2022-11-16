@@ -3,11 +3,7 @@ package projetopi.finddevservice.mapper.custom;
 
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.dtos.v1.CompanyDto;
-import projetopi.finddevservice.dtos.v1.DevelopDto;
-import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.EmpresaModel;
-
-import java.util.Date;
 
 @Service
 public class CompanyMapper {
@@ -15,7 +11,7 @@ public class CompanyMapper {
     public CompanyDto convertEntityToDto(EmpresaModel person){
 
         CompanyDto dto = new CompanyDto();
-        dto.setKey(person.getIdUsuario());
+        dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
         dto.setSenha(person.recuperaSenha());
@@ -34,7 +30,7 @@ public class CompanyMapper {
     public EmpresaModel convertDtoToEntity(CompanyDto person){
 
         EmpresaModel entity = new EmpresaModel();
-        entity.setIdUsuario(person.getKey());
+        entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
         entity.setSenha(person.recuperaSenha());

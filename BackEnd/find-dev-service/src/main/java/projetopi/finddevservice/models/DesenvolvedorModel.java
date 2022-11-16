@@ -20,6 +20,9 @@ public class DesenvolvedorModel extends UsuarioModel {
     @Column(name = "plano")
     private PlanoDev plano = PlanoDev.GRATUITO;
 
+    public DesenvolvedorModel() {
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -27,5 +30,16 @@ public class DesenvolvedorModel extends UsuarioModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public PlanoDev getPlano() {
+        return plano;
+    }
+
+    public void setPlano(PlanoDev plano) {
+        this.plano = plano;
+    }
+
+
+
 }
 

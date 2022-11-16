@@ -9,13 +9,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@JsonPropertyOrder({"idUsuario","nome","email","cpf","estado","cidade","telefone","dataNascimento"})
+@JsonPropertyOrder({"idUsuario","nome","email","senha","estado","cidade","telefone","dataNascimento","cpf"})
 public class DevelopDto extends RepresentationModel<DevelopDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-        @Mapping("idUsuario")
-        @JsonProperty("idUsuario")
+        @Mapping("id")
+        @JsonProperty("id")
         private UUID key;
 
         private String nome;
@@ -60,7 +60,8 @@ public class DevelopDto extends RepresentationModel<DevelopDto> implements Seria
     public void setEmail(String email) {
         this.email = email;
     }
-    public String recuperaSenha() {
+
+    public String getSenha() {
         return senha;
     }
 

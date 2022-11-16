@@ -15,7 +15,7 @@ public abstract class UsuarioModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idUsuario;
+    private UUID id;
 
     @Size(min = 3, max = 255)
     @Column(nullable = false)
@@ -49,14 +49,15 @@ public abstract class UsuarioModel implements Serializable {
     private LocalDate dataNascimento;
 
 
-
-
-    public UUID getIdUsuario() {
-        return idUsuario;
+    public UsuarioModel() {
     }
 
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome() {

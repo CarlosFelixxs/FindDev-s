@@ -5,6 +5,7 @@ import projetopi.finddevservice.enums.StatusDesenvolvedor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Perfil")

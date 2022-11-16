@@ -9,7 +9,6 @@ import projetopi.finddevservice.models.DesenvolvedorModel;
 import java.util.UUID;
 
 @Repository
-
 public interface DesenvolvedorRepository extends JpaRepository<DesenvolvedorModel, UUID> {
 
     @Transactional
