@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name ="Desenvolvedor")
-@PrimaryKeyJoinColumn(name = "idUsuario")
+@PrimaryKeyJoinColumn(name = "id")
 
 public class DesenvolvedorModel extends UsuarioModel {
 

@@ -13,7 +13,7 @@ public interface DesenvolvedorRepository extends JpaRepository<DesenvolvedorMode
 
     @Transactional
     @Modifying
-    void deleteByIdUsuario (UUID uuid);
+    void deleteById (UUID uuid);
 
 
 }
