@@ -50,7 +50,7 @@ export default function Home() {
           <Footer />
         </div>
         <div className={styles.contButtonFooter}>
-          <button>
+          <button id="button-back-to-top-home">
             <a className={styles.imgBanner} href="#"><img src={Topo} alt="Logo" /></a>
           </button>
         </div>

@@ -11,7 +11,7 @@ export function Header(props: any) {
     navigate(path);
   }
 
-  const routeChanger = (path : string) =>{ 
+  const routeChanger = (path : string) => {
     navigate(path);
   }
 
@@ -37,6 +37,7 @@ export function Header(props: any) {
         }
         {props.isLoginScreen === true ? (
           <button
+            id='button-cadastro-login-page'
             className={styles.btnCadastro}
             onClick={routeChange}
           >
@@ -44,6 +45,7 @@ export function Header(props: any) {
           </button>
         ) : (
           <button
+            id='button-login-home-page'
             className={styles.btnLogin}
             onClick={routeChange}
           >
