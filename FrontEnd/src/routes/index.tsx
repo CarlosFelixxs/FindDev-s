@@ -18,8 +18,8 @@ export const RoutesApp = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/option-dev" element = {<OptionDev />}/>
-          <Route path="/option-emp" element = {<OptionEmp />}/>
+          <Route path="/menuDev" element = {<OptionDev />}/>
+          <Route path="/menuCompany" element = {<OptionEmp />}/>
           <Route path="/formulario-vaga" element={<FormVacancy />} />
           <Route path="/resultado-busca-vaga" element={<DevSearchVacancyResult />} />
           <Route path="/perfil" element={<Perfil />} />
