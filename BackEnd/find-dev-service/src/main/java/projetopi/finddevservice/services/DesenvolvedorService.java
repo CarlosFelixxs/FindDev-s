@@ -24,7 +24,7 @@ public class DesenvolvedorService {
     @Autowired
     private DesenvolvedorRepository repository;
 
-    private Logger logger = Logger.getLogger(DesenvolvedorService.class.getName());
+    private final Logger logger = Logger.getLogger(DesenvolvedorService.class.getName());
 
     public List<DevelopDto> findAll(){
 
@@ -95,6 +95,5 @@ public class DesenvolvedorService {
                 () -> new ResourceNotFoundException("No records found for this id!"));
         repository.delete(entity);
     }
-
 
 }

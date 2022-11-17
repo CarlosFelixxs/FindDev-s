@@ -22,7 +22,6 @@ public class DevMapper {
         dto.setCpf(person.getCpf());
         return dto;
 
-
     }
     public DesenvolvedorModel convertDtoToEntity(DevelopDto person){
 
@@ -37,7 +36,6 @@ public class DevMapper {
         entity.setDataNascimento(person.getDataNascimento());
         entity.setCpf(person.getCpf());
         return entity;
-
 
     }
 

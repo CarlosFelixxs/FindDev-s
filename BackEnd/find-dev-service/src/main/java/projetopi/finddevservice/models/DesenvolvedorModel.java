@@ -21,6 +21,7 @@ public class DesenvolvedorModel extends UsuarioModel {
     private PlanoDev plano = PlanoDev.GRATUITO;
 
     public DesenvolvedorModel() {
+
     }
 
     public String getCpf() {
@@ -38,8 +39,5 @@ public class DesenvolvedorModel extends UsuarioModel {
     public void setPlano(PlanoDev plano) {
         this.plano = plano;
     }
-
-
-
 }
 

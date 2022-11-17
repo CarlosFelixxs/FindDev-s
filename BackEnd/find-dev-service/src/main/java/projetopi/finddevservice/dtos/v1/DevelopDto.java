@@ -14,27 +14,28 @@ public class DevelopDto extends RepresentationModel<DevelopDto> implements Seria
 
     private static final long serialVersionUID = 1L;
 
-        @Mapping("id")
-        @JsonProperty("id")
-        private UUID key;
+    @Mapping("id")
+    @JsonProperty("id")
+    private UUID key;
 
-        private String nome;
+    private String nome;
 
-        private String email;
+    private String email;
 
-        private String senha;
+    private String senha;
 
-        private String estado;
+    private String estado;
 
-        private String cidade;
+    private String cidade;
 
-        private String telefone;
+    private String telefone;
 
-        private LocalDate dataNascimento;
+    private LocalDate dataNascimento;
 
-        private String cpf;
+    private String cpf;
 
     public DevelopDto() {
+
     }
 
     public UUID getKey() {

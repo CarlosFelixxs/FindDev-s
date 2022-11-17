@@ -19,24 +19,22 @@ public class CompanyService {
     @Autowired
     private EmpresaRepository repository;
 
-    private Logger logger = Logger.getLogger(CompanyService.class.getName());
+    private final Logger logger = Logger.getLogger(CompanyService.class.getName());
 
     public List<CompanyDto> findAll(){
 
         logger.info("Finding all Devs!");
 
-        return
-                DozerMapper.parseListObjects(repository.findAll(),CompanyDto.class);
+        return DozerMapper.parseListObjects(repository.findAll(),CompanyDto.class);
     }
 
     public CompanyDto findById(UUID id){
 
         logger.info("Finding a Dev!");
-        var entity = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
 
         return DozerMapper.parseObject(entity,CompanyDto.class);
-
     }
 
     public CompanyDto create(CompanyDto person) throws Exception {

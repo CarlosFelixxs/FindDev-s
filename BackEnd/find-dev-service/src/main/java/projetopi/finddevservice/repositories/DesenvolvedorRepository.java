@@ -15,5 +15,4 @@ public interface DesenvolvedorRepository extends JpaRepository<DesenvolvedorMode
     @Modifying
     void deleteById (UUID uuid);
 
-
 }

@@ -26,80 +26,84 @@ public class DevelopController {
     @Autowired
     private DesenvolvedorService service;
 
-
     @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Find all Developers ", description = "Find all Developers ",
-            tags = {"Develop"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-            })
-    public List<DevelopDto> findAllDevs() {
-        return service.findAll();
+    @Operation(
+        summary = "Find all Developers ", description = "Find all Developers ",
+        tags = {"Develop"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200", content = {
+                        @Content(
+                                mediaType = "application/json",
+                                array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
+                        )
+                }),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<List<DevelopDto>> findAllDevs() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON)
-    @Operation(summary = "Finds a Developer ", description = "Finds a Developer ",
-            tags = {"People"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "No content", responseCode = "204", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-            })
-    public DevelopDto findById(@PathVariable(value = "id") UUID id) {
-        return service.findById(id);
+    @Operation(
+        summary = "Finds a Developer ", description = "Finds a Developer ",
+        tags = {"People"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<DevelopDto> findById(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Adds a new Developer",
-            description = "Adds a new Developers by passing in a JSON, XML or YML representation of the Developers!",
-            tags = {"Developers"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
+    @Operation(
+        summary = "Adds a new Developer",
+        description = "Adds a new Developers by passing in a JSON, XML or YML representation of the Developers!",
+        tags = {"Developers"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200",
+                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+        }
     )
-    public DevelopDto create(@RequestBody @Valid DevelopDto dev) {
-        return service.create(dev);
+    public ResponseEntity<DevelopDto> create(@RequestBody @Valid DevelopDto dev) {
+        return ResponseEntity.ok(service.create(dev));
     }
 
     @PutMapping(
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Updates a Developer",
-            description = "Updates a Developer by passing in a JSON, XML or YML representation of the Developer!",
-            tags = {"People"},
-            responses = {
-                    @ApiResponse(description = "Updated", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
+    @Operation(
+        summary = "Updates a Developer",
+        description = "Updates a Developer by passing in a JSON, XML or YML representation of the Developer!",
+        tags = {"People"},
+        responses = {
+                @ApiResponse(description = "Updated", responseCode = "200",
+                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+        }
     )
-    public DevelopDto update(@RequestBody DevelopDto person) {
-        return service.update(person);
+    public ResponseEntity<DevelopDto> update(@RequestBody DevelopDto person) {
+        return ResponseEntity.ok(service.update(person));
     }
-
 
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Deletes a Developer",
@@ -117,6 +121,4 @@ public class DevelopController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
