@@ -1,0 +1,11 @@
+.container {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgRate:hover{
+background-image: url("../../../assets/images/StarRatePurple.png");
+}

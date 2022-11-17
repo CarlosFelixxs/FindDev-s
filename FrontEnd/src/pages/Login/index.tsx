@@ -34,12 +34,12 @@ export default function Cadastro() {
             <div className={styles.cardContent}>
               <h1>LOGIN</h1>
               <form className={styles.formSignup}>
-                <div className={styles.leabelInput}>
+                <div className={styles.labelInput}>
                   <label className={styles.titleInput}>EMAIL</label>
                   <div className={styles.separador}></div>
                   <input type="text" className={styles.input} placeholder="exemplo@email.com" />
                 </div>
-                <div className={styles.leabelInput}>
+                <div className={styles.labelInput}>
                   <label className={styles.titleInput}>SENHA</label>
                   <div className={styles.separador}></div>
                   <input type="text" className={styles.input} placeholder="*************" />
