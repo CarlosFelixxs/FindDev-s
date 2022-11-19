@@ -40,9 +40,6 @@ public class CompanyService {
     }
 
     public CompanyDto create(CompanyDto person) throws Exception {
-
-        if (person == null) throw new RequiredObjectIsNullException();
-
         logger.info("Create a Company!");
         var entity = DozerMapper.parseObject(person, EmpresaModel.class);
         var dto= DozerMapper.parseObject(repository.save(entity),CompanyDto.class);

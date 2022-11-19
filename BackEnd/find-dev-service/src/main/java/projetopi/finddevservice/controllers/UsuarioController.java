@@ -1,16 +1,16 @@
-package projetopi.finddevservice.controllers;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import projetopi.finddevservice.repositories.UsuarioRepository;
-
-@RestController
-@RequestMapping("/api/v1/user")
-public class UsuarioController {
-
-    @Autowired
-    private UsuarioRepository userRepository;
+//package projetopi.finddevservice.controllers;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//import projetopi.finddevservice.repositories.UsuarioRepository;
+//
+//@RestController
+//@RequestMapping("/api/v1/user")
+//public class UsuarioController {
+//
+//    @Autowired
+//    private UsuarioRepository userRepository;
 
 //    @PostMapping("/login/{nome}/{senha}")
 //    public Object logonUsuario(@PathVariable String nome,
@@ -37,4 +37,4 @@ public class UsuarioController {
 
 
 
-}
+//}

@@ -3,36 +3,48 @@ package projetopi.finddevservice.dtos.v1;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.hateoas.RepresentationModel;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@JsonPropertyOrder({"idUsuario","nome","email","senha","estado","cidade","telefone","dataNascimento","cpf"})
+@JsonPropertyOrder({"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento"})
 public class DevelopDto extends RepresentationModel<DevelopDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-        @Mapping("id")
-        @JsonProperty("id")
-        private UUID key;
-
-        private String nome;
-
-        private String email;
-
-        private String senha;
-
-        private String estado;
-
-        private String cidade;
-
-        private String telefone;
-
-        private LocalDate dataNascimento;
-
-        private String cpf;
+    @Mapping("id")
+    @JsonProperty("id")
+    private UUID key;
+    @Size(min = 3, max = 255)
+    @NotBlank
+    private String nome;
+    @Email
+    @NotBlank
+    private String email;
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+            message = "Informe uma senha com pelo menos um caractere especial, um número e uma letra maiuscula!"
+    )
+    @NotBlank
+    private String senha;
+    private String estado;
+    private String cidade;
+    @Pattern(
+            regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
+            // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
+            message = "Informe um telefone válido com ou sem DDD"
+    )
+    @NotBlank
+    private String telefone;
+    @PastOrPresent
+    @NotNull
+    private LocalDate dataNascimento;
+    @Size(min = 11, max = 14)
+    @NotBlank
+    private String cpf;
 
     public DevelopDto() {
     }
@@ -61,7 +73,7 @@ public class DevelopDto extends RepresentationModel<DevelopDto> implements Seria
         this.email = email;
     }
 
-    public String getSenha() {
+    public String recuperaSenha() {
         return senha;
     }
 

@@ -30,7 +30,7 @@ public class DevMapper {
         entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
-        entity.setSenha(person.getSenha());
+        entity.setSenha(person.recuperaSenha());
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());

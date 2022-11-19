@@ -55,14 +55,11 @@ public class DesenvolvedorService {
 
     }
 
-    public DevelopDto create(DevelopDto person){
-
-        if (person == null) throw new RequiredObjectIsNullException();
+    public DevelopDto create(DevelopDto person) throws Exception{
 
         logger.info("Create a Dev!");
         var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
-        repository.save(entity);
-        var dto= DozerMapper.parseObject(entity,DevelopDto.class);
+        var dto= DozerMapper.parseObject(repository.save(entity),DevelopDto.class);
             dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 

@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.v1.DevelopDto;
+import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.services.DesenvolvedorService;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
-
 
 @RestController
 @RequestMapping("/api/v1/dev")
@@ -29,7 +29,7 @@ public class DevelopController {
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Find all Developers ", description = "Find all Developers ",
-            tags = {"Develop"},
+            tags = {"Developer"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200", content = {
                             @Content(
@@ -48,7 +48,7 @@ public class DevelopController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON)
     @Operation(summary = "Finds a Developer ", description = "Finds a Developer ",
-            tags = {"People"},
+            tags = {"Developer"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
                     ),
@@ -66,7 +66,7 @@ public class DevelopController {
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Adds a new Developer",
             description = "Adds a new Developers by passing in a JSON, XML or YML representation of the Developers!",
-            tags = {"Developers"},
+            tags = {"Developer"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content = @Content(schema = @Schema(implementation = DevelopDto.class))
@@ -76,8 +76,13 @@ public class DevelopController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public DevelopDto create(@RequestBody @Valid DevelopDto dev) {
-        return service.create(dev);
+    public DevelopDto post(@RequestBody @Valid DevelopDto dev) throws Exception {
+        if (dev == null) throw new RequiredObjectIsNullException();
+        try {
+            return service.create(dev);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PutMapping(
@@ -85,7 +90,7 @@ public class DevelopController {
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Updates a Developer",
             description = "Updates a Developer by passing in a JSON, XML or YML representation of the Developer!",
-            tags = {"People"},
+            tags = {"Developer"},
             responses = {
                     @ApiResponse(description = "Updated", responseCode = "200",
                             content = @Content(schema = @Schema(implementation = DevelopDto.class))
@@ -104,7 +109,7 @@ public class DevelopController {
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Deletes a Developer",
             description = "Deletes a Developer by passing in a JSON, XML or YML representation of the Developer!",
-            tags = {"People"},
+            tags = {"Developer"},
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -113,7 +118,7 @@ public class DevelopController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -12,13 +12,11 @@ import javax.validation.constraints.Size;
 
 public class DesenvolvedorModel extends UsuarioModel {
 
-    @CPF
-    @Size(max = 11)
     private String cpf;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "plano")
     private PlanoDev plano = PlanoDev.GRATUITO;
+
 
     public DesenvolvedorModel() {
     }

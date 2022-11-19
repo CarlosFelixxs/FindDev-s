@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.v1.CompanyDto;
 import projetopi.finddevservice.dtos.v1.DevelopDto;
+import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.models.EmpresaModel;
 import projetopi.finddevservice.repositories.EmpresaRepository;
 import projetopi.finddevservice.services.CompanyService;
@@ -80,8 +81,9 @@ public class EmpresaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public CompanyDto post(@RequestBody @Valid CompanyDto dev) throws Exception {
-        return service.create(dev);
+    public CompanyDto post(@RequestBody @Valid CompanyDto company) throws Exception {
+        if (company == null) throw new RequiredObjectIsNullException();
+        return service.create(company);
     }
 
 
