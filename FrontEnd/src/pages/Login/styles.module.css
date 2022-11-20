@@ -3,63 +3,78 @@
   display: flex;
 }
 
-.right {
-  width: 50%;
+.contPartOne {
+  width: 50vw;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
 }
 
-.left {
-  width: 50%;
-  height: 100%;
+.contText {
+  width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.left .text {
-  margin-bottom: 3.563rem;
-}
-
-.left .title {
-  margin-bottom: 3.563rem;
+.contText p {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 22px;
+  text-transform: uppercase;
   text-align: center;
   font-variant: small-caps;
+  text-transform: uppercase;
   color: #ffffff;
 }
 
-.left .subtitle {
-  margin-top: 1.688rem;
-  cursor: pointer;
+.contText span {
+  font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  text-transform: uppercase;
+  font-size: 1rem;
   line-height: 22px;
   text-align: center;
   font-variant: small-caps;
   color: #9747ff;
+  cursor: pointer;
 }
 
-.right .cardSignup {
-  height: 80.75%;
-  width: 62%;
-  background: #121214;
-  border: 2px solid #00b37e;
-  border-radius: 1rem;
+.contImg {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+.contImg img {
+  width: 100%;
+  height: auto;
 }
 
-.right .cardSignup .cardContent h1 {
+.contPartTwo {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.contForm {
+  width: 55%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid #00b37e;
+  border-radius: 15px;
+  background: #121214;
+}
+.contForm p {
+  font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 3rem;
   line-height: 49px;
   display: flex;
   align-items: center;
@@ -67,87 +82,49 @@
   font-variant: small-caps;
   color: #ffffff;
 }
-
-.right .cardSignup .cardContent {
-  width: 88%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.image{}
-
-.formSignup {
-  width: 88%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .labelInput {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  font-variant: small-caps;
-  color: #ffffff;
-}
-
-.labelInput .input {
   width: 100%;
-  height: 3.2rem;
-  border: 1px solid #9747ff;
-  border-radius: 0.938rem;
-  background-color: #121214;
-  padding: 0.813rem 1.5rem;
-  font-variant: normal;
-  color: #ffffff;
-  font-size: 16px;
-  transition: 0.3s;
   display: flex;
-  align-items: center;
   flex-direction: column;
-}
-
-.labelInput .input:focus {
-  box-shadow: 0 0 0 0;
-  outline: 0;
-  border: 1px solid #00b37e;
-}
-
-.submit {
-  width: 40%;
-  height: 13%;
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  width: 164px;
-  height: 56px;
-  left: 815px;
-  top: 469px;
-  border: 1px solid #00b37e;
-  border-radius: 15px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  display: flex;
   align-items: center;
-  text-align: center;
+}
+.labelInput label {
+  width: 80%;
+  font-weight: 400;
+  font-size: 0.9rem;
   font-variant: small-caps;
   color: #ffffff;
-  background-color: #121214;
-  cursor: pointer;
 }
-
-.submit:hover {
-  box-shadow: 0 0 0 0;
+.labelInput input {
+  padding: 2%;
+  border: 1px solid #9747ff;
+  border-radius: 5px;
+  background-color: transparent;
+  width: 80%;
+  height: 35px;
   outline: 0;
-  background-color: #00b37e;
+  color: #ffffff;
+  font-size: 0.8rem;
 }
-.separador {
-  height: 5px;
+.labelInput input:focus {
+  border: 2px solid #9747ff;
+}
+.labelInput input::placeholder {
+  color: #8e8e8e;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+}
+.contForm .submit {
+  width: 40%;
+  border: 1px solid #00b37e;
+  border-radius: 5px;
+  height: 40px;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.submit:hover {
+  background-color: #00b37e;
+  color: #121214;
 }

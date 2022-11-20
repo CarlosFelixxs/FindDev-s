@@ -28,7 +28,7 @@ export function Header(props: any) {
         <img onClick={() => routeChanger("/")} className={styles.image} src={Logo} alt="logo do site" />
         {props.isHomePage && (
           <ul className={styles.nav}>
-            <a href="#Inicio">INICIO</a>
+            <a href="#">INICIO</a>
             <a href="#sectionTopics">CONHEÇA</a>
             <a href="#sectionCards">COMO FUNCIONA</a>
             <a href="#sectionPlans">PLANOS</a>
