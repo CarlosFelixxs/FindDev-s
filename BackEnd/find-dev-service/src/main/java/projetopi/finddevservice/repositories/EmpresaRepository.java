@@ -11,7 +11,12 @@ import java.util.UUID;
 @Repository
 public interface EmpresaRepository extends JpaRepository <EmpresaModel, UUID> {
 
+
+    Boolean existsByEmailIgnoreCase(String email);
+    Boolean existsByNomeIgnoreCase(String nome);
+    Boolean existsByCnpjIgnoreCase(String cnpj);
     @Transactional
     @Modifying
     void deleteById (UUID uuid);
+
 }

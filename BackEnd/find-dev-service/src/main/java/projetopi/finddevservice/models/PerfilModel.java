@@ -38,5 +38,4 @@ public class PerfilModel {
     @JoinColumn(name = "idUsuario")
     private UsuarioModel usuario;
 
-
 }

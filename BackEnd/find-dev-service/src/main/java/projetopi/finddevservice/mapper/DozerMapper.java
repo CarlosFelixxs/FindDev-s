@@ -9,10 +9,8 @@ public class DozerMapper {
 
     private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 
-
     public static <O, D> D parseObject(O origen, Class<D> destination) {
         return mapper.map(origen, destination);
-
     }
 
     public static <O, D> List<D> parseListObjects(List<O> origen, Class<D> destination) {
@@ -21,7 +19,6 @@ public class DozerMapper {
             destinationObjects.add(mapper.map(o, destination));
         }
         return destinationObjects;
-
     }
 
 }

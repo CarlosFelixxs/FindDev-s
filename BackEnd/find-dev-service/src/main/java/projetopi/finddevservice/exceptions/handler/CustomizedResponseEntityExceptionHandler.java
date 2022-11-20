@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import projetopi.finddevservice.exceptions.ExceptionResponse;
+import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 
@@ -19,13 +20,13 @@ import java.util.Date;
 
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(
-                new Date(),
-                ex.getMessage(),
-                request.getDescription(false));
+            new Date(),
+            ex.getMessage(),
+            request.getDescription(false)
+        );
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -40,6 +41,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
     @ExceptionHandler(RequiredObjectIsNullException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(RequiredExistingObjectException.class)
+    public final ResponseEntity<ExceptionResponse> handleExistBadRequestException(Exception ex, WebRequest request){
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),

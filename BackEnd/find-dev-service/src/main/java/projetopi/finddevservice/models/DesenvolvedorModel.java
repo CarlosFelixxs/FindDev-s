@@ -19,6 +19,7 @@ public class DesenvolvedorModel extends UsuarioModel {
 
 
     public DesenvolvedorModel() {
+
     }
 
     public String getCpf() {
@@ -36,8 +37,5 @@ public class DesenvolvedorModel extends UsuarioModel {
     public void setPlano(PlanoDev plano) {
         this.plano = plano;
     }
-
-
-
 }
 

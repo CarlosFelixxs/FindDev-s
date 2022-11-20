@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@JsonPropertyOrder({"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento"})
+@JsonPropertyOrder(
+        {"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento"}
+)
 public class DevelopDto extends RepresentationModel<DevelopDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@JsonPropertyOrder({"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "dataNascimento", "bairro", "endereco", "complemento"})
+@JsonPropertyOrder(
+        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "dataNascimento", "bairro", "endereco", "complemento"}
+)
 public class CompanyDto extends RepresentationModel<CompanyDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -32,97 +32,101 @@ public class EmpresaController {
     private CompanyService service;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Find all Companys ", description = "Find all Companys ",
-            tags = {"Company"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-            })
-    public List<CompanyDto> findAllDevs() {
-        return service.findAll();
+    @Operation(
+        summary = "Find all Companys ", description = "Find all Companys ",
+        tags = {"Company"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200", content = {
+                        @Content(
+                                mediaType = "application/json",
+                                array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
+                        )
+                }),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<List<CompanyDto>> findAllDevs() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON)
-    @Operation(summary = "Finds a Company ", description = "Finds a Company ",
-            tags = {"Company"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "No content", responseCode = "204", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-            })
-    public CompanyDto findById(@PathVariable(value = "id") UUID id) {
-        return service.findById(id);
+    @Operation(
+        summary = "Finds a Company ", description = "Finds a Company ",
+        tags = {"Company"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<CompanyDto> findById(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.ok(service.findById(id));
     }
-
 
     @PostMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Adds a new Company",
-            description = "Adds a new Company by passing in a JSON, XML or YML representation of the Company!",
-            tags = {"Company"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
+        consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+        produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML}
     )
-    public CompanyDto post(@RequestBody @Valid CompanyDto company) throws Exception {
-        if (company == null) throw new RequiredObjectIsNullException();
-        return service.create(company);
+    @Operation(
+        summary = "Adds a new Company",
+        description = "Adds a new Company by passing in a JSON, XML or YML representation of the Company!",
+        tags = {"Company"},
+        responses = {
+                @ApiResponse(description = "Success", responseCode = "200",
+                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+        }
+    )
+    public ResponseEntity<CompanyDto> post(@RequestBody @Valid CompanyDto dev) throws Exception {
+        return ResponseEntity.ok(service.create(dev));
     }
-
 
     @PutMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Updates a Company",
-            description = "Updates a Company by passing in a JSON, XML or YML representation of the Company!",
-            tags = {"Company"},
-            responses = {
-                    @ApiResponse(description = "Updated", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                    ),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
+        consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+        produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML}
     )
-    public CompanyDto update(@RequestBody CompanyDto person) {
-        return service.update(person);
+    @Operation(
+        summary = "Updates a Company",
+        description = "Updates a Company by passing in a JSON, XML or YML representation of the Company!",
+        tags = {"Company"},
+        responses = {
+                @ApiResponse(description = "Updated", responseCode = "200",
+                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                ),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+        }
+    )
+    public ResponseEntity<CompanyDto> update(@RequestBody CompanyDto person) {
+        return ResponseEntity.ok(service.update(person));
     }
 
-
     @DeleteMapping(value = "/{id}")
-    @Operation(summary = "Deletes a Company",
-            description = "Deletes a Company by passing in a JSON, XML or YML representation of the Company!",
-            tags = {"Company"},
-            responses = {
-                    @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
+    @Operation(
+        summary = "Deletes a Company",
+        description = "Deletes a Company by passing in a JSON, XML or YML representation of the Company!",
+        tags = {"Company"},
+        responses = {
+                @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+        }
     )
     public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

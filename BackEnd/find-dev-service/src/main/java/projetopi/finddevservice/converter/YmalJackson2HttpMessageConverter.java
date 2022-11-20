@@ -5,9 +5,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
 
-public class YmalJackson2HttpMesageConverter extends AbstractJackson2HttpMessageConverter {
+public class YmalJackson2HttpMessageConverter extends AbstractJackson2HttpMessageConverter {
 
-    public YmalJackson2HttpMesageConverter() {
+    public YmalJackson2HttpMessageConverter() {
         super(
                 new YAMLMapper()
                     .setSerializationInclusion(
