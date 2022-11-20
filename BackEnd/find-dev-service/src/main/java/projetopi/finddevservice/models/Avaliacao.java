@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "Avaliacao")
 @Getter
 @Setter
 public class Avaliacao {
@@ -23,19 +24,5 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
-    private Usuario usuario;
-
-    public Avaliacao() {
-
-    }
-
-    public Avaliacao(int nota) {
-        this.nota = nota;
-    }
-
-    public Avaliacao(int nota, String comentario, Usuario usuario) {
-        this.nota = nota;
-        this.comentario = comentario;
-        this.usuario = usuario;
-    }
+    private UsuarioModel usuario;
 }

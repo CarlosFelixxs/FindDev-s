@@ -1,6 +1,6 @@
 package projetopi.finddevservice.enums;
 
-public enum PlanoDesenvolvedor {
+public enum PlanoDev {
     GRATUITO,
     BASICO,
     AVANCADO

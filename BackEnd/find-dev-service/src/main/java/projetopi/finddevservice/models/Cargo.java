@@ -2,35 +2,30 @@ package projetopi.finddevservice.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import projetopi.finddevservice.enums.FuncaoDesenvolvedor;
-import projetopi.finddevservice.enums.SenioridadeDesenvolvedor;
+import projetopi.finddevservice.enums.FuncaoDev;
+import projetopi.finddevservice.enums.SenioridadeDev;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ROLE")
 @Getter
 @Setter
-public class Vaga {
+public class Cargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Column(length = 45)
     private String titulo;
-
-    @Column(length = 200)
     private String descricao;
+    private FuncaoDev funcao;
+    private SenioridadeDev senioridade;
 
-    private FuncaoDesenvolvedor funcao;
-
-    private SenioridadeDesenvolvedor senioridade;
-
-    public Vaga(
+    public Cargo(
         String titulo,
         String descricao,
-        FuncaoDesenvolvedor funcao,
-        SenioridadeDesenvolvedor senioridade
+        FuncaoDev funcao,
+        SenioridadeDev senioridade
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -38,7 +33,7 @@ public class Vaga {
         this.senioridade = senioridade;
     }
 
-    public Vaga() {
+    public Cargo() {
 
     }
 }
