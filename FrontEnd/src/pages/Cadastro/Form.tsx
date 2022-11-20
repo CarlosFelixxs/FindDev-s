@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import signupImage from "../../assets/images/StepTwo-Signup.png";
 
 import { fetchStates } from '../../services/ibge';
 
@@ -154,6 +155,9 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.separador}></div>
                         <h3>Você atuará como desenvolvedor ou como contratante na FindDev</h3>
                     </div>
+                    <div className={styles.imgStepTwo}>
+                        <img src={signupImage} alt="" />
+                    </div>
                     <div className={styles.devOrCompany}>
                         {button}
                     </div>
@@ -191,17 +195,17 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
-                            <input type="text" className={styles.input} {...register("razaoSocial")} />
+                            <input placeholder='ex: Indústrias Ltda' type="text" className={styles.input} {...register("razaoSocial")} />
                         </div>
                         <div className={styles.labelInput}>
                             <label>TELEFONE</label>
                             <div className={styles.separador}></div>
-                            <input type="text" className={styles.input} {...register("telefone")} placeholder="(11) 912345678" />
+                            <input type="text" className={styles.input} {...register("telefone")} placeholder="(XX) XXXX-XXXX" />
                         </div>
                         <div className={styles.labelInput}>
                             <label>CNPJ</label>
                             <div className={styles.separador}></div>
-                            <input type="text" className={styles.input} {...register("CNPJ")} />
+                            <input placeholder='XX. XXX. XXX/0001-XX' type="text" className={styles.input} {...register("CNPJ")} />
                         </div>
                         {button}
                     </form>
@@ -215,7 +219,7 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.labelInput}>
                             <label htmlFor="state">ESTADO</label>
                             <div className={styles.separador}></div>
-                            <select className={styles.input} id="state" {...register("estadoDev")} onChange={handleInputStatesChange}>
+                            <select className={styles.selectBox} id="state" {...register("estadoDev")} onChange={handleInputStatesChange}>
                                 <option value="" selected disabled>Selecione um estado...</option>
                                 {states.map((state) => {
                                     const { sigla, nome } = state;
@@ -227,7 +231,7 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.labelInput}>
                             <label htmlFor="city">CIDADE</label>
                             <div className={styles.separador}></div>
-                            <select className={styles.input} id="city" {...register("cidadeDev")}>
+                            <select className={styles.selectBox} id="city" {...register("cidadeDev")}>
                                 <option value="" selected disabled>Selecione uma cidade...</option>
                                 {cities.map((city) => {
                                     const { id, nome } = city;
@@ -249,19 +253,19 @@ export default function Form({ button, step, userType }: FormType) {
                                 <div className={styles.labelInput}>
                                     <label>CEP</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("cep")} onBlur={checkCEP} />
+                                    <input placeholder='00000-000' type="text" className={styles.input} {...register("cep")} onBlur={checkCEP} />
                                 </div>
 
                                 <div className={styles.labelInput}>
                                     <label>CIDADE</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("cidadeCompany")} />
+                                    <input placeholder='ex: São Paulo' type="text" className={styles.input} {...register("cidadeCompany")} />
                                 </div>
 
                                 <div className={styles.labelInput}>
                                     <label>LOGRADOURO</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("logradouro")} />
+                                    <input placeholder='ex: avenida' type="text" className={styles.input} {...register("logradouro")} />
                                 </div>
                             </div>
 
@@ -269,19 +273,19 @@ export default function Form({ button, step, userType }: FormType) {
                                 <div className={styles.labelInput}>
                                     <label>ESTADO</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("estadoCompany")} />
+                                    <input placeholder='ex: São Paulo' type="text" className={styles.input} {...register("estadoCompany")} />
                                 </div>
 
                                 <div className={styles.labelInput}>
                                     <label>BAIRRO</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("bairro")} />
+                                    <input placeholder='ex: vila maria' type="text" className={styles.input} {...register("bairro")} />
                                 </div>
 
                                 <div className={styles.labelInput}>
                                     <label>NÚMERO</label>
                                     <div className={styles.separador}></div>
-                                    <input type="text" className={styles.input} {...register("numero")} />
+                                    <input placeholder='ex: 300' type="text" className={styles.input} {...register("numero")} />
                                 </div>
                             </div>
 
