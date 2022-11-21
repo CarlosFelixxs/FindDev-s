@@ -28,6 +28,7 @@ josias.silva@bandtec.com.br
 ![Badge](https://img.shields.io/badge/API-integration-4c9d1f?&logo=api)
 ![Badge](https://img.shields.io/badge/Java-11-red)
 ![Badge](https://img.shields.io/badge/SpringBoot-2.7-green)
+
 Foi utilizado para esse projeto:
 
 **FrontEnd**
