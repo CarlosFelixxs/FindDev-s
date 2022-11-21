@@ -7,20 +7,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.CompanyDto;
-import projetopi.finddevservice.dtos.v1.DevelopDto;
-import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
-import projetopi.finddevservice.models.EmpresaModel;
-import projetopi.finddevservice.repositories.EmpresaRepository;
+import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.services.CompanyService;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -39,7 +34,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Success", responseCode = "200", content = {
                         @Content(
                                 mediaType = "application/json",
-                                array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
+                                array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
                         )
                 }),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -48,7 +43,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<CompanyDto>> findAllDevs() {
+    public ResponseEntity<List<CompanyRequestDto>> findAllDevs() {
         return ResponseEntity.ok(service.findAll());
     }
 
@@ -57,7 +52,7 @@ public class EmpresaController {
         summary = "Finds a Company ", description = "Finds a Company ",
         tags = {"Company"},
         responses = {
-                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -65,7 +60,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<CompanyDto> findById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<CompanyRequestDto> findById(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -79,14 +74,14 @@ public class EmpresaController {
         tags = {"Company"},
         responses = {
                 @ApiResponse(description = "Success", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                        content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
         }
     )
-    public ResponseEntity<CompanyDto> post(@RequestBody @Valid CompanyDto dev) throws Exception {
+    public ResponseEntity<CompanyRequestDto> post(@RequestBody @Valid CompanyRequestDto dev) throws Exception {
         return ResponseEntity.ok(service.create(dev));
     }
 
@@ -100,7 +95,7 @@ public class EmpresaController {
         tags = {"Company"},
         responses = {
                 @ApiResponse(description = "Updated", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                        content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -108,7 +103,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
         }
     )
-    public ResponseEntity<CompanyDto> update(@RequestBody CompanyDto person) {
+    public ResponseEntity<CompanyRequestDto> update(@RequestBody CompanyRequestDto person) {
         return ResponseEntity.ok(service.update(person));
     }
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.DevelopController;
 import projetopi.finddevservice.controllers.EmpresaController;
-import projetopi.finddevservice.dtos.v1.CompanyDto;
+import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
@@ -27,11 +27,11 @@ public class CompanyService {
 
     private final Logger logger = Logger.getLogger(CompanyService.class.getName());
 
-    public List<CompanyDto> findAll(){
+    public List<CompanyRequestDto> findAll(){
 
         logger.info("Finding all Companys!");
 
-         var person =DozerMapper.parseListObjects(repository.findAll(),CompanyDto.class);
+         var person =DozerMapper.parseListObjects(repository.findAll(), CompanyRequestDto.class);
         person
                 .stream()
                 .forEach(p -> {
@@ -45,30 +45,30 @@ public class CompanyService {
         return person;
     }
 
-    public CompanyDto findById(UUID id){
+    public CompanyRequestDto findById(UUID id){
 
         logger.info("Finding a Company!");
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
-        var dto = DozerMapper.parseObject(entity, CompanyDto.class);
+        var dto = DozerMapper.parseObject(entity, CompanyRequestDto.class);
             dto.add(linkTo(methodOn(DevelopController.class).findById(id)).withSelfRel());
         return dto;
     }
 
-    public CompanyDto create(CompanyDto person) throws Exception {
+    public CompanyRequestDto create(CompanyRequestDto person) throws Exception {
 
         logger.info("Checking existence!");
         existByEmailorCpf(person);
 
         logger.info("Create a Company!");
         var entity = DozerMapper.parseObject(person, EmpresaModel.class);
-        var dto= DozerMapper.parseObject(repository.save(entity),CompanyDto.class);
+        var dto= DozerMapper.parseObject(repository.save(entity), CompanyRequestDto.class);
             dto.add(linkTo(methodOn(EmpresaController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 
     }
 
-    private void existByEmailorCpf(CompanyDto person) {
+    private void existByEmailorCpf(CompanyRequestDto person) {
         
         if (repository.existsByCnpjIgnoreCase(person.getCnpj())){
             throw new RequiredExistingObjectException("Cnpj already exists ");
@@ -78,7 +78,7 @@ public class CompanyService {
         }
     }
 
-    public  CompanyDto update(CompanyDto person) {
+    public CompanyRequestDto update(CompanyRequestDto person) {
 
         if (person == null) throw new RequiredObjectIsNullException();
 
@@ -100,7 +100,7 @@ public class CompanyService {
         entity.setEndereco(person.getEndereco());
         entity.setComplemento(person.getComplemento());
         entity.setCnpj(person.getCnpj());
-        var dto = DozerMapper.parseObject(repository.save(entity), CompanyDto.class);
+        var dto = DozerMapper.parseObject(repository.save(entity), CompanyRequestDto.class);
             dto.add(linkTo(methodOn(EmpresaController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 

@@ -2,19 +2,20 @@ package projetopi.finddevservice.mapper.custom;
 
 
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.dtos.v1.DevelopDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.models.DesenvolvedorModel;
 
 @Service
 public class DevMapper {
 
-    public DevelopDto convertEntityToDto(DesenvolvedorModel person){
+    public DevelopResponseDto convertEntityToDto(DesenvolvedorModel person){
 
-        DevelopDto dto = new DevelopDto();
+        DevelopResponseDto dto = new DevelopResponseDto();
         dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
-        dto.setSenha(person.recuperaSenha());
+        dto.setSenha(person.getSenha());
         dto.setEstado(person.getEstado());
         dto.setCidade(person.getCidade());
         dto.setTelefone(person.getTelefone());
@@ -23,13 +24,13 @@ public class DevMapper {
         return dto;
 
     }
-    public DesenvolvedorModel convertDtoToEntity(DevelopDto person){
+    public DesenvolvedorModel convertDtoToEntity(DevelopRequestDto person){
 
         DesenvolvedorModel entity = new DesenvolvedorModel();
         entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
-        entity.setSenha(person.recuperaSenha());
+        entity.setSenha(person.getSenha());
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());

@@ -9,7 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.DevelopDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.services.DesenvolvedorService;
 import projetopi.finddevservice.util.MediaType;
@@ -35,7 +36,7 @@ public class DevelopController {
                 @ApiResponse(description = "Success", responseCode = "200", content = {
                         @Content(
                                 mediaType = "application/json",
-                                array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
+                                array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
                         )
                 }),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -44,7 +45,7 @@ public class DevelopController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<DevelopDto>> findAllDevs() {
+    public ResponseEntity<List<DevelopResponseDto>> findAllDevs() {
         return ResponseEntity.ok(service.findAll());
     }
 
@@ -53,7 +54,7 @@ public class DevelopController {
         summary = "Finds a Developer ", description = "Finds a Developer ",
         tags = {"Developer"},
         responses = {
-                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -61,7 +62,7 @@ public class DevelopController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<DevelopDto> findById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<DevelopResponseDto> findById(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -74,14 +75,14 @@ public class DevelopController {
         tags = {"Developer"},
         responses = {
                 @ApiResponse(description = "Success", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                        content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
         }
     )
-    public ResponseEntity<DevelopDto> create(@RequestBody @Valid DevelopDto dev){
+    public ResponseEntity<DevelopResponseDto> create(@RequestBody @Valid DevelopRequestDto dev){
         try{
             return ResponseEntity.ok(service.create(dev));
         }catch (Exception e){
@@ -98,7 +99,7 @@ public class DevelopController {
         tags = {"Developer"},
         responses = {
                 @ApiResponse(description = "Updated", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
+                        content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
                 ),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -106,7 +107,7 @@ public class DevelopController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
         }
     )
-    public ResponseEntity<DevelopDto> update(@RequestBody DevelopDto person) {
+    public ResponseEntity<DevelopResponseDto> update(@RequestBody DevelopRequestDto person) {
         return ResponseEntity.ok(service.update(person));
     }
 

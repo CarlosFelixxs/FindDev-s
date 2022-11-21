@@ -56,7 +56,7 @@ public abstract class UsuarioModel implements Serializable {
         this.email = email;
     }
 
-    public String recuperaSenha() {
+    public String getSenha() {
         return senha;
     }
 

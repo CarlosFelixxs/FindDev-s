@@ -17,7 +17,6 @@ public class DesenvolvedorModel extends UsuarioModel {
     @Column(name = "plano")
     private PlanoDev plano = PlanoDev.GRATUITO;
 
-
     public DesenvolvedorModel() {
 
     }
