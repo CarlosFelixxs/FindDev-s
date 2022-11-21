@@ -8,17 +8,18 @@ Com foco em freelancer tantas nossas empresas como nosso devs podem escolher ond
 # Entrelinhas:
 Esse projeto tem como fundamento aprendizado e avaliação da faculdade São Paulo Tech School, onde por meio de um grupo de alunos composto por 5 máximo 6 integrantes, elaborem uma solução de escolha compartilhada para algum problema da sociedade. E que siga os padrões atendidos do projeto. 
 Grupo composto por:
-•	LUCAS ALVES – FULLSTACK
+
+-	LUCAS ALVES – FULLSTACK
 lucas.aferreira@bandtec.com.br
-•	DANILO AMORIM – BACKEND
+-	DANILO AMORIM – BACKEND
 danilo.ferreira@bandtec.com.br
-•	VICTOR VENITI – FRONTEND
+-	VICTOR VENITI – FRONTEND
 victor.smelo@bandtec.com.br
-•	PAULO GABRIEL- FRONTEND
+-	PAULO GABRIEL- FRONTEND
 paulo.asouza@bandtec.com.br
-•	CARLOS FELIX – FRONTEND
+-	CARLOS FELIX – FRONTEND
 carlos.fsilva@bandtec.com.br
-•	JOSIAS FLORÊNCIO – NEGÓCIOS
+-	JOSIAS FLORÊNCIO – NEGÓCIOS
 josias.silva@bandtec.com.br
 
 ![Badge](https://img.shields.io/badge/Code-react-0366d6?&logo=react) 
