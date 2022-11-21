@@ -5,7 +5,7 @@ SOMOS UMA PLATAFORMA DE EMPREGO PARA FREELANCERS, ONDE
 CONECTAMOS QUEM SABE FAZER COM QUEM PRECISA.
 
 # Projeto
-O projeto find Dev e um projeto criado com o intuito de montar uma plataforma para desenvolvedores em geral, que por sua maior parte estão sem empregos ou que também estejam empregados e estejam a fim de aumentar sua renda. Conectando-os a empresas que buscam novos funcionários tanto para um trabalho rápido e específico como para uma possível efetivação.
+O projeto FindDev e um projeto criado com o intuito de montar uma plataforma para desenvolvedores em geral, que por sua maior parte estão sem empregos ou que também estejam empregados e estejam a fim de aumentar sua renda. Conectando-os a empresas que buscam novos funcionários tanto para um trabalho rápido e específico como para uma possível efetivação.
 Com foco em freelancer tantas nossas empresas como nosso devs podem escolher onde desejam trabalhar. E se for de agrado de ambos os lados eles podem fechar uma parceria pelo nosso site.
 # Entrelinhas:
 Esse projeto tem como fundamento aprendizado e avaliação da faculdade São Paulo Tech School, onde por meio de um grupo de alunos composto por 5 máximo 6 integrantes, elaborem uma solução de escolha compartilhada para algum problema da sociedade. E que siga os padrões atendidos do projeto. 
@@ -36,15 +36,15 @@ Foi utilizado para esse projeto:
 **FrontEnd**
 - React 
 - TypeScript
-- Node, npm
+- Node, NPM
 
 **Backend**
-- java 18
-- Spring bot
+- Java 11
+- Spring Boot
 - SqlServer
 - JPA
 
 **Desnvolvimento**
-- Intelj
+- IntelliJ
 - Postman 
-- VsCode
+- Visual Studio Code
