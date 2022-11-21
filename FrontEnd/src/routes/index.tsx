@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cadastro from "../pages/Cadastro/Cadastro";
 import FormVacancy from "../pages/CriacaoVaga/FormVacancy";
 import DevSearchVacancyResult from "../pages/DevSearchVacancyResult/DevSearchVacancyResult";
+import CompanyPublichedVacancy from "../pages/CompanyPublishedVacancy/CompanyPublichedVacancy";
 import JobsEncerrados from "../pages/JobsEncerrados/JobsEncerrados";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -24,6 +25,7 @@ export const RoutesApp = () => {
           <Route path="/resultado-busca-vaga" element={<DevSearchVacancyResult />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/jobs-encerrados" element={<JobsEncerrados />} />
+          <Route path="/vagas-publicadas" element={<CompanyPublichedVacancy />} />
        </Routes>
       </BrowserRouter>
     </>
