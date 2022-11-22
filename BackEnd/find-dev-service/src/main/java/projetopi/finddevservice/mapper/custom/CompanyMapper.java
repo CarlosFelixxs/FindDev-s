@@ -14,7 +14,7 @@ public class CompanyMapper {
         dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
-        dto.setSenha(person.getSenha());
+        dto.setSenha(person.recuperaSenha());
         dto.setEstado(person.getEstado());
         dto.setCidade(person.getCidade());
         dto.setTelefone(person.getTelefone());

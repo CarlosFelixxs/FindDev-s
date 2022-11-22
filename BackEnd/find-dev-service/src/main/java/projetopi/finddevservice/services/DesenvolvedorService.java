@@ -60,7 +60,8 @@ public class DesenvolvedorService {
     public DevelopResponseDto create(DevelopRequestDto person) {
 
         logger.info("Checking existence!");
-        existByEmailCpf(person);
+        if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
+        if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
 
         logger.info("Create a Dev!");
         var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
@@ -70,34 +71,45 @@ public class DesenvolvedorService {
 
     }
 
-    private void existByEmailCpf(DevelopRequestDto person) {
+    public Boolean existByCpf(String cnpj) {
 
-        if (repository.existsByCpf(person.getCpf())) {
-            throw new RequiredExistingObjectException("Cpf already exists ");
+        if (repository.existsByCpf(cnpj)) {
+            return true;
         }
-        if (repository.existsByEmailIgnoreCase(person.getEmail())) {
-            throw new RequiredExistingObjectException("Email already exists ");
+        return false;
+    }
+
+    public Boolean existByEmail(String email) {
+
+        if (repository.existsByEmailIgnoreCase(email)) {
+            return true;
         }
+        return false;
     }
 
     public DevelopResponseDto update(DevelopRequestDto person) {
 
         if (person == null) throw new RequiredObjectIsNullException();
 
-        logger.info("Checking existence!");
-        existByEmailCpf(person);
-
         logger.info("updating a Dev!");
         var entity = repository.findById(person.getKey()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
 
-        entity.setNome(person.getNome());
-        entity.setEmail(person.getEmail());
-        entity.setEstado(person.getEstado());
-        entity.setCidade(person.getCidade());
-        entity.setTelefone(person.getTelefone());
-        entity.setDataNascimento(person.getDataNascimento());
-        entity.setCpf(person.getCpf());
+
+        if (!entity.getEmail().equalsIgnoreCase(person.getEmail())) {
+            if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
+            entity.setEmail(person.getEmail().isEmpty() ? entity.getEmail() : person.getEmail());
+        }
+        if (!entity.getCpf().equalsIgnoreCase(person.getCpf())) {
+            if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
+            entity.setCpf(person.getCpf().isEmpty() ? entity.getCpf() : person.getCpf());
+        }
+        entity.setNome(person.getNome().isEmpty() ? entity.getNome() : person.getNome());
+        entity.setEstado(person.getEstado().isEmpty() ? entity.getEstado() : person.getEstado());
+        entity.setCidade(person.getCidade().isEmpty() ? entity.getCidade() : person.getCidade());
+        entity.setTelefone(person.getTelefone().isEmpty() ? entity.getTelefone() : person.getTelefone());
+        entity.setDataNascimento(person.getDataNascimento() == null ? entity.getDataNascimento() : person.getDataNascimento());
+
         var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
         dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
         return dto;

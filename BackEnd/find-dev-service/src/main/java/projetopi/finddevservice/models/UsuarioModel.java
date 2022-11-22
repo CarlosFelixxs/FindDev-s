@@ -1,7 +1,6 @@
 package projetopi.finddevservice.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -56,7 +55,7 @@ public abstract class UsuarioModel implements Serializable {
         this.email = email;
     }
 
-    public String getSenha() {
+    public String recuperaSenha() {
         return senha;
     }
 

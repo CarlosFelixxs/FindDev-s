@@ -27,19 +27,24 @@ public class UsuarioService {
         }
 
         logger.info("Finding a User!");
-        var nome = repository.existsByNomeIgnoreCase(loginDto.getNome());
-        var email = repository.existsByEmailIgnoreCase(loginDto.getEmail());
 
-        if (!nome && !email) {
+        var email =  verifyEmail(loginDto.getEmail());
+
+        if (!email) {
             throw new RequiredExistingObjectException("Username Not Found! ");
         }
-        var user = repository.findByNomeIgnoreCaseOrEmailIgnoreCase(loginDto.getNome(), loginDto.getEmail());
-        if (!loginDto.getSenha().equals(user.getSenha())) {
+        var user = repository.findByEmailIgnoreCase(loginDto.getEmail());
+        if (!loginDto.getSenha().equals(user.recuperaSenha())) {
             throw new RequiredExistingObjectException("Invalid Password!");
         }
 
         return user;
     }
+
+    public Boolean verifyEmail(String email) {
+        return repository.existsByEmailIgnoreCase(email);
+    }
+
 
 
 }
