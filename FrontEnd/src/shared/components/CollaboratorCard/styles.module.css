@@ -1,0 +1,86 @@
+.card{
+  width:80%;
+  height: 9rem;
+  margin: 2% 0;
+  background-color: #121214;
+  border: 2px solid #00B37E;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content{
+  width:70%;
+  height: 100%;
+  display: flex;
+  align-items:center;
+}
+
+.imageCardContainer{
+  width:30%;
+  height: 100%;
+  border-right: 4px solid #633BBC;
+  border-radius: 1rem;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.imageCardContainer img{
+  width:70%;
+}
+
+.details{
+  height:100%;
+  width:65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 5%;
+  padding: 0.3rem 0;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-decoration:underline;
+}
+
+.companyName, .salary, .stackSenioridade{
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.stackSenioridade{
+  display: flex;
+  gap: 10%;
+}
+
+.senioridade{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1% 5%;
+  height: 100%;
+  background: #00875F;
+  border-radius: 5px;
+}
+
+.button{
+  width:7%;
+  height: 25%;
+  background: #633BBC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  margin: 0 0.700rem 0.625rem 0;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button:hover{
+  background: #00B37E;
+}

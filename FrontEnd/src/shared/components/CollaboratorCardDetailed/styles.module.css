@@ -1,0 +1,85 @@
+.card{
+  height: 90%;
+  width:80%;
+  background-color: #121214;
+  border: 2px solid #9747FF;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topicContent{
+  height:30%;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #9747FF;
+}
+
+.title {
+  height:35%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topics{
+  width:100%;
+  height:65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: underline;
+}
+
+.stackSenioridade{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.description{
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+
+.titleDescription{
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.textDescription{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.button{
+  width:25%;
+  height: 8%;
+  background-color:#121214;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.700rem 0;
+  border: 1px solid #633BBC;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button:hover{
+  background-color: #633BBC;
+}

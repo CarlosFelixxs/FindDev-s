@@ -7,6 +7,7 @@ import JobsEncerrados from "../pages/JobsEncerrados/JobsEncerrados";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Perfil from "../pages/PerfilDev";
+import Collaborators from "../pages/Collaborators/Collaborators";
 import OptionDev from "../pages/OptionLog/Dev";
 import OptionEmp from "../pages/OptionLog/emp";
 
@@ -26,6 +27,7 @@ export const RoutesApp = () => {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/jobs-encerrados" element={<JobsEncerrados />} />
           <Route path="/vagas-publicadas" element={<CompanyPublichedVacancy />} />
+          <Route path="/colaboradores" element={<Collaborators />} />
        </Routes>
       </BrowserRouter>
     </>
