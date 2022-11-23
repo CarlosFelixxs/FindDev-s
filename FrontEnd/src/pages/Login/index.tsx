@@ -2,10 +2,24 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { Header } from '../../shared/components/Header';
 import signupImage from "../../assets/images/signup-img.png";
+import { useState } from 'react';
 
 export default function Cadastro() {
 
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const objetoBack = {
+    email
+  }
+
+  // if (objetoBack.email) {
+    
+  // } else {
+  //   api.post("/", objetoBack)
+  // }
+
+
 
   const routeChange = (path: string) => {
     navigate(path);
@@ -21,7 +35,7 @@ export default function Cadastro() {
               OLÁ, BEM VINDO DE VOLTA! <br />
               AINDA NÃO POSSUI UMA CONTA?
             </div>
-            <div className={styles.subtitle} onClick={() => routeChange("/cadastro")}>
+            <div className={styles.subtitle} >
               REGISTRE-SE JÁ
             </div>
           </div>
@@ -35,9 +49,10 @@ export default function Cadastro() {
               <h1>LOGIN</h1>
               <form className={styles.formSignup}>
                 <div className={styles.labelInput}>
-                  <label className={styles.titleInput}>EMAIL</label>
+                  <label className={styles.titleInput} id ='input_email'>EMAIL</label> 
                   <div className={styles.separador}></div>
-                  <input type="text" className={styles.input} placeholder="exemplo@email.com" />
+                  <input type="email" className={styles.input} placeholder="exemplo@email.com" />
+                  <span></span>
                 </div>
                 <div className={styles.labelInput}>
                   <label className={styles.titleInput}>SENHA</label>
@@ -53,8 +68,3 @@ export default function Cadastro() {
     </>
   )
 }
-
-
-<script>
-  
-</script>
