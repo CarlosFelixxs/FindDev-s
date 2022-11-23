@@ -9,7 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.DevelopDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.services.DesenvolvedorService;
 import projetopi.finddevservice.util.MediaType;
@@ -27,41 +28,63 @@ public class DevelopController {
     @Autowired
     private DesenvolvedorService service;
 
+
+    @GetMapping(value = "/valid")
+    @Operation(
+            summary = "Find cpf", description = "Check if cpf already exists  ",
+            tags = {"Validation"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
+    )
+    public ResponseEntity<Boolean> existscpf(@RequestBody String cpf) {
+        return ResponseEntity.ok(service.existByCpf(cpf));
+    }
+
     @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(
-        summary = "Find all Developers ", description = "Find all Developers ",
-        tags = {"Developer"},
-        responses = {
-                @ApiResponse(description = "Success", responseCode = "200", content = {
-                        @Content(
-                                mediaType = "application/json",
-                                array = @ArraySchema(schema = @Schema(implementation = DevelopDto.class))
-                        )
-                }),
-                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-        }
+            summary = "Find all Developers ", description = "Find all Developers ",
+            tags = {"Developer"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
     )
-    public ResponseEntity<List<DevelopDto>> findAllDevs() {
+    public ResponseEntity<List<DevelopResponseDto>> findAllDevs() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON)
     @Operation(
-        summary = "Finds a Developer ", description = "Finds a Developer ",
-        tags = {"Developer"},
-        responses = {
-                @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                ),
-                @ApiResponse(description = "No content", responseCode = "204", content = @Content),
-                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-        }
+            summary = "Finds a Developer ", description = "Finds a Developer ",
+            tags = {"Developer"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                    ),
+                    @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
     )
-    public ResponseEntity<DevelopDto> findById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<DevelopResponseDto> findById(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -69,22 +92,22 @@ public class DevelopController {
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(
-        summary = "Adds a new Developer",
-        description = "Adds a new Developers by passing in a JSON, XML or YML representation of the Developers!",
-        tags = {"Developer"},
-        responses = {
-                @ApiResponse(description = "Success", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                ),
-                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-        }
+            summary = "Adds a new Developer",
+            description = "Adds a new Developers by passing in a JSON, XML or YML representation of the Developers!",
+            tags = {"Developer"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                    ),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+            }
     )
-    public ResponseEntity<DevelopDto> create(@RequestBody @Valid DevelopDto dev){
-        try{
+    public ResponseEntity<DevelopResponseDto> create(@RequestBody @Valid DevelopRequestDto dev) {
+        try {
             return ResponseEntity.ok(service.create(dev));
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RequiredObjectIsNullException(e.getMessage());
         }
     }
@@ -93,20 +116,20 @@ public class DevelopController {
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(
-        summary = "Updates a Developer",
-        description = "Updates a Developer by passing in a JSON, XML or YML representation of the Developer!",
-        tags = {"Developer"},
-        responses = {
-                @ApiResponse(description = "Updated", responseCode = "200",
-                        content = @Content(schema = @Schema(implementation = DevelopDto.class))
-                ),
-                @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-        }
+            summary = "Updates a Developer",
+            description = "Updates a Developer by passing in a JSON, XML or YML representation of the Developer!",
+            tags = {"Developer"},
+            responses = {
+                    @ApiResponse(description = "Updated", responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                    ),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+            }
     )
-    public ResponseEntity<DevelopDto> update(@RequestBody DevelopDto person) {
+    public ResponseEntity<DevelopResponseDto> update(@RequestBody DevelopRequestDto person) {
         return ResponseEntity.ok(service.update(person));
     }
 

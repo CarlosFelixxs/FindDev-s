@@ -1,10 +1,10 @@
-package projetopi.finddevservice.dtos.v1;
+package projetopi.finddevservice.dtos.v1.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
-import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.hateoas.RepresentationModel;
+import projetopi.finddevservice.enums.PlanoDev;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -12,9 +12,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
-        {"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento"}
+        {"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento","plano"}
 )
-public class DevelopDto extends RepresentationModel<DevelopDto> implements Serializable {
+public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Mapping("id")
@@ -48,7 +48,8 @@ public class DevelopDto extends RepresentationModel<DevelopDto> implements Seria
     @NotBlank
     private String cpf;
 
-    public DevelopDto() {
+
+    public DevelopRequestDto() {
     }
 
     public UUID getKey() {
@@ -75,7 +76,7 @@ public class DevelopDto extends RepresentationModel<DevelopDto> implements Seria
         this.email = email;
     }
 
-    public String recuperaSenha() {
+    public String getSenha() {
         return senha;
     }
 

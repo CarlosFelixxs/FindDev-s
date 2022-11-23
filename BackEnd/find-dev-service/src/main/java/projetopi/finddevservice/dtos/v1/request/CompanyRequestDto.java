@@ -1,4 +1,4 @@
-package projetopi.finddevservice.dtos.v1;
+package projetopi.finddevservice.dtos.v1.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @JsonPropertyOrder(
         {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "dataNascimento", "bairro", "endereco", "complemento"}
 )
-public class CompanyDto extends RepresentationModel<CompanyDto> implements Serializable {
+public class CompanyRequestDto extends RepresentationModel<CompanyRequestDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class CompanyDto extends RepresentationModel<CompanyDto> implements Seria
 
     private String cnpj;
 
-    public CompanyDto() {
+    public CompanyRequestDto() {
 
     }
 
@@ -77,7 +77,7 @@ public class CompanyDto extends RepresentationModel<CompanyDto> implements Seria
         this.email = email;
     }
 
-    public String recuperaSenha() {
+    public String getSenha() {
         return senha;
     }
 
