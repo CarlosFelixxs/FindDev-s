@@ -3,9 +3,10 @@ import styles from "./styles.module.css";
 import logo from "../../assets/images/Logo@2x.png";
 import publish from "../../assets/images/Hiring-amico 1.png";
 import profileImg from "../../assets/images/Metrics-bro 1.png";
+import HeaderLogado from "../../shared/components/HeaderLogado/Index";
 
 export default function OptionEmp() {
-   
+
    const navigate = useNavigate();
 
    const routeChange = (path: string) => {
@@ -14,11 +15,12 @@ export default function OptionEmp() {
 
    return (
       <>
+         <HeaderLogado nome={"danilo"} />
          <div className={styles.container}>
             <div className={styles.findProfile} onClick={() => routeChange("/")}>
-               <div className={styles.header}>
+               {/* <div className={styles.header}>
                   <img src={logo} alt="Logo" />
-               </div>
+               </div> */}
 
                <div className={styles.div_imgFrase}>
                   <div className={styles.div_itens}>
@@ -29,7 +31,6 @@ export default function OptionEmp() {
             </div>
 
             <div className={styles.findProfileRight} onClick={() => routeChange("/")}>
-               <div className={styles.headerRight}>X-Team </div>
 
                <div className={styles.div_imgFrase}>
                   <div className={styles.div_itens}>

@@ -1,69 +1,88 @@
 .container {
-    height: 100vh;
-    width: 100vw;
+    height: 80vh;
     display: flex;
     background-color: #09090A;
 }
 
 .findProfile {
-    height: 100vh;
-    width: 50vw;
+    border-right:1px solid rgb(230, 230, 230);
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.findProfile:hover {
-    background-color: #633BBC;
-    cursor: pointer;
-}
 
-.header {
+/* .header {
     height: 20%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .div_imgFrase {
-    height: 80%;
-    width: 100%;
+    border-radius: 5px;
+    height: 75%;
+    width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-.div_phrase {
-    height: 3.5rem;
-    width: 100%;
-    color: #8257E5;
-    display: flex;
-    justify-content: center;
-    font-size: 2.0rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.findProfile:hover .div_phrase{
+.div_imgFrase:hover {
+    background-color: #633BBC;
+    cursor: pointer;
+    transition: 1s;
     color: #09090A;
 }
 
+.div_phrase {
+    height: 2rem;
+    width: 100%;
+    color: #8257E5;
+    font-variant: small-caps;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
 .img {
-    width: 25rem;
+    width: 100%;
 }
 
 /*RIGHT*/
 
 .findProfileRight {
-    height: 100vh;
-    width: 50vw;
-}
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left:1px solid rgb(230, 230, 230);
 
-.findProfileRight:hover {
+}
+.div_imgFrase1:hover{
+
+}
+.div_imgFrase1 {
+    border-radius: 5px;
+    height: 75%;
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+.div_imgFrase1:hover {
+    color: #09090A;
     background-color: #00B37E;
     cursor: pointer;
-}
-
-.findProfileRight:hover .div_phraseRight{
-    color: #09090A;
+    transition: 1s;
 }
 
 .headerRight {
@@ -73,17 +92,19 @@
     align-items: center;
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.0rem;
+    font-size: 1,1rem;
     font-weight: bold;
 }
 
 .div_phraseRight {
-    height: 3.5rem;
+    height: 2rem;
     width: 100%;
     color: #00B37E;
+    font-variant: small-caps;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
-    font-size: 2.0rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 700;
     font-family: 'Montserrat', sans-serif;
 }
