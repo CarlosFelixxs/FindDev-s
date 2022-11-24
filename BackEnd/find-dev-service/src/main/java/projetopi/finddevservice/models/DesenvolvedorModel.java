@@ -1,10 +1,8 @@
 package projetopi.finddevservice.models;
 
-import org.hibernate.validator.constraints.br.CPF;
 import projetopi.finddevservice.enums.PlanoDev;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name ="Desenvolvedor")
@@ -12,21 +10,14 @@ import javax.validation.constraints.Size;
 
 public class DesenvolvedorModel extends UsuarioModel {
 
-    private String cpf;
     @Enumerated(EnumType.STRING)
-    @Column(name = "plano")
-    private PlanoDev plano = PlanoDev.GRATUITO;
+    @Column(name = "plano_assinatura")
+    private PlanoDev plano;
+
+    private String cpf;
 
     public DesenvolvedorModel() {
-
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+        plano = PlanoDev.GRATUITO;
     }
 
     public PlanoDev getPlano() {
@@ -35,6 +26,14 @@ public class DesenvolvedorModel extends UsuarioModel {
 
     public void setPlano(PlanoDev plano) {
         this.plano = plano;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }
 

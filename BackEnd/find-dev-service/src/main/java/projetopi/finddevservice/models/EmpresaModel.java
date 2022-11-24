@@ -23,6 +23,7 @@ public class EmpresaModel extends UsuarioModel {
     private String cnpj;
 
     public EmpresaModel() {
+
     }
 
     public String getBairro() {

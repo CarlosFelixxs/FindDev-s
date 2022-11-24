@@ -30,12 +30,4 @@ public class PerfilModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 25)
     private StatusDesenvolvedor status;
-
-    @Column(name = "userAtivo", length = 25)
-    private boolean isAtivo = false;
-
-    @OneToOne
-    @JoinColumn(name = "idUsuario")
-    private UsuarioModel usuario;
-
 }
