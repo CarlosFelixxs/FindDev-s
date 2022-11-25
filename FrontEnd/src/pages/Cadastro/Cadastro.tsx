@@ -7,25 +7,14 @@ import { Header } from '../../shared/components/Header';
 import Form from './Form';
 
 import signupImage from "../../assets/images/signup-img.png";
-import FinalSignupImage from "../../assets/images/final-image-banner-signup.png";
+import finalSignupImage from "../../assets/images/final-image-banner-signup.png";
 
 export default function Cadastro() {
 
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
-  const [userType, setUserType] = useState<"" | "company" | "dev">("");
 
-  const classNameCardSignUp = () => {
-    if (step === 3 && userType === "company") {
-      return styles.cardSignupStep3;
-    }
-    return styles.cardSignup;
-  }
-
-  const nextStep = () => {
-    setStep(step + 1)
-  }
 
   const routeChange = (path: string) => {
     navigate(path);
@@ -51,52 +40,13 @@ export default function Cadastro() {
       return (
         <div className={styles.left}>
           <div className={styles.image}>
-            <img src={FinalSignupImage} alt="imagem do banner" />
+            <img src={finalSignupImage} alt="imagem do banner" />
           </div>
         </div>
       )
     }
   }
 
-  const button = (
-    step === 1 ? (
-      <>
-          <div
-            onClick={() => {
-              setStep(step + 1);
-              setUserType("company");
-            }}
-            className={styles.selectionEmpresa}>
-            EMPRESA
-          </div>
-          <div
-            onClick={() => {
-              setStep(step + 1);
-              setUserType("dev");
-            }}
-            className={styles.selectionDev}>
-            DESENVOLVEDOR
-          </div>
-      </>
-    ) : (
-      step === 4 ? (
-        <button
-          onClick={() => routeChange("/login")}
-          className={styles.finalSubmit}>
-          COMECE SUA JORNADA
-        </button>
-      ) : (
-        <button
-          onClick={
-            () => {
-              setTimeout(nextStep, 0.1);
-            }}
-          className={styles.submit}>
-          CONTINUAR
-        </button>
-      )
-    )
-  );
 
   return (
     <>
@@ -106,8 +56,8 @@ export default function Cadastro() {
           {beginOrEndForm()}
         </div>
         <div className={styles.right}>
-          <div className={classNameCardSignUp()}>
-            <Form button={button} step={step} userType={userType} />
+          <div className={styles.cardSignup}>
+            <Form />
           </div>
         </div>
       </section>
