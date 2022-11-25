@@ -103,7 +103,7 @@ export default function DevSearchVacancyResult() {
     setIsModalVisible(true);
     setTimeout(() => {
         setIsModalVisible(false);
-        navigate("/menuDev");
+        navigate("/menu-dev");
     }, 5000);
   }
 

@@ -21,8 +21,8 @@ export const RoutesApp = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/menuDev" element = {<OptionDev />}/>
-          <Route path="/menuCompany" element = {<OptionEmp />}/>
+          <Route path="/menu-dev" element = {<OptionDev />}/>
+          <Route path="/menu-company" element = {<OptionEmp />}/>
           <Route path="/formulario-vaga" element={<FormVacancy />} />
           <Route path="/resultado-busca-vaga" element={<DevSearchVacancyResult />} />
           <Route path="/perfil-dev" element={<Perfil />} />

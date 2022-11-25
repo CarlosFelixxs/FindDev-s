@@ -97,8 +97,8 @@ export default function CompanyPublichedVacancy() {
     setIsModalVisible(true);
     setTimeout(() => {
         setIsModalVisible(false);
-        navigate("/menuDev");
-    }, 5000);
+        navigate("/menu-company");
+    }, 4000);
   }
 
   const buttonCard = (senioridade: string, stack: string, title: string, company: string, description: string, id: number, salary?: number ) => {
@@ -133,7 +133,7 @@ export default function CompanyPublichedVacancy() {
   }
   
 
-  const textModal = "Você será redirecoinado para o menu principal";
+  const textModal = "Você será redirecionado para o menu principal";
     
   return (
     <>

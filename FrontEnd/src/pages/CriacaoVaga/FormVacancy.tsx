@@ -19,7 +19,7 @@ export default function FormVacancy() {
 
         setTimeout(() => {
             setIsModalVisible(false);
-            navigate("/menuCompany")
+            navigate("/menu-company")
         }, 5000);
     }
 
