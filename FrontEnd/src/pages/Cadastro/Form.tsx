@@ -3,6 +3,10 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import signupImage from "../../assets/images/StepTwo-Signup.png";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import YupPassword from 'yup-password';
+
 
 import { fetchStates } from '../../services/ibge';
 
@@ -14,16 +18,60 @@ type FormType = {
     userType: string,
 }
 
+interface FormProps {
+    email: string;
+    senha: string;
+    confirmacao: string;
+    nome: string;
+    estadoCompany: string;
+    cidadeCompany: string;
+    logradouro: string;
+    bairro: string;
+    numero: string;
+    telefone: string;
+    CPF: string;
+    CNPJ: string;
+    estadoDev: string;
+    cidadeDev: string;
+    cep: string;
+}
+
+YupPassword(yup);
+
+const signUpSchema = yup.object({
+    nome: yup.string().required('Este campo é obrogatório'),
+    senha: yup.string().required('No password provided.').min(8, 'A senha deve conter no minimo 8 caracteres')
+        .minUppercase(1, 'password must contain at least 1 upper case letter')
+        .minLowercase(1, 'password must contain at least 1 lower case letter')
+        .minNumbers(1, 'password must contain at least 1 number')
+        .minSymbols(1, 'password must contain at least 1 special character')
+        .max(40, 'A senha deve conter no máximo 40 caracteres'),
+    confirmacao: yup.string().required('Este campo é obrogatório')
+        .oneOf([yup.ref('senha'), null], 'As senhas não correspondem'),
+    email: yup.string().email('Insira um email válido').required('Este campo é obrogatório'),
+    telefone: yup.string().min(11, "O telefone deve conter o DDD sem traços parenteses").max(11, "O telefone deve conter o DDD sem traços e parenteses"),
+    CPF: yup.string().required('Este campo é obrogatório').min(11, 'CPF deve conter os 11 digitos'),
+    CNPJ: yup.string().required('Este campo é obrogatório').min(14, 'CNPJ deve conter os 14 digitos'),
+}).required()
+
 export default function Form({ button, step, userType }: FormType) {
 
-    const { register, handleSubmit, setValue, setFocus } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+        setFocus,
+    } = useForm<FormProps>({
+        resolver: yupResolver(signUpSchema)
+    });
 
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
     const [signUpCompanyData, setSignUpCompanyData] = useState({
         email: "",
         senha: "",
-        razaoSocial: "",
+        nome: "",
         telefone: "",
         CNPJ: "",
         estado: "",
@@ -38,8 +86,8 @@ export default function Form({ button, step, userType }: FormType) {
         nome: "",
         telefone: "",
         CPF: "",
-        estadoDev: "",
-        cidadeDev: "",
+        estado: "",
+        cidade: "",
     });
 
     useEffect(() => {
@@ -54,7 +102,7 @@ export default function Form({ button, step, userType }: FormType) {
     }, []);
 
 
-    const onSubmitFirstStep = (e: any) => {
+    const onSubmitFirstStep = (e: FormProps) => {
         setSignUpCompanyData({ ...signUpCompanyData, email: signUpCompanyData.email = e.email, senha: signUpCompanyData.senha = e.senha });
         setSignUpDevData({ ...signUpDevData, email: signUpDevData.email = e.email, senha: signUpDevData.senha = e.senha });
         console.log(signUpDevData);
@@ -68,7 +116,7 @@ export default function Form({ button, step, userType }: FormType) {
     const onSubmitThirdStepCompany = (e: any) => {
         setSignUpCompanyData({
             ...signUpCompanyData,
-            razaoSocial: signUpCompanyData.razaoSocial = e.razaoSocial,
+            nome: signUpCompanyData.nome = e.nome,
             telefone: signUpCompanyData.telefone = e.telefone,
             CNPJ: signUpCompanyData.CNPJ = e.CNPJ
         });
@@ -76,9 +124,10 @@ export default function Form({ button, step, userType }: FormType) {
     };
 
     const onSubmitFourthStepDev = (e: any) => {
-        setSignUpDevData({ ...signUpDevData, estadoDev: signUpDevData.estadoDev = e.estadoDev, cidadeDev: signUpDevData.cidadeDev = e.cidadeDev });
+        setSignUpDevData({ ...signUpDevData, estado: signUpDevData.estado = e.estadoDev, cidade: signUpDevData.cidade = e.cidadeDev });
         console.log(signUpDevData);
     };
+
 
     const onSubmitFourthStepCompany = (e: any) => {
         setSignUpCompanyData({
@@ -130,7 +179,8 @@ export default function Form({ button, step, userType }: FormType) {
                             <div className={styles.labelInput}>
                                 <label>EMAIL</label>
                                 <div className={styles.separador}></div>
-                                <input type="text" className={styles.input} {...register("email")} placeholder="exemplo@email.com" />
+                                <input type="text" className={errors.email ? styles.inputError : styles.input} {...register("email")} placeholder="exemplo@email.com" />
+                                {errors.email && <p>{errors.email.message}</p>}
                             </div>
                             <div className={styles.labelInput}>
                                 <label>SENHA</label>
@@ -195,8 +245,8 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
-                            <input placeholder='ex: Indústrias Ltda' type="text" className={styles.input} {...register("razaoSocial")} />
-                        </div>
+                            <input type="text" className={styles.input} {...register("nome")} />
+                        </div >
                         <div className={styles.labelInput}>
                             <label>TELEFONE</label>
                             <div className={styles.separador}></div>
@@ -208,7 +258,7 @@ export default function Form({ button, step, userType }: FormType) {
                             <input placeholder='XX. XXX. XXX/0001-XX' type="text" className={styles.input} {...register("CNPJ")} />
                         </div>
                         {button}
-                    </form>
+                    </form >
                 </>
             )
         } else if (step === 3 && userType === "dev") {
@@ -240,7 +290,7 @@ export default function Form({ button, step, userType }: FormType) {
                             </select>
                         </div>
                         {button}
-                    </form>
+                    </form >
                 </>
             )
         } else if (step === 3 && userType === "company") {
