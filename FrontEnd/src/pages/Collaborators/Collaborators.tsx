@@ -1,4 +1,4 @@
-import React, { useState }from 'react'
+import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -20,7 +20,7 @@ import Modal from '../../shared/components/ModalResult/ModalResult';
 export default function Colaborators() {
 
   const navigate = useNavigate();
-  const {register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [isVacancySelected, setIsVacancySelected] = useState(false);
 
@@ -34,8 +34,8 @@ export default function Colaborators() {
       "devName": "Josias",
       "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
       "id": 1
-     },
-     {
+    },
+    {
       "senioridade": 'SENIOR',
       "stack": "FRONTEND",
       "company": "Strosin and Sons",
@@ -43,8 +43,8 @@ export default function Colaborators() {
       "devName": "Victor",
       "description": "jorge",
       "id": 2
-     },
-     {
+    },
+    {
       "senioridade": 'PLENO',
       "stack": "BACKEND",
       "company": "Bergstrom - Conn",
@@ -52,8 +52,8 @@ export default function Colaborators() {
       "devName": "Lucas",
       "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
       "id": 3
-     },
-     {
+    },
+    {
       "senioridade": 'PLENO',
       "stack": "BACKEND",
       "company": "Kiehn, Adams and Hauck",
@@ -61,8 +61,8 @@ export default function Colaborators() {
       "devName": "Danilo",
       "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
       "id": 4
-     },
-     {
+    },
+    {
       "senioridade": 'JUNIOR',
       "stack": "DEVOPS",
       "salary": 2000.00,
@@ -83,10 +83,10 @@ export default function Colaborators() {
       "id": 6
     }
   ]);
-  
+
   const [isRateModalVisible, setIsRateModalVisible] = useState(false);
   const [isModalSuccessVisible, setIsModalSuccessVisible] = useState(false);
-  
+
   const [senioridade, setSenioridade] = useState("");
   const [stack, setStack] = useState("");
   const [salary, setSalary] = useState(-1);
@@ -106,9 +106,9 @@ export default function Colaborators() {
     activeStrokeColor: '#00B37E',
     inactiveFillColor: '#121214',
     inactiveStrokeColor: '#00B37E'
-}
+  }
 
-  const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number ) => {
+  const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
     setIsVacancySelected(true);
     setSenioridade(senioridade);
     setStack(stack);
@@ -123,46 +123,46 @@ export default function Colaborators() {
     setIsRateModalVisible(true);
   }
 
-  const submitRateCompany = async (e : any) => {
+  const submitRateCompany = async (e: any) => {
     console.log(e);
     alert(rating);
     setIsRateModalVisible(false);
     setIsModalSuccessVisible(true);
     setTimeout(() => {
-        setIsModalSuccessVisible(false);
-        navigate("/menuCompany");
-      }, 5000);
+      setIsModalSuccessVisible(false);
+      navigate("/menu-company");
+    }, 5000);
   }
 
   const RateVacancyModal = () => {
     return (
       <div className={styles.modal}>
-          <div className={styles.containerModal}>
-              <div className={styles.content}>
-                  <span className={styles.title}>Avaliar Contratante</span>
-                  <form className={styles.form}  onSubmit={handleSubmit(submitRateCompany)}>
-                      <div className={styles.labelInput}>
-                          <label>Conte-nos brevemente como foi sua relação com o contratante:</label>
-                          <Rating 
-                            style={{ maxWidth: 250 }} 
-                            value={rating} 
-                            onChange={setRating} 
-                            itemStyles={starStyles}
-                            />
-                          <label>Comentario:</label>
-                          <input type="text" className={styles.input} {...register("comentario")}/>
-                      </div>
-                      <button className={styles.buttonModal}>
-                        AVALIAR
-                      </button>
-                  </form>
+        <div className={styles.containerModal}>
+          <div className={styles.content}>
+            <span className={styles.title}>Avaliar Contratante</span>
+            <form className={styles.form} onSubmit={handleSubmit(submitRateCompany)}>
+              <div className={styles.labelInput}>
+                <label>Conte-nos brevemente como foi sua relação com o contratante:</label>
+                <Rating
+                  style={{ maxWidth: 250 }}
+                  value={rating}
+                  onChange={setRating}
+                  itemStyles={starStyles}
+                />
+                <label>Comentario:</label>
+                <input type="text" className={styles.input} {...register("comentario")} />
               </div>
+              <button className={styles.buttonModal}>
+                AVALIAR
+              </button>
+            </form>
           </div>
+        </div>
       </div>
     )
   }
 
-  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number ) => {
+  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
     return (
       <button onClick={() => selectCard(senioridade, stack, title, nomeDev, description, id, salary)} className={styles.button}>
         <img src={close} alt="check" />
@@ -171,34 +171,34 @@ export default function Colaborators() {
   };
 
   const buttonCardDetailed = (
-      <button onClick={() => rateDeveloper()} className={styles.buttonCardDetailed}>
-        ENCERRAR CONTRATO
-      </button>
+    <button onClick={() => rateDeveloper()} className={styles.buttonCardDetailed}>
+      ENCERRAR CONTRATO
+    </button>
   )
-  
+
   const showVacancySelected = () => {
     if (id !== -1) {
       return (
         <CollaboratorCardDetailed
           id={id}
-          senioridade = {senioridade}
-          stack = {stack}
-          salary = {salary}
-          nomeDev = {nomeDev}
-          title = {title}
-          description = {description}
+          senioridade={senioridade}
+          stack={stack}
+          salary={salary}
+          nomeDev={nomeDev}
+          title={title}
+          description={description}
           button={buttonCardDetailed}
         />
       )
     }
   }
-  
+
 
   const textModal = "Você será redirecoinado para o menu principal";
-    
+
   return (
     <>
-      <HeaderLogado nome="Danilo"/>
+      <HeaderLogado nome="Danilo" />
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>
@@ -206,33 +206,33 @@ export default function Colaborators() {
           </div>
           <div className={styles.cardsContainer}>
             {
-            vacancies.map((vaga) => (
-              <>
-                <CollaboratorCard
-                  id={vaga.id}
-                  stack={vaga.stack}
-                  title={vaga.title}
-                  button={buttonCard(
-                    vaga.senioridade,
-                    vaga.stack,
-                    vaga.title,
-                    vaga.devName,
-                    vaga.description,
-                    vaga.id,
-                    vaga.salary,
-                  )}
-                  devName={vaga.devName}
-                  key={vaga.id}
-                />
-              </>
-            ))
+              vacancies.map((vaga) => (
+                <>
+                  <CollaboratorCard
+                    id={vaga.id}
+                    stack={vaga.stack}
+                    title={vaga.title}
+                    button={buttonCard(
+                      vaga.senioridade,
+                      vaga.stack,
+                      vaga.title,
+                      vaga.devName,
+                      vaga.description,
+                      vaga.id,
+                      vaga.salary,
+                    )}
+                    devName={vaga.devName}
+                    key={vaga.id}
+                  />
+                </>
+              ))
             }
           </div>
         </div>
         <div className={styles.right}>
           {isVacancySelected ? (
-              showVacancySelected()
-            ): (
+            showVacancySelected()
+          ) : (
             <img src={equipe} alt="Job offer" />
           )}
         </div>
