@@ -10,6 +10,7 @@ import Perfil from "../pages/PerfilDev";
 import Collaborators from "../pages/Collaborators/Collaborators";
 import OptionDev from "../pages/OptionLog/Dev";
 import OptionEmp from "../pages/OptionLog/emp";
+import PerfilCompany from "../pages/PerfilCompany";
 
 export const RoutesApp = () => {
   return (
@@ -24,7 +25,8 @@ export const RoutesApp = () => {
           <Route path="/menuCompany" element = {<OptionEmp />}/>
           <Route path="/formulario-vaga" element={<FormVacancy />} />
           <Route path="/resultado-busca-vaga" element={<DevSearchVacancyResult />} />
-          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/perfil-dev" element={<Perfil />} />
+          <Route path="/perfil-company" element={<PerfilCompany />} />
           <Route path="/jobs-encerrados" element={<JobsEncerrados />} />
           <Route path="/vagas-publicadas" element={<CompanyPublichedVacancy />} />
           <Route path="/colaboradores" element={<Collaborators />} />
