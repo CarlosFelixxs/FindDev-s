@@ -22,7 +22,7 @@ public class UsuarioController {
     private UsuarioService service;
 
 
-    @GetMapping(value = "/login")
+    @PostMapping(value = "/login")
     @Operation(
             summary = "Login by user", description = "Login by user  ",
             tags = {"Login"},
