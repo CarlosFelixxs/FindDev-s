@@ -4,13 +4,41 @@ import { Header } from '../../shared/components/Header';
 import signupImage from "../../assets/images/signup-img.png";
 import { Footer } from "../../shared/components/Footer";
 
+import { useForm } from 'react-hook-form';
+// import { api, signIn } from '../../services/api';
+import api from '../../services/api';
+
 
 export default function Login() {
+
+  const {
+    register,
+    handleSubmit,
+} = useForm();
 
   const navigate = useNavigate();
 
   const routeChange = (path: string) => {
     navigate(path);
+  }
+
+  const onSubmit = async (e : any) => {
+    console.log(e)
+    const login = {
+      "email": `${e.email}`,
+      "senha": `${e.senha}`
+    };
+
+      api.post('/user/login', login)
+      .then((resposta) => {
+        alert("Funcionou");
+        console.log(resposta);
+        resposta.data.cnpj ? routeChange("/menu-company") : routeChange("/menu-dev");
+      })
+      .catch((error) => {
+        alert("Email ou senha não existem");
+        console.log(error)
+      });
   }
 
   return (
@@ -31,18 +59,18 @@ export default function Login() {
           </div>
         </div>
         <div className={styles.contPartTwo}>
-          <div className={styles.contForm}>
+          <form className={styles.contForm} onSubmit={handleSubmit(onSubmit)}>
             <p>login</p>
             <div className={styles.labelInput}>
               <label>EMAIL</label>
-              <input type="text" placeholder="exemplo@email.com" />
+              <input type="text" placeholder="exemplo@email.com" {...register("email")} />
             </div>
             <div className={styles.labelInput}>
               <label>SENHA</label>
-              <input type="text" placeholder="*************" />
+              <input type="password" placeholder="*************" {...register("senha")}/>
             </div>
-            <input type="Submit" value="CONTINUAR" className={styles.submit} />
-          </div>
+            <input type="Submit" value="CONTINUAR" className={styles.submit}  />
+          </form>
         </div>
       </section>
     </>
