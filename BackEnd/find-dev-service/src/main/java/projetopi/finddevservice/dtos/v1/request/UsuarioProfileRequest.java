@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class UsuarioProfileRequest {
 
-    private UUID id;
+    private UUID idUsuario;
     private String titulo;
     private String descricao;
 
@@ -12,12 +12,12 @@ public class UsuarioProfileRequest {
     public UsuarioProfileRequest() {
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setIdUsuario(UUID idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getTitulo() {

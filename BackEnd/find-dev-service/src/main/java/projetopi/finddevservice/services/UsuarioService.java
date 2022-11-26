@@ -58,40 +58,37 @@ public class UsuarioService {
         return userRepository.existsByEmailIgnoreCase(email);
     }
 
-//    public PerfilDto findProfileById(Integer id) {
-//
-//        logger.info("Finding a profile!");
-//        var entity = perfilRepository.findById(id).orElseThrow(
-//                () -> new ResourceNotFoundException("No records found for this id!"));
-//        var dto = DozerMapper.parseObject(entity, PerfilDto.class);
-//           dto.add(linkTo(methodOn(UsuarioController.class).findProfileById(id)).withSelfRel());
-//        return dto;
-//
-//    }
-//    public List<PerfilDto> findAllUserProfile() {
-//
-//        logger.info("Finding all Devs!");
-//
-//        var entity =
-//                DozerMapper.parseListObjects(perfilRepository.findAll(), PerfilDto.class);
-//
-//        entity.stream()
-//                .forEach(p -> {
-//                    try {
-//                        p.add(linkTo(methodOn(UsuarioController.class).findProfileById(p.getIdPerfil())).withSelfRel());
-//                    } catch (Exception e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                });
-//
-//        return entity;
-//    }
-    public UsuarioModel updateProfile(UsuarioProfileRequest profile) {
+    public PerfilDto findProfileById(Integer id) {
 
-        if (profile == null) throw new RequiredObjectIsNullException();
+        logger.info("Finding a profile!");
+        var entity = perfilRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("No records found for this id!"));
+        var dto = DozerMapper.parseObject(entity, PerfilDto.class);
+           dto.add(linkTo(methodOn(UsuarioController.class).findProfileById(id)).withSelfRel());
+        return dto;
 
+    }
+    public List<PerfilDto> findAllUserProfile() {
+
+        logger.info("Finding all Devs!");
+
+        var entity =
+                DozerMapper.parseListObjects(perfilRepository.findAll(), PerfilDto.class);
+
+        entity.stream()
+                .forEach(p -> {
+                    try {
+                        p.add(linkTo(methodOn(UsuarioController.class).findProfileById(p.getIdPerfil())).withSelfRel());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+        return entity;
+    }
+    public UsuarioModel updateProfile(UsuarioProfileRequest profile) throws Exception {
         logger.info("Checking existence!");
-        var entity = userRepository.findById(profile.getId()).orElseThrow(
+        var entity = userRepository.findById(profile.getIdUsuario()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
 
         entity.getPerfil().setTitulo(profile.getTitulo().isEmpty() ? entity.getPerfil().getTitulo() : profile.getTitulo() );
