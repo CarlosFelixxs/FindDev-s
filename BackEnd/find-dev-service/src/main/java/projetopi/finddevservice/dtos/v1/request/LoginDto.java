@@ -1,4 +1,4 @@
-package projetopi.finddevservice.dtos.v1;
+package projetopi.finddevservice.dtos.v1.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
