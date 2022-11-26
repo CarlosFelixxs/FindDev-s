@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
+import projetopi.finddevservice.dtos.v1.PerfilDto;
 import projetopi.finddevservice.enums.PlanoDev;
+import projetopi.finddevservice.models.PerfilModel;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -44,7 +46,7 @@ public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> im
     @Past
     @NotNull
     private LocalDate dataNascimento;
-    @Size(min = 11, max = 14)
+    @Size(min = 11, max = 11)
     @NotBlank
     private String cpf;
 

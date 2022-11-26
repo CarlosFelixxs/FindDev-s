@@ -10,7 +10,9 @@ import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
 import projetopi.finddevservice.models.DesenvolvedorModel;
+import projetopi.finddevservice.models.PerfilModel;
 import projetopi.finddevservice.repositories.DesenvolvedorRepository;
+import projetopi.finddevservice.repositories.PerfilRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +27,8 @@ public class DesenvolvedorService {
 
     @Autowired
     private DesenvolvedorRepository repository;
+    @Autowired
+    private PerfilRepository perfilRepository;
 
     private final Logger logger = Logger.getLogger(DesenvolvedorService.class.getName());
 
@@ -58,13 +62,18 @@ public class DesenvolvedorService {
     }
 
     public DevelopResponseDto create(DevelopRequestDto person) {
-
         logger.info("Checking existence!");
         if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
         if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
 
+        PerfilModel perfilModel = new PerfilModel();
+        perfilModel.setTitulo("");
+        perfilModel.setDescricao("");
+        perfilRepository.save(perfilModel);
+
         logger.info("Create a Dev!");
         var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
+        entity.setPerfil(perfilModel);
         var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
         dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
         return dto;

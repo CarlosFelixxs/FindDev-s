@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.LoginDto;
+import projetopi.finddevservice.dtos.v1.request.LoginDto;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.models.UsuarioModel;
@@ -73,6 +73,16 @@ public class UsuarioController {
 //    public ResponseEntity<String> forgotPassword(){
 //
 //    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

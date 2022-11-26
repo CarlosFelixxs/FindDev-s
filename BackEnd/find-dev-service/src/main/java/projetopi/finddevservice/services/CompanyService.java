@@ -11,7 +11,9 @@ import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
 import projetopi.finddevservice.models.EmpresaModel;
+import projetopi.finddevservice.models.PerfilModel;
 import projetopi.finddevservice.repositories.EmpresaRepository;
+import projetopi.finddevservice.repositories.PerfilRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +27,9 @@ public class CompanyService {
 
     @Autowired
     private EmpresaRepository repository;
+    @Autowired
+    private PerfilRepository perfilRepository;
+
 
     private final Logger logger = Logger.getLogger(CompanyService.class.getName());
 
@@ -58,13 +63,18 @@ public class CompanyService {
     }
 
     public CompanyResponseDto create(CompanyRequestDto person) throws Exception {
-
         logger.info("Checking existence!");
         if(existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
         if(existByCnpj(person.getCnpj())) throw new RequiredExistingObjectException("Cnpj already in use!");
 
+        PerfilModel perfilModel = new PerfilModel();
+        perfilModel.setTitulo("");
+        perfilModel.setDescricao("");
+        perfilRepository.save(perfilModel);
+
         logger.info("Create a Company!");
         var entity = DozerMapper.parseObject(person, EmpresaModel.class);
+        entity.setPerfil(perfilModel);
         var dto = DozerMapper.parseObject(repository.save(entity), CompanyResponseDto.class);
         dto.add(linkTo(methodOn(EmpresaController.class).findById(dto.getKey())).withSelfRel());
         return dto;

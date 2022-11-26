@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
+import projetopi.finddevservice.dtos.v1.PerfilDto;
+import projetopi.finddevservice.models.PerfilModel;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
-        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "dataNascimento", "bairro", "endereco", "complemento"}
+        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "bairro", "endereco", "complemento"}
 )
 public class CompanyRequestDto extends RepresentationModel<CompanyRequestDto> implements Serializable {
 
@@ -44,6 +46,8 @@ public class CompanyRequestDto extends RepresentationModel<CompanyRequestDto> im
 
     private String complemento;
 
+    @Size(min = 14)
+    @NotBlank
     private String cnpj;
 
     public CompanyRequestDto() {
@@ -137,4 +141,5 @@ public class CompanyRequestDto extends RepresentationModel<CompanyRequestDto> im
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
 }
