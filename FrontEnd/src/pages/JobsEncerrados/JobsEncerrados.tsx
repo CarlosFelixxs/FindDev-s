@@ -127,7 +127,7 @@ export default function JobsEncerrados() {
     setIsModalSuccessVisible(true);
     setTimeout(() => {
         setIsModalSuccessVisible(false);
-        navigate("/menuDev");
+        navigate("/menu-dev");
       }, 5000);
   }
 

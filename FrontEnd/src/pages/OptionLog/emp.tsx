@@ -17,22 +17,17 @@ export default function OptionEmp() {
       <>
          <HeaderLogado nome={"danilo"} />
          <div className={styles.container}>
-            <div className={styles.findProfile} onClick={() => routeChange("/")}>
-               {/* <div className={styles.header}>
-                  <img src={logo} alt="Logo" />
-               </div> */}
-
+            <div className={styles.findProfile} onClick={() => routeChange("/formulario-vaga")}>
                <div className={styles.div_imgFrase}>
                   <div className={styles.div_itens}>
-                     <div className={styles.div_phrase}>Publique sua vaga</div>
+                     <p>Publique sua vaga</p>
                      <img src={publish} alt="Imagem job" className={styles.img} />
                   </div>
                </div>
             </div>
 
-            <div className={styles.findProfileRight} onClick={() => routeChange("/")}>
-
-               <div className={styles.div_imgFrase}>
+            <div className={styles.findProfileRight} onClick={() => routeChange("/perfil-company")}>
+               <div className={styles.div_imgFrase1}>
                   <div className={styles.div_itens}>
                      <div className={styles.div_phraseRight}>Perfil e estatísticas</div>
                      <img src={profileImg} alt="Imagem job" className={styles.img} />
