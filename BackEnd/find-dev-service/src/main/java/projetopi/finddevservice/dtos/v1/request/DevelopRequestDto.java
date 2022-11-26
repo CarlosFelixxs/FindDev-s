@@ -41,15 +41,15 @@ public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> im
     )
     @NotBlank
     private String telefone;
-    @PastOrPresent
+    @Past
     @NotNull
     private LocalDate dataNascimento;
     @Size(min = 11, max = 14)
     @NotBlank
     private String cpf;
 
-
     public DevelopRequestDto() {
+
     }
 
     public UUID getKey() {

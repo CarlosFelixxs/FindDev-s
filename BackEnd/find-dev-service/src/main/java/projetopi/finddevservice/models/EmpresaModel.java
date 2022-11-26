@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="Empresa")
 @PrimaryKeyJoinColumn(name = "id")
-
 public class EmpresaModel extends UsuarioModel {
 
     @Column(nullable = false)
@@ -23,6 +22,7 @@ public class EmpresaModel extends UsuarioModel {
     private String cnpj;
 
     public EmpresaModel() {
+
     }
 
     public String getBairro() {

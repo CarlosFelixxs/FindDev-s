@@ -95,7 +95,6 @@ public class DesenvolvedorService {
         var entity = repository.findById(person.getKey()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
 
-
         if (!entity.getEmail().equalsIgnoreCase(person.getEmail())) {
             if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
             entity.setEmail(person.getEmail().isEmpty() ? entity.getEmail() : person.getEmail());

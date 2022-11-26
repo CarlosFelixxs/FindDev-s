@@ -8,27 +8,34 @@ import java.util.UUID;
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-
 public abstract class UsuarioModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     @Column(nullable = false)
     private String nome;
+
     private String email;
+
     private String senha;
+
     @Column(nullable = false, length = 30)
     private String estado;
+
     @Column(nullable = false, length = 30)
     private String cidade;
-    private String telefone;
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
 
+    private String telefone;
+
+    @OneToOne
+    @JoinColumn(name = "idPerfil")
+    private PerfilModel perfil;
 
     public UsuarioModel() {
+
     }
 
     public UUID getId() {
@@ -86,14 +93,6 @@ public abstract class UsuarioModel implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
 }

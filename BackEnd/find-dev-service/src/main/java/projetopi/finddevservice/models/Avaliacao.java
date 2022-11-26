@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Avaliacao")
 @Getter
 @Setter
 public class Avaliacao {
@@ -16,13 +15,13 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idAvaliacao;
 
+    @ManyToOne
+    @JoinColumn(name="idUsuario")
+    private UsuarioModel usuario;
+
     @NotNull
     private Integer nota;
 
     @Column(length = 2600)
     private String comentario;
-
-    @ManyToOne
-    @JoinColumn(name="idUsuario")
-    private UsuarioModel usuario;
 }

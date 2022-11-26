@@ -41,7 +41,7 @@ public class DevelopResponseDto extends RepresentationModel<DevelopResponseDto> 
     )
     @NotBlank
     private String telefone;
-    @PastOrPresent
+    @Past
     @NotNull
     private LocalDate dataNascimento;
     @Size(min = 11, max = 14)
