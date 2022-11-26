@@ -44,7 +44,7 @@ public class EmpresaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public ResponseEntity<Boolean> existsCnpj(@RequestBody String cnpj ){
+    public ResponseEntity<Boolean> existsCnpj(@RequestBody String cnpj){
         return ResponseEntity.ok(service.existByCnpj(cnpj));
     }
 
