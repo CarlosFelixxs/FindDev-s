@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name ="Desenvolvedor")
 @PrimaryKeyJoinColumn(name = "id")
-
 public class DesenvolvedorModel extends UsuarioModel {
 
     @Enumerated(EnumType.STRING)
