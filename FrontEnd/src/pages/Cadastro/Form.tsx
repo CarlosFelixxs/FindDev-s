@@ -2,28 +2,49 @@ import React from 'react'
 
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import signupImage from "../../assets/images/StepTwo-Signup.png";
+import { useNavigate } from 'react-router-dom';
+
+import { 
+    validateEmail,
+    validatePassword,
+    validateName,
+    validateCPF,
+    validateTelefone,
+    validateCNPJ,
+    validateEstado,
+} from '../../services/formValidate';
+
 
 import { fetchStates } from '../../services/ibge';
 
 import styles from './styles.module.css';
+import signupImage from "../../assets/images/StepTwo-Signup.png";
 
-type FormType = {
-    button: JSX.Element | JSX.Element[],
-    step: number,
-    userType: string,
-}
+export default function Form() {
 
-export default function Form({ button, step, userType }: FormType) {
+    const navigate = useNavigate();
 
-    const { register, handleSubmit, setValue, setFocus } = useForm();
+    const routeChange = (path: string) => {
+        navigate(path);
+      }
+
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        setFocus,
+    } = useForm();
+
+    const [step, setStep] = useState(0);
+    const [userType, setUserType] = useState<"" | "company" | "dev">("");
+    const [validated, setValidated] = useState(false);
 
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
     const [signUpCompanyData, setSignUpCompanyData] = useState({
         email: "",
         senha: "",
-        razaoSocial: "",
+        nome: "",
         telefone: "",
         CNPJ: "",
         estado: "",
@@ -38,8 +59,8 @@ export default function Form({ button, step, userType }: FormType) {
         nome: "",
         telefone: "",
         CPF: "",
-        estadoDev: "",
-        cidadeDev: "",
+        estado: "",
+        cidade: "",
     });
 
     useEffect(() => {
@@ -53,42 +74,83 @@ export default function Form({ button, step, userType }: FormType) {
 
     }, []);
 
-
     const onSubmitFirstStep = (e: any) => {
-        setSignUpCompanyData({ ...signUpCompanyData, email: signUpCompanyData.email = e.email, senha: signUpCompanyData.senha = e.senha });
-        setSignUpDevData({ ...signUpDevData, email: signUpDevData.email = e.email, senha: signUpDevData.senha = e.senha });
-        console.log(signUpDevData);
+
+        
+        if (validateEmail(e.email) === 'ok' && validatePassword(e.senha, e.confirmacao) === 'ok'){
+            setValidated(true);
+        }
+        
+        if (validateEmail(e.email) !== 'ok'){
+            alert(validateEmail(e.email));
+        }
+        
+        if (validatePassword(e.senha, e.confirmacao) !== 'ok'){
+            alert(validatePassword(e.senha, e.confirmacao));
+        }
+        
+        if (validated) {
+            setSignUpCompanyData({ ...signUpCompanyData, email: signUpCompanyData.email = e.email, senha: signUpCompanyData.senha = e.senha });
+            setSignUpDevData({ ...signUpDevData, email: signUpDevData.email = e.email, senha: signUpDevData.senha = e.senha });
+            console.log(signUpDevData);
+            setStep(step + 1);
+        }
+
     };
 
     const onSubmitThirdStepDev = (e: any) => {
-        setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, telefone: signUpDevData.telefone = e.telefone, CPF: signUpDevData.CPF = e.CPF });
-        console.log(signUpDevData);
+        if (validateName(e.nome) === "ok" && validateCPF(e.CPF) === "ok" && validateTelefone(e.telefone) === "ok") {
+            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, telefone: signUpDevData.telefone = e.telefone, CPF: signUpDevData.CPF = e.CPF });
+            setStep(step + 1);
+            console.log(signUpDevData);
+        }else if(validateName(e.nome) !== "ok"){
+            alert(validateName(e.nome));
+        }else if(validateCPF(e.cpf) !== "ok"){
+            alert(validateCPF(e.cpf));
+        }else{
+            alert(validateTelefone(e.telefone));
+        }
     };
 
     const onSubmitThirdStepCompany = (e: any) => {
-        setSignUpCompanyData({
-            ...signUpCompanyData,
-            razaoSocial: signUpCompanyData.razaoSocial = e.razaoSocial,
-            telefone: signUpCompanyData.telefone = e.telefone,
-            CNPJ: signUpCompanyData.CNPJ = e.CNPJ
-        });
-        console.log(signUpCompanyData);
+        if(validateName(e.nome) === "ok"  && validateTelefone(e.telefone ) === "ok" && validateCNPJ(e.CNPJ) === "ok"){
+            setSignUpCompanyData({
+                ...signUpCompanyData,
+                nome: signUpCompanyData.nome = e.nome,
+                telefone: signUpCompanyData.telefone = e.telefone,
+                CNPJ: signUpCompanyData.CNPJ = e.CNPJ
+            });
+            setStep(step + 1);
+            console.log(signUpCompanyData);
+        }else if(validateName(e.nome) !== "ok"){
+            validateName(e.nome);
+        }else if(validateTelefone(e.telefone ) !== "ok"){
+            validateTelefone(e.telefone );
+        }else {
+            validateCNPJ(e.CNPJ);
+        }
     };
 
     const onSubmitFourthStepDev = (e: any) => {
-        setSignUpDevData({ ...signUpDevData, estadoDev: signUpDevData.estadoDev = e.estadoDev, cidadeDev: signUpDevData.cidadeDev = e.cidadeDev });
+        setSignUpDevData({ ...signUpDevData, estado: signUpDevData.estado = e.estadoDev, cidade: signUpDevData.cidade = e.cidadeDev });
         console.log(signUpDevData);
     };
 
+
     const onSubmitFourthStepCompany = (e: any) => {
-        setSignUpCompanyData({
-            ...signUpCompanyData,
-            cidade: signUpCompanyData.cidade = e.cidadeCompany,
-            estado: signUpCompanyData.estado = e.estadoCompany,
-            bairro: signUpCompanyData.bairro = e.bairro,
-            endereco: signUpCompanyData.endereco = `${e.logradouro}, ${e.numero}`,
-        });
-        console.log(signUpCompanyData);
+        if(validateEstado(e.estadoCompany) === "ok"){
+            setSignUpCompanyData({
+                ...signUpCompanyData,
+                cidade: signUpCompanyData.cidade = e.cidadeCompany,
+                estado: signUpCompanyData.estado = e.estadoCompany,
+                bairro: signUpCompanyData.bairro = e.bairro,
+                endereco: signUpCompanyData.endereco = `${e.logradouro}, ${e.numero}`,
+            });
+            setStep(step + 1);
+            console.log(signUpCompanyData);
+        }else{
+            alert(validateEstado(e.estadoCompany))
+        }
     };
 
     const handleInputStatesChange = (e: any) => {
@@ -116,6 +178,7 @@ export default function Form({ button, step, userType }: FormType) {
             setValue('bairro', data.bairro);
         }).catch((err) => {
             console.log(err)
+            alert("Insira um cep válido");
         });
         setFocus('numero');
     }
@@ -142,7 +205,11 @@ export default function Form({ button, step, userType }: FormType) {
                                 <div className={styles.separador}></div>
                                 <input type="password" className={styles.input} {...register("confirmacao")} placeholder="*************" />
                             </div>
-                            {button}
+                            <button
+                                className={styles.submit}
+                            >
+                                CONTINUAR
+                            </button>
                         </form>
                     </div>
                 </>
@@ -159,7 +226,22 @@ export default function Form({ button, step, userType }: FormType) {
                         <img src={signupImage} alt="" />
                     </div>
                     <div className={styles.devOrCompany}>
-                        {button}
+                        <div
+                            onClick={() => {
+                                setUserType("company");
+                                setStep(step + 1)
+                            }}
+                            className={styles.selectionEmpresa}>
+                            EMPRESA
+                        </div>
+                        <div
+                            onClick={() => {
+                                setUserType("dev");
+                                setStep(step + 1)
+                            }}
+                            className={styles.selectionDev}>
+                            DESENVOLVEDOR
+                        </div>
                     </div>
                 </>
             )
@@ -183,7 +265,11 @@ export default function Form({ button, step, userType }: FormType) {
                             <div className={styles.separador}></div>
                             <input type="text" className={styles.input} {...register("telefone")} placeholder="(11) 912345678" />
                         </div>
-                        {button}
+                        <button
+                            className={styles.submit}
+                        >
+                            CONTINUAR
+                        </button>
                     </form>
                 </>
             )
@@ -195,8 +281,8 @@ export default function Form({ button, step, userType }: FormType) {
                         <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
-                            <input placeholder='ex: Indústrias Ltda' type="text" className={styles.input} {...register("razaoSocial")} />
-                        </div>
+                            <input type="text" className={styles.input} {...register("nome")} />
+                        </div >
                         <div className={styles.labelInput}>
                             <label>TELEFONE</label>
                             <div className={styles.separador}></div>
@@ -207,8 +293,16 @@ export default function Form({ button, step, userType }: FormType) {
                             <div className={styles.separador}></div>
                             <input placeholder='XX. XXX. XXX/0001-XX' type="text" className={styles.input} {...register("CNPJ")} />
                         </div>
-                        {button}
-                    </form>
+                        <button
+                            onClick={
+                                () => {
+                                setStep(step + 1);
+                                }}
+                            className={styles.submit}
+                        >
+                            CONTINUAR
+                        </button>
+                    </form >
                 </>
             )
         } else if (step === 3 && userType === "dev") {
@@ -239,8 +333,16 @@ export default function Form({ button, step, userType }: FormType) {
                                 })}
                             </select>
                         </div>
-                        {button}
-                    </form>
+                        <button
+                            onClick={
+                                () => {
+                                setStep(step + 1);
+                                }}
+                            className={styles.submit}
+                        >
+                            CONTINUAR
+                        </button>
+                    </form >
                 </>
             )
         } else if (step === 3 && userType === "company") {
@@ -271,9 +373,9 @@ export default function Form({ button, step, userType }: FormType) {
 
                             <div className={styles.sideThirdStep}>
                                 <div className={styles.labelInput}>
-                                    <label>ESTADO</label>
+                                    <label>UF</label>
                                     <div className={styles.separador}></div>
-                                    <input placeholder='ex: São Paulo' type="text" className={styles.input} {...register("estadoCompany")} />
+                                    <input placeholder='ex: SP' type="text" className={styles.input} {...register("estadoCompany")} />
                                 </div>
 
                                 <div className={styles.labelInput}>
@@ -290,7 +392,11 @@ export default function Form({ button, step, userType }: FormType) {
                             </div>
 
                         </div>
-                        {button}
+                        <button
+                            className={styles.submit}
+                        >
+                            CONTINUAR
+                        </button>
                     </form>
                 </>
             )
@@ -301,7 +407,12 @@ export default function Form({ button, step, userType }: FormType) {
                         <h1>PARABÉNS</h1>
                         <div className={styles.separador}></div>
                         <h3>SEU CADASTRO FOI REALIZADO COM SUCESSO</h3>
-                        {button}
+                        <button
+                            onClick={() => routeChange("/login")}
+                            className={styles.finalSubmit}
+                        >
+                            COMECE SUA JORNADA
+                        </button>
                     </div>
                 </>
             )
