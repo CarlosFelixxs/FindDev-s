@@ -2,7 +2,7 @@ package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.dtos.v1.LoginDto;
+import projetopi.finddevservice.dtos.v1.request.LoginDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.models.UsuarioModel;

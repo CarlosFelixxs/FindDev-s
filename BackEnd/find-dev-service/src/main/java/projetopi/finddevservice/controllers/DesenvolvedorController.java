@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
@@ -104,6 +105,7 @@ public class DesenvolvedorController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<DevelopResponseDto> create(@RequestBody @Valid DevelopRequestDto dev) {
         try {
             return ResponseEntity.ok(service.create(dev));

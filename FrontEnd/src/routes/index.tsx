@@ -10,7 +10,7 @@ import Perfil from "../pages/PerfilDev";
 import Collaborators from "../pages/Collaborators/Collaborators";
 import OptionDev from "../pages/OptionLog/Dev";
 import OptionEmp from "../pages/OptionLog/emp";
-import PerfilCompany from "../pages/PerfilCompany";
+import PerfilCompany from "../pages/PerfilCompany/index";
 
 export const RoutesApp = () => {
   return (
