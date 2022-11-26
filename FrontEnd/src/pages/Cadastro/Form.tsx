@@ -21,6 +21,7 @@ import { fetchStates } from '../../services/ibge';
 
 import styles from './styles.module.css';
 import signupImage from "../../assets/images/StepTwo-Signup.png";
+import api from '../../services/api';
 
 export default function Form() {
 
@@ -44,26 +45,26 @@ export default function Form() {
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
     const [signUpCompanyData, setSignUpCompanyData] = useState({
-        email: "",
-        senha: "",
-        nome: "",
-        razaosocial: "",
-        telefone: "",
-        CNPJ: "",
-        estado: "",
-        cidade: "",
-        bairro: "",
-        endereco: "",
+        "email": "",
+        "senha": "",
+        "nome": "",
+        "telefone": "",
+        "cnpj": "",
+        "estado": "",
+        "cidade": "",
+        "bairro": "",
+        "endereco": "",
+        "complemento": ""
     });
 
     const [signUpDevData, setSignUpDevData] = useState({
-        email: "",
-        senha: "",
-        nome: "",
-        telefone: "",
-        CPF: "",
-        estado: "",
-        cidade: "",
+        "email": "",
+        "senha": "",
+        "nome": "",
+        "telefone": "",
+        "cpf": "",
+        "estado": "",
+        "cidade": "",
     });
 
     useEffect(() => {
@@ -103,7 +104,8 @@ export default function Form() {
 
     const onSubmitThirdStepDev = (e: any) => {
         if (validateName(e.nome) === "ok" && validateCPF(e.CPF) === "ok" && validateTelefone(e.telefone) === "ok") {
-            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, CPF: signUpDevData.CPF = e.CPF, telefone: signUpDevData.telefone = e.telefone });
+            let cpfFormated = e.cpf.replace(/[\s.-]*/igm, '');
+            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, cpf: signUpDevData.cpf = e.cpfFormated, telefone: signUpDevData.telefone = e.telefone });
             setStep(step + 1);
             console.log(signUpDevData);
         } else if (validateName(e.nome) !== "ok") {
@@ -116,17 +118,18 @@ export default function Form() {
     };
 
     const onSubmitThirdStepCompany = (e: any) => {
-        if (validateRazaoSocial(e.razaosocial) === "ok" && validateTelefone(e.telefone) === "ok" && validateCNPJ(e.CNPJ) === "ok") {
+        if (validateRazaoSocial(e.nome) === "ok" && validateTelefone(e.telefone) === "ok" && validateCNPJ(e.CNPJ) === "ok") {
+            let cnpjFormated = e.CNPJ.replace(/[^\d]+/g, '');
             setSignUpCompanyData({
                 ...signUpCompanyData,
-                razaosocial: signUpCompanyData.nome = e.razaosocial,
+                nome: signUpCompanyData.nome = e.nome,
                 telefone: signUpCompanyData.telefone = e.telefone,
-                CNPJ: signUpCompanyData.CNPJ = e.CNPJ
+                cnpj: signUpCompanyData.cnpj = cnpjFormated
             });
             setStep(step + 1);
             console.log(signUpCompanyData);
-        } else if (validateRazaoSocial(e.razaosocial) !== "ok") {
-            alert(validateRazaoSocial(e.razaosocial));
+        } else if (validateRazaoSocial(e.nome) !== "ok") {
+            alert(validateRazaoSocial(e.nome));
         } else if (validateTelefone(e.telefone) !== "ok") {
             alert(validateTelefone(e.telefone));
         } else if (validateCNPJ(e.CNPJ) !== "ok"){
@@ -161,6 +164,17 @@ export default function Form() {
             });
             setStep(step + 1);
             console.log(signUpCompanyData);
+
+            api.post('/empresa', signUpCompanyData)
+                .then((resposta) => {
+                    alert("Funcionou");
+                    console.log(resposta);
+                    routeChange("/login");
+                })
+                .catch((error) => {
+                    alert("Deu erro");
+                    console.log(error)
+            });
         } else {
             alert(validateEstado(e.estadoCompany))
         }
@@ -294,7 +308,7 @@ export default function Form() {
                         <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
-                            <input type="text" className={styles.input} {...register("razaosocial")} />
+                            <input type="text" className={styles.input} {...register("nome")} />
                         </div >
                         <div className={styles.labelInput}>
                             <label>TELEFONE</label>
