@@ -1,14 +1,16 @@
 package projetopi.finddevservice.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Candidatura {
+public class Candidatura implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idCandidatura;
 
     @OneToOne
-    @Id
     private DesenvolvedorModel desenvolvedor;
 
     @OneToOne

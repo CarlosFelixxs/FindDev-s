@@ -3,6 +3,10 @@ package projetopi.finddevservice.models;
 import projetopi.finddevservice.enums.PlanoDev;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import java.time.LocalDate;
 
 @Entity
 @Table(name ="Desenvolvedor")
@@ -15,6 +19,10 @@ public class DesenvolvedorModel extends UsuarioModel {
     private PlanoDev plano;
 
     private String cpf;
+
+    @Past
+    @NotNull
+    private LocalDate dataNascimento;
 
     public DesenvolvedorModel() {
         plano = PlanoDev.GRATUITO;
@@ -34,6 +42,14 @@ public class DesenvolvedorModel extends UsuarioModel {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
 

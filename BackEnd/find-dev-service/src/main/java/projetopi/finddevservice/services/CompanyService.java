@@ -94,22 +94,23 @@ public class CompanyService {
 
         logger.info("updating a Company!");
         var entity = repository.findById(person.getKey()).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
-
+            () -> new ResourceNotFoundException("No records found for this id!")
+        );
 
         if (!entity.getEmail().equalsIgnoreCase(person.getEmail())) {
             if(existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
             entity.setEmail(person.getEmail().isEmpty() ? entity.getEmail() : person.getEmail());
         }
+
         if (!entity.getCnpj().equalsIgnoreCase(person.getCnpj())) {
             if(existByCnpj(person.getCnpj())) throw new RequiredExistingObjectException("Cnpj already in use!");
             entity.setCnpj(person.getCnpj().isEmpty() ? entity.getCnpj() : person.getCnpj());
         }
+
         entity.setNome(person.getNome().isEmpty() ? entity.getNome() : person.getNome());
         entity.setEstado(person.getEstado().isEmpty() ? entity.getEstado() : person.getEstado());
         entity.setCidade(person.getCidade().isEmpty() ? entity.getCidade() : person.getCidade());
         entity.setTelefone(person.getTelefone().isEmpty() ? entity.getTelefone() : person.getTelefone());
-        entity.setDataNascimento((person.getDataNascimento()) == null ? entity.getDataNascimento() : person.getDataNascimento());
         entity.setBairro(person.getBairro().isEmpty() ? entity.getBairro() : person.getBairro());
         entity.setEndereco(person.getEndereco().isEmpty() ? entity.getEndereco() : person.getEndereco());
         entity.setComplemento(person.getComplemento().isEmpty() ? entity.getComplemento() : person.getComplemento());
@@ -117,8 +118,6 @@ public class CompanyService {
         var dto = DozerMapper.parseObject(repository.save(entity), CompanyResponseDto.class);
         dto.add(linkTo(methodOn(EmpresaController.class).findById(dto.getKey())).withSelfRel());
         return dto;
-
-
     }
 
     public void delete(UUID id) {

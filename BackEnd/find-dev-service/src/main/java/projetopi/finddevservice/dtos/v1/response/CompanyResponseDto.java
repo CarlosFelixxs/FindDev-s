@@ -37,9 +37,6 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
             message = "Informe um telefone válido com ou sem DDD"
     )
     private String telefone;
-    @PastOrPresent
-    @NotNull
-    private LocalDate dataNascimento;
 
     private String bairro;
 
@@ -107,14 +104,6 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public String getBairro() {

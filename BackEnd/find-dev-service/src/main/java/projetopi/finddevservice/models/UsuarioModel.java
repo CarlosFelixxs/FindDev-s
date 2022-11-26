@@ -30,9 +30,6 @@ public abstract class UsuarioModel implements Serializable {
 
     private String telefone;
 
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
-
     @OneToOne
     @JoinColumn(name = "idPerfil")
     private PerfilModel perfil;
@@ -96,14 +93,6 @@ public abstract class UsuarioModel implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
 }
