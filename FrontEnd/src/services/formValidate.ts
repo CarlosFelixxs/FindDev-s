@@ -121,7 +121,7 @@ export const validateCNPJ = (cnpj: string) => {
 export const validateTelefone = (telefone: any) => {
     telefone = telefone.replace(/\D/g, '');
 
-    if (telefone === '') return "O campo Telefone não pode estar vazio";
+    if (telefone === '') return "Insira um telefone valido";
 
     //verifica se tem a qtde de numero correto
     if (!(telefone.length >= 10 && telefone.length <= 11)) return "Insira um telefone válido";
