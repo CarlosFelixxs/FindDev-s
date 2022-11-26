@@ -6,7 +6,6 @@
 .container {
   height: 90vh;
   display: flex;
-  
 }
 
 .contStepOne {
@@ -73,8 +72,8 @@
 .cardSignup {
   text-transform: lowercase;
   font-variant: small-caps;
-  width: 60%;
-  height: 90%;
+  width: 61%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -239,7 +238,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 
 .titleDevOrCompany h2 {
@@ -262,7 +260,7 @@
   font-variant: small-caps;
   color: #ffffff;
 }
-.imgStepTwo img{
+.imgStepTwo img {
   width: 15rem;
 }
 .devOrCompany {
@@ -273,15 +271,15 @@
 }
 
 .selectionEmpresa {
-  width: 40%;
+  width: 45%;
   justify-content: center;
   align-items: center;
   display: flex;
   border: 1px solid #9747ff;
-  border-radius: 15px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 15px;
+  border-radius: 8px;
   font-size: 1.125rem;
   font-weight: 700;
   transition: 0.3s;
@@ -295,14 +293,14 @@
 }
 
 .selectionDev {
-  width: 40%;
+  width: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: 0.3s;
   border: 2px solid #00b37e;
-  border-radius: 15px;
+  border-radius: 8px;
   font-size: 1.125rem;
   font-weight: 700;
   transition: 0.3s;
