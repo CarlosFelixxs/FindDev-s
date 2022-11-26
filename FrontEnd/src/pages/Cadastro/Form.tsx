@@ -11,6 +11,7 @@ import {
     validateCPF,
     validateTelefone,
     validateCNPJ,
+    validateEstado,
 } from '../../services/formValidate';
 
 
@@ -112,16 +113,22 @@ export default function Form() {
     };
 
     const onSubmitThirdStepCompany = (e: any) => {
-        if(validateName(e.nome) === "ok"  && validateTelefone(e.telefone )=== "ok" && validateCNPJ(e.CNPJ)){
-
+        if(validateName(e.nome) === "ok"  && validateTelefone(e.telefone ) === "ok" && validateCNPJ(e.CNPJ) === "ok"){
+            setSignUpCompanyData({
+                ...signUpCompanyData,
+                nome: signUpCompanyData.nome = e.nome,
+                telefone: signUpCompanyData.telefone = e.telefone,
+                CNPJ: signUpCompanyData.CNPJ = e.CNPJ
+            });
+            setStep(step + 1);
+            console.log(signUpCompanyData);
+        }else if(validateName(e.nome) !== "ok"){
+            validateName(e.nome);
+        }else if(validateTelefone(e.telefone ) !== "ok"){
+            validateTelefone(e.telefone );
+        }else {
+            validateCNPJ(e.CNPJ);
         }
-        setSignUpCompanyData({
-            ...signUpCompanyData,
-            nome: signUpCompanyData.nome = e.nome,
-            telefone: signUpCompanyData.telefone = e.telefone,
-            CNPJ: signUpCompanyData.CNPJ = e.CNPJ
-        });
-        console.log(signUpCompanyData);
     };
 
     const onSubmitFourthStepDev = (e: any) => {
@@ -131,14 +138,19 @@ export default function Form() {
 
 
     const onSubmitFourthStepCompany = (e: any) => {
-        setSignUpCompanyData({
-            ...signUpCompanyData,
-            cidade: signUpCompanyData.cidade = e.cidadeCompany,
-            estado: signUpCompanyData.estado = e.estadoCompany,
-            bairro: signUpCompanyData.bairro = e.bairro,
-            endereco: signUpCompanyData.endereco = `${e.logradouro}, ${e.numero}`,
-        });
-        console.log(signUpCompanyData);
+        if(validateEstado(e.estadoCompany) === "ok"){
+            setSignUpCompanyData({
+                ...signUpCompanyData,
+                cidade: signUpCompanyData.cidade = e.cidadeCompany,
+                estado: signUpCompanyData.estado = e.estadoCompany,
+                bairro: signUpCompanyData.bairro = e.bairro,
+                endereco: signUpCompanyData.endereco = `${e.logradouro}, ${e.numero}`,
+            });
+            setStep(step + 1);
+            console.log(signUpCompanyData);
+        }else{
+            alert(validateEstado(e.estadoCompany))
+        }
     };
 
     const handleInputStatesChange = (e: any) => {
@@ -166,6 +178,7 @@ export default function Form() {
             setValue('bairro', data.bairro);
         }).catch((err) => {
             console.log(err)
+            alert("Insira um cep válido");
         });
         setFocus('numero');
     }
@@ -360,9 +373,9 @@ export default function Form() {
 
                             <div className={styles.sideThirdStep}>
                                 <div className={styles.labelInput}>
-                                    <label>ESTADO</label>
+                                    <label>UF</label>
                                     <div className={styles.separador}></div>
-                                    <input placeholder='ex: São Paulo' type="text" className={styles.input} {...register("estadoCompany")} />
+                                    <input placeholder='ex: SP' type="text" className={styles.input} {...register("estadoCompany")} />
                                 </div>
 
                                 <div className={styles.labelInput}>

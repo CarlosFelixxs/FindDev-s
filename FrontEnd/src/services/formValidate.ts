@@ -117,3 +117,20 @@ export const validateTelefone = (telefone: any) => {
     //se passar por todas as validações acima, então está tudo certo
     return "ok";
 }
+
+export const validateEstado = (uf: string) => {
+    const ufs = [
+            'AC','AL','AM','AP','BA','CE','ES','GO',
+            'MA','MG','MS','MT','PA','PB','PE','PI',
+            'PR','RJ','RN','RO','RR','RS','SC','SE',
+            'SP','TO'
+        ]
+    
+    for (let i = 0; i < ufs.length; i++) {
+        if (uf === ufs[i]) {
+            return "ok"
+        }
+    }
+
+    return "Insira uma UF válida"
+}
