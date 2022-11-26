@@ -95,5 +95,12 @@ public abstract class UsuarioModel implements Serializable {
         this.telefone = telefone;
     }
 
+    public PerfilModel getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilModel perfil) {
+        this.perfil = perfil;
+    }
 }
 

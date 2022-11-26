@@ -1,34 +1,21 @@
-package projetopi.finddevservice.models;
+package projetopi.finddevservice.dtos.v1;
 
-import lombok.*;
 import projetopi.finddevservice.enums.StatusDesenvolvedor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Optional;
 
-@Entity
-@Table(name = "Perfil")
-public class PerfilModel implements Serializable {
+public class PerfilDto implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPerfil;
     @Size(max = 50)
-    @Column(length = 50)
     private String titulo;
     @Size(max = 2600)
-    @Column(length = 2600)
-    private String descricao;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 25)
+        private String descricao;
     private StatusDesenvolvedor status = StatusDesenvolvedor.DISPONIVEL;
 
 
-    public PerfilModel() {
+    public PerfilDto() {
     }
 
 
@@ -48,9 +35,7 @@ public class PerfilModel implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
+    public String getDescricao() { return descricao;}
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -63,4 +48,5 @@ public class PerfilModel implements Serializable {
     public void setStatus(StatusDesenvolvedor status) {
         this.status = status;
     }
+
 }
