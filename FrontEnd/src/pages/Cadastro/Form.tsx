@@ -153,8 +153,8 @@ export default function Form() {
         }
     };
 
-    const onSubmitFourthStepCompany = (e: any) => {
-        if (validateEstado(e.estadoCompany) === "ok") {
+    const onSubmitFourthStepCompany = async (e: any) => {
+            if (validateEstado(e.estadoCompany) === "ok") {
             setSignUpCompanyData({
                 ...signUpCompanyData,
                 cidade: signUpCompanyData.cidade = e.cidadeCompany,
@@ -162,18 +162,32 @@ export default function Form() {
                 bairro: signUpCompanyData.bairro = e.bairro,
                 endereco: signUpCompanyData.endereco = `${e.logradouro}, ${e.numero}`,
             });
-            setStep(step + 1);
-            console.log(signUpCompanyData);
 
-            api.post('/empresa', signUpCompanyData)
+            console.log(signUpCompanyData);
+            
+            await api.post('/empresa', signUpCompanyData)
                 .then((resposta) => {
+                    setStep(step + 1);
                     alert("Funcionou");
                     console.log(resposta);
                     routeChange("/login");
                 })
                 .catch((error) => {
                     alert("Deu erro");
-                    console.log(error)
+                    console.log(error);
+                    setSignUpCompanyData({
+                        ...signUpCompanyData,
+                        email: signUpCompanyData.email = "", 
+                        senha: signUpCompanyData.senha = "",
+                        nome: signUpCompanyData.nome = "",
+                        telefone: signUpCompanyData.telefone = "",
+                        cnpj: signUpCompanyData.cnpj = "",
+                        cidade: signUpCompanyData.cidade = "",
+                        estado: signUpCompanyData.estado = "",
+                        bairro: signUpCompanyData.bairro = "",
+                        endereco: signUpCompanyData.endereco = "",
+                    });
+                    setStep(0);
             });
         } else {
             alert(validateEstado(e.estadoCompany))
