@@ -2,7 +2,7 @@ package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.controllers.DevelopController;
+import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.controllers.EmpresaController;
 import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
 import projetopi.finddevservice.dtos.v1.response.CompanyResponseDto;
@@ -53,7 +53,7 @@ public class CompanyService {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
         var dto = DozerMapper.parseObject(entity, CompanyResponseDto.class);
-        dto.add(linkTo(methodOn(DevelopController.class).findById(id)).withSelfRel());
+        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(id)).withSelfRel());
         return dto;
     }
 

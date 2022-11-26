@@ -23,7 +23,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/dev")
 @Tag(name = "Developer", description = "Endpoints for Managing devs")
-public class DevelopController {
+public class DesenvolvedorController {
 
     @Autowired
     private DesenvolvedorService service;

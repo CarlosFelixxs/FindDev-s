@@ -2,7 +2,7 @@ package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.controllers.DevelopController;
+import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
@@ -37,7 +37,7 @@ public class DesenvolvedorService {
                 .stream()
                 .forEach(p -> {
                     try {
-                        p.add(linkTo(methodOn(DevelopController.class).findById(p.getKey())).withSelfRel());
+                        p.add(linkTo(methodOn(DesenvolvedorController.class).findById(p.getKey())).withSelfRel());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -52,7 +52,7 @@ public class DesenvolvedorService {
         var entity = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!"));
         var dto = DozerMapper.parseObject(entity, DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DevelopController.class).findById(id)).withSelfRel());
+        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(id)).withSelfRel());
         return dto;
 
     }
@@ -66,7 +66,7 @@ public class DesenvolvedorService {
         logger.info("Create a Dev!");
         var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
         var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
+        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 
     }
@@ -110,7 +110,7 @@ public class DesenvolvedorService {
         entity.setDataNascimento(person.getDataNascimento() == null ? entity.getDataNascimento() : person.getDataNascimento());
 
         var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DevelopController.class).findById(dto.getKey())).withSelfRel());
+        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(dto.getKey())).withSelfRel());
         return dto;
 
     }
