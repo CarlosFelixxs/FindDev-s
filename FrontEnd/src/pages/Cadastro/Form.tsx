@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { 
+import {
     validateEmail,
     validatePassword,
     validateName,
@@ -12,6 +12,8 @@ import {
     validateTelefone,
     validateCNPJ,
     validateEstado,
+    validateCidade,
+    validateRazaoSocial
 } from '../../services/formValidate';
 
 
@@ -26,7 +28,7 @@ export default function Form() {
 
     const routeChange = (path: string) => {
         navigate(path);
-      }
+    }
 
     const {
         register,
@@ -45,6 +47,7 @@ export default function Form() {
         email: "",
         senha: "",
         nome: "",
+        razaosocial: "",
         telefone: "",
         CNPJ: "",
         estado: "",
@@ -76,19 +79,19 @@ export default function Form() {
 
     const onSubmitFirstStep = (e: any) => {
 
-        
-        if (validateEmail(e.email) === 'ok' && validatePassword(e.senha, e.confirmacao) === 'ok'){
+
+        if (validateEmail(e.email) === 'ok' && validatePassword(e.senha, e.confirmacao) === 'ok') {
             setValidated(true);
         }
-        
-        if (validateEmail(e.email) !== 'ok'){
+
+        if (validateEmail(e.email) !== 'ok') {
             alert(validateEmail(e.email));
         }
-        
-        if (validatePassword(e.senha, e.confirmacao) !== 'ok'){
+
+        if (validatePassword(e.senha, e.confirmacao) !== 'ok') {
             alert(validatePassword(e.senha, e.confirmacao));
         }
-        
+
         if (validated) {
             setSignUpCompanyData({ ...signUpCompanyData, email: signUpCompanyData.email = e.email, senha: signUpCompanyData.senha = e.senha });
             setSignUpDevData({ ...signUpDevData, email: signUpDevData.email = e.email, senha: signUpDevData.senha = e.senha });
@@ -100,45 +103,55 @@ export default function Form() {
 
     const onSubmitThirdStepDev = (e: any) => {
         if (validateName(e.nome) === "ok" && validateCPF(e.CPF) === "ok" && validateTelefone(e.telefone) === "ok") {
-            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, telefone: signUpDevData.telefone = e.telefone, CPF: signUpDevData.CPF = e.CPF });
+            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, CPF: signUpDevData.CPF = e.CPF, telefone: signUpDevData.telefone = e.telefone });
             setStep(step + 1);
             console.log(signUpDevData);
-        }else if(validateName(e.nome) !== "ok"){
+        } else if (validateName(e.nome) !== "ok") {
             alert(validateName(e.nome));
-        }else if(validateCPF(e.cpf) !== "ok"){
-            alert(validateCPF(e.cpf));
-        }else{
+        } else if (validateCPF(e.CPF) !== "ok") {
+            alert(validateCPF(e.CPF));
+        } else if (validateCPF(e.telefone) !== "ok") {
             alert(validateTelefone(e.telefone));
         }
     };
 
     const onSubmitThirdStepCompany = (e: any) => {
-        if(validateName(e.nome) === "ok"  && validateTelefone(e.telefone ) === "ok" && validateCNPJ(e.CNPJ) === "ok"){
+        if (validateRazaoSocial(e.razaosocial) === "ok" && validateTelefone(e.telefone) === "ok" && validateCNPJ(e.CNPJ) === "ok") {
             setSignUpCompanyData({
                 ...signUpCompanyData,
-                nome: signUpCompanyData.nome = e.nome,
+                razaosocial: signUpCompanyData.nome = e.razaosocial,
                 telefone: signUpCompanyData.telefone = e.telefone,
                 CNPJ: signUpCompanyData.CNPJ = e.CNPJ
             });
             setStep(step + 1);
             console.log(signUpCompanyData);
-        }else if(validateName(e.nome) !== "ok"){
-            validateName(e.nome);
-        }else if(validateTelefone(e.telefone ) !== "ok"){
-            validateTelefone(e.telefone );
-        }else {
-            validateCNPJ(e.CNPJ);
+        } else if (validateRazaoSocial(e.razaosocial) !== "ok") {
+            alert(validateRazaoSocial(e.razaosocial));
+        } else if (validateTelefone(e.telefone) !== "ok") {
+            alert(validateTelefone(e.telefone));
+        } else if (validateCNPJ(e.CNPJ) !== "ok"){
+            alert(validateCNPJ(e.CNPJ));
         }
     };
 
     const onSubmitFourthStepDev = (e: any) => {
-        setSignUpDevData({ ...signUpDevData, estado: signUpDevData.estado = e.estadoDev, cidade: signUpDevData.cidade = e.cidadeDev });
-        console.log(signUpDevData);
+        if (validateEstado(e.estadoDev) === "ok") {
+            setSignUpDevData({
+                ...signUpDevData,
+                estado: signUpDevData.estado = e.estadoDev,
+                cidade: signUpDevData.cidade = e.cidadeDev
+            });
+            setStep(step + 1);
+            console.log(signUpCompanyData);
+        } else if (validateEstado(e.estadoDev) !== "ok"){
+            alert(validateEstado(e.estadoDev))
+        } else if (validateEstado(e.cidadeDev) !== "ok"){
+            alert(validateCidade(e.cidadeDev))
+        }
     };
 
-
     const onSubmitFourthStepCompany = (e: any) => {
-        if(validateEstado(e.estadoCompany) === "ok"){
+        if (validateEstado(e.estadoCompany) === "ok") {
             setSignUpCompanyData({
                 ...signUpCompanyData,
                 cidade: signUpCompanyData.cidade = e.cidadeCompany,
@@ -148,7 +161,7 @@ export default function Form() {
             });
             setStep(step + 1);
             console.log(signUpCompanyData);
-        }else{
+        } else {
             alert(validateEstado(e.estadoCompany))
         }
     };
@@ -248,7 +261,7 @@ export default function Form() {
         } else if (step === 2 && userType === "dev") {
             return (
                 <>
-                    <h1>CADASTRO</h1>
+                    <h1 className={styles.titleStepTwo}>CADASTRO</h1>
                     <form className={styles.formSignup} onSubmit={handleSubmit(onSubmitThirdStepDev)}>
                         <div className={styles.labelInput}>
                             <label>NOME</label>
@@ -276,12 +289,12 @@ export default function Form() {
         } else if (step === 2 && userType === "company") {
             return (
                 <>
-                    <h1>CADASTRO</h1>
+                    <h1 className={styles.titleStepTwo}>CADASTRO</h1>
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitThirdStepCompany)}>
                         <div className={styles.labelInput}>
                             <label>RAZÃO SOCIAL</label>
                             <div className={styles.separador}></div>
-                            <input type="text" className={styles.input} {...register("nome")} />
+                            <input type="text" className={styles.input} {...register("razaosocial")} />
                         </div >
                         <div className={styles.labelInput}>
                             <label>TELEFONE</label>
@@ -294,10 +307,6 @@ export default function Form() {
                             <input placeholder='XX. XXX. XXX/0001-XX' type="text" className={styles.input} {...register("CNPJ")} />
                         </div>
                         <button
-                            onClick={
-                                () => {
-                                setStep(step + 1);
-                                }}
                             className={styles.submit}
                         >
                             CONTINUAR
@@ -334,10 +343,6 @@ export default function Form() {
                             </select>
                         </div>
                         <button
-                            onClick={
-                                () => {
-                                setStep(step + 1);
-                                }}
                             className={styles.submit}
                         >
                             CONTINUAR
@@ -348,7 +353,7 @@ export default function Form() {
         } else if (step === 3 && userType === "company") {
             return (
                 <>
-                    <h1>CADASTRO</h1>
+                    <h1 className={styles.titleStepTwo}>CADASTRO</h1>
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitFourthStepCompany)}>
                         <div className={styles.thirdStepContent}>
                             <div className={styles.sideThirdStep}>

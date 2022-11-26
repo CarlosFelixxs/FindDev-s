@@ -19,7 +19,7 @@ export default function FormVacancy() {
 
         setTimeout(() => {
             setIsModalVisible(false);
-            navigate("/menuCompany")
+            navigate("/menu-company")
         }, 5000);
     }
 
@@ -70,7 +70,7 @@ export default function FormVacancy() {
                     <input type="submit" value="PUBLICAR" className={styles.submit}/>
                 </form>
             </div>  
-            {isModalVisible && <Modal title={"Parabéns!"} text={textModal} path={"/menuCompany"}/>}
+            {isModalVisible && <Modal title={"Parabéns!"} text={textModal} path={"/menu-company"}/>}
         </div>  
     </>
   )

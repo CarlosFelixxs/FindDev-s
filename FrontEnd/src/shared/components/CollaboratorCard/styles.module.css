@@ -1,6 +1,6 @@
 .card{
   width:80%;
-  height: 9rem;
+  height: 6rem;
   margin: 2% 0;
   background-color: #121214;
   border: 2px solid #00B37E;
@@ -42,9 +42,8 @@
 }
 
 .title {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.2rem;
-  text-decoration:underline;
 }
 
 .companyName, .salary, .stackSenioridade{
@@ -69,7 +68,7 @@
 
 .button{
   width:7%;
-  height: 25%;
+  height: 35%;
   background: #633BBC;
   display: flex;
   justify-content: center;

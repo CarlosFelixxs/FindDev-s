@@ -18,19 +18,15 @@ export default function OptionDev() {
          <HeaderLogado nome={"danilo"} />
          <div className={styles.container}>
             <div className={styles.findProfile}>
-               {/* <div className={styles.header}>
-                  <img src={logo} alt="Logo" />
-               </div> */}
-
                <div className={styles.div_imgFrase} onClick={() => routeChange("/resultado-busca-vaga")}>
                   <div className={styles.div_itens}>
-                     <div className={styles.div_phrase}>Encontre o job ideal</div>
+                     <p>Encontre o job ideal</p>
                      <img src={jobs} alt="Imagem job" className={styles.img} />
                   </div>
                </div>
             </div>
 
-            <div className={styles.findProfileRight} onClick={() => routeChange("/perfil")}>
+            <div className={styles.findProfileRight} onClick={() => routeChange("/perfil-dev")}>
                <div className={styles.div_imgFrase1}>
                   <div className={styles.div_itens}>
                      <div className={styles.div_phraseRight}>Perfil e estatísticas</div>
