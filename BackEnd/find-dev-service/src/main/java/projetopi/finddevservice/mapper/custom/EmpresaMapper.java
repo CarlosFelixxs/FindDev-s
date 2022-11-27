@@ -2,16 +2,15 @@ package projetopi.finddevservice.mapper.custom;
 
 
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
-import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
-import projetopi.finddevservice.models.DesenvolvedorModel;
+import projetopi.finddevservice.dtos.v1.request.EmpresaRequestDto;
+import projetopi.finddevservice.models.EmpresaModel;
 
 @Service
-public class DevMapper {
+public class EmpresaMapper {
 
-    public DevelopResponseDto convertEntityToDto(DesenvolvedorModel person){
+    public EmpresaRequestDto convertEntityToDto(EmpresaModel person){
 
-        DevelopResponseDto dto = new DevelopResponseDto();
+        EmpresaRequestDto dto = new EmpresaRequestDto();
         dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
@@ -19,13 +18,16 @@ public class DevMapper {
         dto.setEstado(person.getEstado());
         dto.setCidade(person.getCidade());
         dto.setTelefone(person.getTelefone());
-        dto.setCpf(person.getCpf());
+        dto.setBairro(person.getBairro());
+        dto.setEndereco(person.getEndereco());
+        dto.setCnpj(person.getCnpj());
         return dto;
 
     }
-    public DesenvolvedorModel convertDtoToEntity(DevelopRequestDto person){
 
-        DesenvolvedorModel entity = new DesenvolvedorModel();
+    public EmpresaModel convertDtoToEntity(EmpresaRequestDto person){
+
+        EmpresaModel entity = new EmpresaModel();
         entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
@@ -33,7 +35,9 @@ public class DevMapper {
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());
-        entity.setCpf(person.getCpf());
+        entity.setBairro(person.getBairro());
+        entity.setEndereco(person.getEndereco());
+        entity.setCnpj(person.getCnpj());
         return entity;
 
     }
