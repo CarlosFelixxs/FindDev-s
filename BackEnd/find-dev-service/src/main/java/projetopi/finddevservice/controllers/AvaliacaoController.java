@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.dtos.v1.request.NovaAvaliacaoRequestDto;
 import projetopi.finddevservice.dtos.v1.response.AvaliacaoResponseDto;
-import projetopi.finddevservice.models.AvaliacaoModel;
 import projetopi.finddevservice.services.AvaliacaoService;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
