@@ -2,10 +2,9 @@ package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.controllers.EmpresaController;
-import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
-import projetopi.finddevservice.dtos.v1.response.CompanyResponseDto;
+import projetopi.finddevservice.dtos.v1.request.EmpresaRequestDto;
+import projetopi.finddevservice.dtos.v1.response.EmpresaResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
@@ -23,21 +22,21 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
-public class CompanyService {
+public class EmpresaService {
 
     @Autowired
     private EmpresaRepository repository;
     @Autowired
     private PerfilRepository perfilRepository;
 
-    private final Logger logger = Logger.getLogger(CompanyService.class.getName());
+    private final Logger logger = Logger.getLogger(EmpresaService.class.getName());
 
-    public List<CompanyResponseDto> findAll() {
+    public List<EmpresaResponseDto> findAll() {
         logger.info("Finding all Companys!");
 
-        List<CompanyResponseDto> person = DozerMapper.parseListObjects(
+        List<EmpresaResponseDto> person = DozerMapper.parseListObjects(
             repository.findAll(),
-            CompanyResponseDto.class
+            EmpresaResponseDto.class
         );
 
         person.forEach(p -> {
@@ -52,17 +51,17 @@ public class CompanyService {
         return person;
     }
 
-    public CompanyResponseDto findById(UUID id) {
+    public EmpresaResponseDto findById(UUID id) {
         logger.info("Finding a Company!");
 
         EmpresaModel entity = repository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("No records found for this id!")
         );
 
-        CompanyResponseDto dto = DozerMapper.parseObject(entity, CompanyResponseDto.class);
+        EmpresaResponseDto dto = DozerMapper.parseObject(entity, EmpresaResponseDto.class);
         dto.add(
             linkTo(
-                methodOn(DesenvolvedorController.class)
+                methodOn(EmpresaController.class)
                     .findById(id)
             ).withSelfRel()
         );
@@ -70,7 +69,7 @@ public class CompanyService {
         return dto;
     }
 
-    public CompanyResponseDto create(CompanyRequestDto person) throws Exception {
+    public EmpresaResponseDto create(EmpresaRequestDto person) throws Exception {
         logger.info("Checking existence!");
 
         if(existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
@@ -87,7 +86,7 @@ public class CompanyService {
 
         EmpresaModel entity = DozerMapper.parseObject(person, EmpresaModel.class);
         entity.setPerfil(perfilModel);
-        CompanyResponseDto dto = DozerMapper.parseObject(repository.save(entity), CompanyResponseDto.class);
+        EmpresaResponseDto dto = DozerMapper.parseObject(repository.save(entity), EmpresaResponseDto.class);
         dto.add(
             linkTo(
                 methodOn(EmpresaController.class)
@@ -106,7 +105,7 @@ public class CompanyService {
         return repository.existsByEmailIgnoreCase(email);
     }
 
-    public CompanyResponseDto update(CompanyRequestDto person) {
+    public EmpresaResponseDto update(EmpresaRequestDto person) {
         if (person == null) throw new RequiredObjectIsNullException();
 
         logger.info("updating a Company!");
@@ -134,7 +133,7 @@ public class CompanyService {
         entity.setBairro(person.getBairro().isEmpty() ? entity.getBairro() : person.getBairro());
         entity.setEndereco(person.getEndereco().isEmpty() ? entity.getEndereco() : person.getEndereco());
 
-        CompanyResponseDto dto = DozerMapper.parseObject(repository.save(entity), CompanyResponseDto.class);
+        EmpresaResponseDto dto = DozerMapper.parseObject(repository.save(entity), EmpresaResponseDto.class);
         dto.add(
             linkTo(
                 methodOn(EmpresaController.class)

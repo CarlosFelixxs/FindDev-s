@@ -10,13 +10,13 @@ import java.io.Serializable;
 
 public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Mapping("id")
     @JsonProperty("id")
     private int key;
 
-    private CompanyResponseDto companyResponseDto;
+    private EmpresaResponseDto empresaResponseDto;
+
+    private DevelopResponseDto developResponseDto;
 
     private String titulo;
 
@@ -42,12 +42,20 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
         this.key = key;
     }
 
-    public CompanyResponseDto getCompanyResponseDto() {
-        return companyResponseDto;
+    public EmpresaResponseDto getCompanyResponseDto() {
+        return empresaResponseDto;
     }
 
-    public void setCompanyResponseDto(CompanyResponseDto companyResponseDto) {
-        this.companyResponseDto = companyResponseDto;
+    public void setCompanyResponseDto(EmpresaResponseDto empresaResponseDto) {
+        this.empresaResponseDto = empresaResponseDto;
+    }
+
+    public DevelopResponseDto getDevelopResponseDto() {
+        return developResponseDto;
+    }
+
+    public void setDevelopResponseDto(DevelopResponseDto developResponseDto) {
+        this.developResponseDto = developResponseDto;
     }
 
     public String getTitulo() {

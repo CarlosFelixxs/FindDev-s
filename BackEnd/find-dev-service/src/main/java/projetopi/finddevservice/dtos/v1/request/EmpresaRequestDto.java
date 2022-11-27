@@ -1,39 +1,51 @@
-package projetopi.finddevservice.dtos.v1.response;
+package projetopi.finddevservice.dtos.v1.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
-import projetopi.finddevservice.dtos.v1.PerfilDto;
-import projetopi.finddevservice.models.PerfilModel;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
-        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone","bairro", "endereco","perfil"}
+        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone", "bairro", "endereco"}
 )
-public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> implements Serializable {
+public class EmpresaRequestDto extends RepresentationModel<EmpresaRequestDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Mapping("id")
     @JsonProperty("id")
     private UUID key;
+    @Size(min = 3, max = 255)
     private String nome;
+    @Email
     private String email;
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+            message = "Informe uma senha com pelo menos um caractere especial, um número e uma letra maiuscula!"
+    )
     private String senha;
     private String estado;
     private String cidade;
+    @Pattern(
+            regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
+            // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
+            message = "Informe um telefone válido com ou sem DDD"
+    )
     private String telefone;
-    private String bairro;
-    private String endereco;
-    private String cnpj;
-    private PerfilModel perfil;
 
-    public CompanyResponseDto() {
+    private String bairro;
+
+    private String endereco;
+
+    @Size(min = 14)
+    @NotBlank
+    private String cnpj;
+
+    public EmpresaRequestDto() {
 
     }
 
@@ -61,7 +73,7 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
         this.email = email;
     }
 
-    public String recuperaSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -108,6 +120,7 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
     public String getCnpj() {
         return cnpj;
     }
@@ -116,11 +129,4 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
         this.cnpj = cnpj;
     }
 
-    public PerfilModel getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(PerfilModel perfil) {
-        this.perfil = perfil;
-    }
 }
