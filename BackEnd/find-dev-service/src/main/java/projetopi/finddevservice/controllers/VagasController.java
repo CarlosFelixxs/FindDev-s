@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/vagas")
+@RequestMapping("/api/v1/vagas")
 @Tag(name = "Vagas",description = "Endpoints for managing Vagas")
 public class VagasController {
 
