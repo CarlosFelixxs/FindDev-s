@@ -5,11 +5,14 @@ import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.controllers.EmpresaController;
 import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
+import projetopi.finddevservice.dtos.v1.request.CompanyStatusRequest;
+import projetopi.finddevservice.dtos.v1.request.DevelopStatusRequest;
 import projetopi.finddevservice.dtos.v1.response.CompanyResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
+import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.EmpresaModel;
 import projetopi.finddevservice.models.PerfilModel;
 import projetopi.finddevservice.repositories.EmpresaRepository;
@@ -153,6 +156,5 @@ public class CompanyService {
 
         repository.delete(entity);
     }
-
 
 }

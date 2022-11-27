@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.UsuarioController;
 import projetopi.finddevservice.dtos.v1.PerfilDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopStatusRequest;
 import projetopi.finddevservice.dtos.v1.request.LoginDto;
 import projetopi.finddevservice.dtos.v1.request.UsuarioProfileRequest;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
+import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.PerfilModel;
 import projetopi.finddevservice.models.UsuarioModel;
 import projetopi.finddevservice.repositories.PerfilRepository;
@@ -104,6 +106,19 @@ public class UsuarioService {
 
         entity.getPerfil().setTitulo(profile.getTitulo().isEmpty() ? entity.getPerfil().getTitulo() : profile.getTitulo() );
         entity.getPerfil().setDescricao(profile.getDescricao().isEmpty() ? entity.getPerfil().getDescricao() : profile.getDescricao());
+        userRepository.save(entity);
         return entity;
+    }
+
+    public String changeStatus(DevelopStatusRequest statusRequest) {
+        if (statusRequest == null) throw new RequiredObjectIsNullException();
+        logger.info("updating Status!");
+
+        UsuarioModel entity = userRepository.findById(statusRequest.getIdUsuaio()).orElseThrow(
+                () -> new ResourceNotFoundException("No records found for this id!")
+        );
+        entity.getPerfil().setStatus(statusRequest.getStatus());
+
+        return "Staus update!";
     }
 }
