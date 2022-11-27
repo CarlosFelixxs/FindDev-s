@@ -1,9 +1,14 @@
 package projetopi.finddevservice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import projetopi.finddevservice.models.Perfil;
+import org.springframework.data.jpa.repository.Query;
+import projetopi.finddevservice.models.PerfilModel;
 
-public interface PerfilRepository extends JpaRepository<Perfil,Integer> {
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface PerfilRepository extends JpaRepository<PerfilModel,Integer> {
 
 
 }

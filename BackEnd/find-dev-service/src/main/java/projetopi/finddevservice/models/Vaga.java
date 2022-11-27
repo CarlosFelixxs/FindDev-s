@@ -2,10 +2,11 @@ package projetopi.finddevservice.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import projetopi.finddevservice.enums.FuncaoDesenvolvedor;
-import projetopi.finddevservice.enums.SenioridadeDesenvolvedor;
+import projetopi.finddevservice.enums.FuncaoDev;
+import projetopi.finddevservice.enums.SenioridadeDev;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,21 +17,31 @@ public class Vaga {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(length = 45)
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa")
+    private EmpresaModel empresa;
+
+    @OneToOne
+    @JoinColumn(name = "idDesenvolvedor")
+    private DesenvolvedorModel desenvolvedorContratado;
+
     private String titulo;
 
-    @Column(length = 200)
     private String descricao;
 
-    private FuncaoDesenvolvedor funcao;
+    private FuncaoDev funcao;
 
-    private SenioridadeDesenvolvedor senioridade;
+    private SenioridadeDev senioridade;
+
+    private boolean encerrado;
+
+    private boolean avaliado;
 
     public Vaga(
         String titulo,
         String descricao,
-        FuncaoDesenvolvedor funcao,
-        SenioridadeDesenvolvedor senioridade
+        FuncaoDev funcao,
+        SenioridadeDev senioridade
     ) {
         this.titulo = titulo;
         this.descricao = descricao;

@@ -1,89 +1,94 @@
 .container {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    background-color: #09090A;
+  height: 80vh;
+  display: flex;
+  background-color: #09090a;
 }
 
 .findProfile {
-    height: 100vh;
-    width: 50vw;
-}
-
-.findProfile:hover {
-    background-color: #633BBC;
-    cursor: pointer;
-}
-
-.header {
-    height: 20%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-right: 1px solid rgb(230, 230, 230);
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .div_imgFrase {
-    height: 80%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 5px;
+  height: 75%;
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8257e5;
+}
+.div_imgFrase:hover {
+  background-color: #633bbc;
+  cursor: pointer;
+  color: #09090a;
+  transition: 0.70s;
 }
 
-.div_phrase {
-    height: 3.5rem;
-    width: 100%;
-    color: #8257E5;
-    display: flex;
-    justify-content: center;
-    font-size: 2.0rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.findProfile:hover .div_phrase{
-    color: #09090A;
-}
-
-.img {
-    width: 25rem;
+.div_imgFrase p {
+  height: 2rem;
+  width: 100%;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
 }
 
 /*RIGHT*/
 
 .findProfileRight {
-    height: 100vh;
-    width: 50vw;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgb(230, 230, 230);
+  color: #00b37e;
 }
 
-.findProfileRight:hover {
-    background-color: #00B37E;
-    cursor: pointer;
+.div_imgFrase1 {
+  border-radius: 5px;
+  height: 75%;
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
 }
 
-.findProfileRight:hover .div_phraseRight{
-    color: #09090A;
+.div_imgFrase1:hover {
+  color: #09090a;
+  background-color: #00b37e;
+  cursor: pointer;
+  transition: 0.70s;
 }
 
 .headerRight {
-    height: 20%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.0rem;
-    font-weight: bold;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1,1rem;
+  font-weight: bold;
 }
 
 .div_phraseRight {
-    height: 3.5rem;
-    width: 100%;
-    color: #00B37E;
-    display: flex;
-    justify-content: center;
-    font-size: 2.0rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+  height: 2rem;
+  width: 100%;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
 }

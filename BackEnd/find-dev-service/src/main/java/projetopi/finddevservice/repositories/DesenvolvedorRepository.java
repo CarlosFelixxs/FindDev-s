@@ -4,16 +4,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import projetopi.finddevservice.enums.PlanoDesenvolvedor;
-import projetopi.finddevservice.models.Desenvolvedor;
+import projetopi.finddevservice.models.DesenvolvedorModel;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+public interface DesenvolvedorRepository extends JpaRepository<DesenvolvedorModel, UUID> {
 
-public interface DesenvolvedorRepository extends JpaRepository<Desenvolvedor, UUID> {
-
+    Boolean existsByEmailIgnoreCase(String email);
+    Boolean existsByNomeIgnoreCase(String nome);
+    Boolean existsByCpf(String cpf);
     @Transactional
     @Modifying
-    Desenvolvedor deleteByIdUsuario(UUID uuid);
+    void deleteById (UUID uuid);
+
 }

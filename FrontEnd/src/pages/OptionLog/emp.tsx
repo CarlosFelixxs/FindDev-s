@@ -3,9 +3,10 @@ import styles from "./styles.module.css";
 import logo from "../../assets/images/Logo@2x.png";
 import publish from "../../assets/images/Hiring-amico 1.png";
 import profileImg from "../../assets/images/Metrics-bro 1.png";
+import HeaderLogado from "../../shared/components/HeaderLogado/Index";
 
 export default function OptionEmp() {
-   
+
    const navigate = useNavigate();
 
    const routeChange = (path: string) => {
@@ -14,24 +15,19 @@ export default function OptionEmp() {
 
    return (
       <>
+         <HeaderLogado nome={"danilo"} />
          <div className={styles.container}>
-            <div className={styles.findProfile} onClick={() => routeChange("/")}>
-               <div className={styles.header}>
-                  <img src={logo} alt="Logo" />
-               </div>
-
+            <div className={styles.findProfile} onClick={() => routeChange("/formulario-vaga")}>
                <div className={styles.div_imgFrase}>
                   <div className={styles.div_itens}>
-                     <div className={styles.div_phrase}>Publique sua vaga</div>
+                     <p>Publique sua vaga</p>
                      <img src={publish} alt="Imagem job" className={styles.img} />
                   </div>
                </div>
             </div>
 
-            <div className={styles.findProfileRight} onClick={() => routeChange("/")}>
-               <div className={styles.headerRight}>X-Team </div>
-
-               <div className={styles.div_imgFrase}>
+            <div className={styles.findProfileRight} onClick={() => routeChange("/perfil-company")}>
+               <div className={styles.div_imgFrase1}>
                   <div className={styles.div_itens}>
                      <div className={styles.div_phraseRight}>Perfil e estatísticas</div>
                      <img src={profileImg} alt="Imagem job" className={styles.img} />

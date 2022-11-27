@@ -1,6 +1,6 @@
 .card{
   height: 90%;
-  width:80%;
+  width: 70%;
   background-color: #121214;
   border: 2px solid #9747FF;
   border-radius: 1rem;
@@ -27,6 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
 }
 
 .topics{
@@ -36,7 +38,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  text-decoration: underline;
+  text-decoration: none;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .stackSenioridade{
@@ -46,22 +51,29 @@
   padding: 0 5%;
 }
 
+
+.titleDescription{
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
 .description{
-  height: 70%;
+  height: 60%;
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 5%;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  justify-content: space-around;
 }
 
-.titleDescription{
-  font-weight: 400;
-  font-size: 1.5rem;
-}
 
 .textDescription{
   font-weight: 400;
-  font-size: 18px;
+  font-size: 0.89rem;
   line-height: 160%;
 }
 
