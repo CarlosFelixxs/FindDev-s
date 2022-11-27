@@ -9,7 +9,7 @@ export function Banner() {
           <div className={styles.contText}>
             <h1 className={styles.h1}>conectando quem sabe com quem precisa</h1>
             <p className={styles.p}>a plataforma ideal para encontrar seus desenvolvedores freelancers</p>
-            <button className={styles.btnComoFunciona}>como funciona</button>
+            <button id='button-como-funciona-banner' className={styles.btnComoFunciona}>como funciona</button>
           </div>
         </div>
         <div className={styles.containerImg}>
