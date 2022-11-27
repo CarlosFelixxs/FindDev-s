@@ -19,7 +19,6 @@ public class DevMapper {
         dto.setEstado(person.getEstado());
         dto.setCidade(person.getCidade());
         dto.setTelefone(person.getTelefone());
-        dto.setDataNascimento(person.getDataNascimento());
         dto.setCpf(person.getCpf());
         return dto;
 
@@ -34,7 +33,6 @@ public class DevMapper {
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());
-        entity.setDataNascimento(person.getDataNascimento());
         entity.setCpf(person.getCpf());
         return entity;
 

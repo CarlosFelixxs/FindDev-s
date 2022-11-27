@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
-        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone","bairro", "endereco", "complemento","perfil"}
+        {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone","bairro", "endereco","perfil"}
 )
 public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> implements Serializable {
 
@@ -30,7 +30,6 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
     private String telefone;
     private String bairro;
     private String endereco;
-    private String complemento;
     private String cnpj;
     private PerfilModel perfil;
 
@@ -109,15 +108,6 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
     public String getCnpj() {
         return cnpj;
     }

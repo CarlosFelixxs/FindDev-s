@@ -133,7 +133,6 @@ public class CompanyService {
         entity.setTelefone(person.getTelefone().isEmpty() ? entity.getTelefone() : person.getTelefone());
         entity.setBairro(person.getBairro().isEmpty() ? entity.getBairro() : person.getBairro());
         entity.setEndereco(person.getEndereco().isEmpty() ? entity.getEndereco() : person.getEndereco());
-        entity.setComplemento(person.getComplemento().isEmpty() ? entity.getComplemento() : person.getComplemento());
 
         CompanyResponseDto dto = DozerMapper.parseObject(repository.save(entity), CompanyResponseDto.class);
         dto.add(
