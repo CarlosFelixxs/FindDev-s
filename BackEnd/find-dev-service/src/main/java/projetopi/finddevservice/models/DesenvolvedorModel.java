@@ -19,10 +19,6 @@ public class DesenvolvedorModel extends UsuarioModel {
 
     private String cpf;
 
-    @Past
-    @NotNull
-    private LocalDate dataNascimento;
-
     public DesenvolvedorModel() {
         plano = PlanoDev.GRATUITO;
     }
@@ -43,12 +39,5 @@ public class DesenvolvedorModel extends UsuarioModel {
         this.cpf = cpf;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
 }
 
