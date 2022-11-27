@@ -13,7 +13,7 @@ export default function PerfilDev(props: any) {
 
   return (
     <>
-      <HeaderLogado nome={"danilo"} />
+      <HeaderLogado />
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>
@@ -22,7 +22,7 @@ export default function PerfilDev(props: any) {
               <h1>Danilo Amorim</h1>
               <h6>Dev | Intern | Backend | C6 Bank | SPTech</h6>
             </span>
-            <RateComponent />
+            <RateComponent rating={3}/>
           </div>
         </div>
 
