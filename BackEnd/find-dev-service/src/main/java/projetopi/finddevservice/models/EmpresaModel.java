@@ -15,10 +15,6 @@ public class EmpresaModel extends UsuarioModel {
 
     @Column(nullable = false)
     private String endereco;
-
-    @Column(nullable = false, length = 30)
-    private String complemento;
-
     private String cnpj;
 
     public EmpresaModel() {
@@ -39,14 +35,6 @@ public class EmpresaModel extends UsuarioModel {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
     }
 
     public String getCnpj() {

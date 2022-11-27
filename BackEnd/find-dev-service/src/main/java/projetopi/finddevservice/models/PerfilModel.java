@@ -25,7 +25,7 @@ public class PerfilModel implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 25)
-    private StatusDesenvolvedor status = StatusDesenvolvedor.DISPONIVEL;
+    private StatusDesenvolvedor status;
 
 
     public PerfilModel() {

@@ -127,7 +127,6 @@ public class DesenvolvedorService {
         entity.setEstado(person.getEstado().isEmpty() ? entity.getEstado() : person.getEstado());
         entity.setCidade(person.getCidade().isEmpty() ? entity.getCidade() : person.getCidade());
         entity.setTelefone(person.getTelefone().isEmpty() ? entity.getTelefone() : person.getTelefone());
-        entity.setDataNascimento(person.getDataNascimento() == null ? entity.getDataNascimento() : person.getDataNascimento());
 
         DevelopResponseDto dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
         dto.add(

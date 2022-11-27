@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
-        {"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone", "dataNascimento","plano"}
+        {"id", "nome", "email", "senha", "cpf", "estado", "cidade", "telefone","plano"}
 )
 public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> implements Serializable {
 
@@ -43,9 +43,7 @@ public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> im
     )
     @NotBlank
     private String telefone;
-    @Past
-    @NotNull
-    private LocalDate dataNascimento;
+
     @Size(min = 11, max = 11)
     @NotBlank
     private String cpf;
@@ -108,14 +106,6 @@ public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> im
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public String getCpf() {
