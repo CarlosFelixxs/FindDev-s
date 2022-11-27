@@ -65,6 +65,7 @@ export default function Form() {
         "cpf": "",
         "estado": "",
         "cidade": "",
+        "dataNascimento": "2000-01-10",
     });
 
     useEffect(() => {
@@ -104,15 +105,20 @@ export default function Form() {
 
     const onSubmitThirdStepDev = (e: any) => {
         if (validateName(e.nome) === "ok" && validateCPF(e.CPF) === "ok" && validateTelefone(e.telefone) === "ok") {
-            let cpfFormated = e.cpf.replace(/[\s.-]*/igm, '');
-            setSignUpDevData({ ...signUpDevData, nome: signUpDevData.nome = e.nome, cpf: signUpDevData.cpf = e.cpfFormated, telefone: signUpDevData.telefone = e.telefone });
+            let cpfFormated = e.CPF.replace(/[\s.-]*/igm, '');
+            setSignUpDevData({
+                ...signUpDevData,
+                nome: signUpDevData.nome = e.nome,
+                cpf: signUpDevData.cpf = cpfFormated,
+                telefone: signUpDevData.telefone = e.telefone
+            });
             setStep(step + 1);
             console.log(signUpDevData);
         } else if (validateName(e.nome) !== "ok") {
             alert(validateName(e.nome));
         } else if (validateCPF(e.CPF) !== "ok") {
             alert(validateCPF(e.CPF));
-        } else if (validateCPF(e.telefone) !== "ok") {
+        } else if (validateTelefone(e.telefone) !== "ok") {
             alert(validateTelefone(e.telefone));
         }
     };
@@ -132,12 +138,12 @@ export default function Form() {
             alert(validateRazaoSocial(e.nome));
         } else if (validateTelefone(e.telefone) !== "ok") {
             alert(validateTelefone(e.telefone));
-        } else if (validateCNPJ(e.CNPJ) !== "ok"){
+        } else if (validateCNPJ(e.CNPJ) !== "ok") {
             alert(validateCNPJ(e.CNPJ));
         }
     };
 
-    const onSubmitFourthStepDev = (e: any) => {
+    const onSubmitFourthStepDev = async (e: any) => {
         if (validateEstado(e.estadoDev) === "ok") {
             setSignUpDevData({
                 ...signUpDevData,
@@ -145,16 +151,39 @@ export default function Form() {
                 cidade: signUpDevData.cidade = e.cidadeDev
             });
             setStep(step + 1);
-            console.log(signUpCompanyData);
-        } else if (validateEstado(e.estadoDev) !== "ok"){
+            console.log(signUpDevData);
+            await api.post('/dev', signUpDevData)
+                .then((resposta) => {
+                    setStep(step + 1);
+                    alert("Funcionou");
+                    console.log(resposta);
+                    routeChange("/login");
+                })
+                .catch((error) => {
+                    alert("Deu erro");
+                    console.log(error);
+                    setSignUpDevData({
+                        ...signUpDevData,
+                        email: signUpDevData.email = "",
+                        senha: signUpDevData.senha = "",
+                        nome: signUpDevData.nome = "",
+                        telefone: signUpDevData.telefone = "",
+                        cpf: signUpDevData.cpf = "",
+                        cidade: signUpDevData.cidade = "",
+                        estado: signUpDevData.estado = "",
+                    });
+                    setStep(0);
+                });
+        } else if (validateEstado(e.estadoDev) !== "ok") {
             alert(validateEstado(e.estadoDev))
-        } else if (validateEstado(e.cidadeDev) !== "ok"){
+        } else if (validateEstado(e.cidadeDev) !== "ok") {
             alert(validateCidade(e.cidadeDev))
         }
+
     };
 
     const onSubmitFourthStepCompany = async (e: any) => {
-            if (validateEstado(e.estadoCompany) === "ok") {
+        if (validateEstado(e.estadoCompany) === "ok") {
             setSignUpCompanyData({
                 ...signUpCompanyData,
                 cidade: signUpCompanyData.cidade = e.cidadeCompany,
@@ -164,7 +193,7 @@ export default function Form() {
             });
 
             console.log(signUpCompanyData);
-            
+
             await api.post('/empresa', signUpCompanyData)
                 .then((resposta) => {
                     setStep(step + 1);
@@ -177,7 +206,7 @@ export default function Form() {
                     console.log(error);
                     setSignUpCompanyData({
                         ...signUpCompanyData,
-                        email: signUpCompanyData.email = "", 
+                        email: signUpCompanyData.email = "",
                         senha: signUpCompanyData.senha = "",
                         nome: signUpCompanyData.nome = "",
                         telefone: signUpCompanyData.telefone = "",
@@ -188,7 +217,7 @@ export default function Form() {
                         endereco: signUpCompanyData.endereco = "",
                     });
                     setStep(0);
-            });
+                });
         } else {
             alert(validateEstado(e.estadoCompany))
         }
