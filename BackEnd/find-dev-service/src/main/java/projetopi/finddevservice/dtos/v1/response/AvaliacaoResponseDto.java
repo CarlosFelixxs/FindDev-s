@@ -1,36 +1,27 @@
-package projetopi.finddevservice.models;
+package projetopi.finddevservice.dtos.v1.response;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import projetopi.finddevservice.models.DesenvolvedorModel;
+import projetopi.finddevservice.models.EmpresaModel;
+import projetopi.finddevservice.models.UsuarioModel;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Entity
-public class Avaliacao implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class AvaliacaoResponseDto {
+
     private Integer idAvaliacao;
-
-    @ManyToOne
-    private DesenvolvedorModel dev;
-
-    @ManyToOne
-    private EmpresaModel company;
-
+    private UUID avaliador;
+    private UUID avaliado;
     private Integer nota;
-
-    @Column(length = 2600)
     private String comentario;
-
-    @CreationTimestamp
+    private boolean isCompany;
     private LocalDateTime dataHoraAvaliacao;
 
-    public Avaliacao() {
+    public AvaliacaoResponseDto() {
     }
 
     public Integer getIdAvaliacao() {
@@ -41,20 +32,20 @@ public class Avaliacao implements Serializable {
         this.idAvaliacao = idAvaliacao;
     }
 
-    public DesenvolvedorModel getDev() {
-        return dev;
+    public UUID getAvaliador() {
+        return avaliador;
     }
 
-    public void setDev(DesenvolvedorModel dev) {
-        this.dev = dev;
+    public void setAvaliador(UUID avaliador) {
+        this.avaliador = avaliador;
     }
 
-    public EmpresaModel getCompany() {
-        return company;
+    public UUID getAvaliado() {
+        return avaliado;
     }
 
-    public void setCompany(EmpresaModel company) {
-        this.company = company;
+    public void setAvaliado(UUID avaliado) {
+        this.avaliado = avaliado;
     }
 
     public Integer getNota() {
@@ -79,5 +70,9 @@ public class Avaliacao implements Serializable {
 
     public void setDataHoraAvaliacao(LocalDateTime dataHoraAvaliacao) {
         this.dataHoraAvaliacao = dataHoraAvaliacao;
+    }
+
+    public void setCompany(boolean company) {
+        isCompany = company;
     }
 }
