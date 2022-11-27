@@ -20,7 +20,6 @@ public class CompanyMapper {
         dto.setTelefone(person.getTelefone());
         dto.setBairro(person.getBairro());
         dto.setEndereco(person.getEndereco());
-        dto.setComplemento(person.getComplemento());
         dto.setCnpj(person.getCnpj());
         return dto;
 
@@ -38,7 +37,6 @@ public class CompanyMapper {
         entity.setTelefone(person.getTelefone());
         entity.setBairro(person.getBairro());
         entity.setEndereco(person.getEndereco());
-        entity.setComplemento(person.getComplemento());
         entity.setCnpj(person.getCnpj());
         return entity;
 
