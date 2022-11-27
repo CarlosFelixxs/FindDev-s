@@ -34,6 +34,7 @@ export default function Login() {
         alert("Funcionou");
         console.log(resposta);
         resposta.data.cnpj ? routeChange("/menu-company") : routeChange("/menu-dev");
+        sessionStorage.setItem("idUser", resposta.data.id);
       })
       .catch((error) => {
         alert("Email ou senha não existem");
