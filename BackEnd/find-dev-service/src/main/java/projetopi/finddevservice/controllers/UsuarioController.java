@@ -134,14 +134,8 @@ public class UsuarioController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public ResponseEntity<UsuarioModel> updateProfile
-            (@RequestBody UsuarioProfileRequest profile) throws Exception{
-        try {
-            return ResponseEntity.ok(service.updateProfile(profile));
-        } catch (Exception e) {
-            throw new RequiredObjectIsNullException(e.getMessage());
-        }
+    public ResponseEntity<UsuarioModel> updateProfile(@RequestBody UsuarioProfileRequest profile) throws Exception {
+        return ResponseEntity.ok(service.updateProfile(profile));
     }
-
 
 }

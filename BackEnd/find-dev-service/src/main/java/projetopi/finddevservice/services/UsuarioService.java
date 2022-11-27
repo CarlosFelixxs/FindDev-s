@@ -10,6 +10,7 @@ import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
+import projetopi.finddevservice.models.PerfilModel;
 import projetopi.finddevservice.models.UsuarioModel;
 import projetopi.finddevservice.repositories.PerfilRepository;
 import projetopi.finddevservice.repositories.UsuarioRepository;
@@ -29,24 +30,23 @@ public class UsuarioService {
     @Autowired
     private PerfilRepository perfilRepository;
 
-
     private final Logger logger = Logger.getLogger(DesenvolvedorService.class.getName());
 
-
     public UsuarioModel login(LoginDto loginDto) {
-
         if (loginDto == null) {
             throw new RequiredObjectIsNullException();
         }
 
         logger.info("Finding a User!");
 
-        var email =  verifyEmail(loginDto.getEmail());
+        boolean email = verifyEmail(loginDto.getEmail());
 
         if (!email) {
-            throw new RequiredExistingObjectException("Username Not Found! ");
+            throw new RequiredExistingObjectException("Username Not Found!");
         }
-        var user = userRepository.findByEmailIgnoreCase(loginDto.getEmail());
+
+        UsuarioModel user = userRepository.findByEmailIgnoreCase(loginDto.getEmail());
+
         if (!loginDto.getSenha().equals(user.recuperaSenha())) {
             throw new RequiredExistingObjectException("Invalid Password!");
         }
@@ -59,42 +59,51 @@ public class UsuarioService {
     }
 
     public PerfilDto findProfileById(Integer id) {
-
         logger.info("Finding a profile!");
-        var entity = perfilRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
-        var dto = DozerMapper.parseObject(entity, PerfilDto.class);
-           dto.add(linkTo(methodOn(UsuarioController.class).findProfileById(id)).withSelfRel());
+
+        PerfilModel entity = perfilRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("No records found for this id!")
+        );
+
+        PerfilDto dto = DozerMapper.parseObject(entity, PerfilDto.class);
+        dto.add(
+            linkTo(
+                methodOn(UsuarioController.class)
+                    .findProfileById(id)
+            ).withSelfRel()
+        );
+
         return dto;
-
     }
-    public List<PerfilDto> findAllUserProfile() {
 
+    public List<PerfilDto> findAllUserProfile() {
         logger.info("Finding all Devs!");
 
-        var entity =
-                DozerMapper.parseListObjects(perfilRepository.findAll(), PerfilDto.class);
+        List<PerfilDto> entity = DozerMapper.parseListObjects(perfilRepository.findAll(), PerfilDto.class);
 
-        entity.stream()
-                .forEach(p -> {
-                    try {
-                        p.add(linkTo(methodOn(UsuarioController.class).findProfileById(p.getIdPerfil())).withSelfRel());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+        entity.forEach(p -> {
+                try {
+                    p.add(
+                        linkTo(methodOn(UsuarioController.class).findProfileById(p.getIdPerfil())
+                    ).withSelfRel());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        );
 
         return entity;
     }
-    public UsuarioModel updateProfile(UsuarioProfileRequest profile) throws Exception {
-        logger.info("Checking existence!");
-        var entity = userRepository.findById(profile.getIdUsuario()).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
+
+    public UsuarioModel updateProfile(UsuarioProfileRequest profile) {
+        logger.info("Checking profile existence!");
+
+        UsuarioModel entity = userRepository.findById(profile.getIdUsuario()).orElseThrow(
+            () -> new ResourceNotFoundException("No records found for this id!")
+        );
 
         entity.getPerfil().setTitulo(profile.getTitulo().isEmpty() ? entity.getPerfil().getTitulo() : profile.getTitulo() );
         entity.getPerfil().setDescricao(profile.getDescricao().isEmpty() ? entity.getPerfil().getDescricao() : profile.getDescricao());
         return entity;
     }
-
-
 }
