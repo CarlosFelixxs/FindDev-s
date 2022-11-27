@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopStatusRequest;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
@@ -148,5 +149,6 @@ public class DesenvolvedorService {
 
         repository.delete(entity);
     }
+
 
 }
