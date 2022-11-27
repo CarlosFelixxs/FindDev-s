@@ -36,11 +36,7 @@ public class DevelopRequestDto extends RepresentationModel<DevelopRequestDto> im
     private String senha;
     private String estado;
     private String cidade;
-    @Pattern(
-            regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
-            // https://medium.com/@igorrozani/criando-uma-express%C3%A3o-regular-para-telefone-fef7a8f98828
-            message = "Informe um telefone válido com ou sem DDD"
-    )
+
     @NotBlank
     private String telefone;
 

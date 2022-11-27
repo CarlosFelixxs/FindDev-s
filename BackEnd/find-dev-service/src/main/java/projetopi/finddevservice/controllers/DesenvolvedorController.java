@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopStatusRequest;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
 import projetopi.finddevservice.services.DesenvolvedorService;
@@ -50,6 +51,7 @@ public class DesenvolvedorController {
     public ResponseEntity<Boolean> existscpf(@RequestBody String cpf) {
         return ResponseEntity.ok(service.existByCpf(cpf));
     }
+
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(

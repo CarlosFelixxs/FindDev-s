@@ -14,8 +14,8 @@ import java.util.UUID;
 public class AvaliacaoResponseDto {
 
     private Integer idAvaliacao;
-    private UUID avaliador;
-    private UUID avaliado;
+    private UUID idAvaliador;
+    private UUID idAvaliado;
     private Integer nota;
     private String comentario;
     private boolean isCompany;
@@ -32,20 +32,20 @@ public class AvaliacaoResponseDto {
         this.idAvaliacao = idAvaliacao;
     }
 
-    public UUID getAvaliador() {
-        return avaliador;
+    public UUID getIdAvaliador() {
+        return idAvaliador;
     }
 
-    public void setAvaliador(UUID avaliador) {
-        this.avaliador = avaliador;
+    public void setIdAvaliador(UUID idAvaliador) {
+        this.idAvaliador = idAvaliador;
     }
 
-    public UUID getAvaliado() {
-        return avaliado;
+    public UUID getIdAvaliado() {
+        return idAvaliado;
     }
 
-    public void setAvaliado(UUID avaliado) {
-        this.avaliado = avaliado;
+    public void setIdAvaliado(UUID idAvaliado) {
+        this.idAvaliado = idAvaliado;
     }
 
     public Integer getNota() {
@@ -64,15 +64,19 @@ public class AvaliacaoResponseDto {
         this.comentario = comentario;
     }
 
+    public boolean isCompany() {
+        return isCompany;
+    }
+
+    public void setCompany(boolean company) {
+        isCompany = company;
+    }
+
     public LocalDateTime getDataHoraAvaliacao() {
         return dataHoraAvaliacao;
     }
 
     public void setDataHoraAvaliacao(LocalDateTime dataHoraAvaliacao) {
         this.dataHoraAvaliacao = dataHoraAvaliacao;
-    }
-
-    public void setCompany(boolean company) {
-        isCompany = company;
     }
 }
