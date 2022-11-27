@@ -33,36 +33,46 @@ public class DesenvolvedorService {
     private final Logger logger = Logger.getLogger(DesenvolvedorService.class.getName());
 
     public List<DevelopResponseDto> findAll() {
-
         logger.info("Finding all Devs!");
 
-        var person = DozerMapper.parseListObjects(repository.findAll(), DevelopResponseDto.class);
-        person
-                .stream()
-                .forEach(p -> {
-                    try {
-                        p.add(linkTo(methodOn(DesenvolvedorController.class).findById(p.getKey())).withSelfRel());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+        List<DevelopResponseDto> person = DozerMapper.parseListObjects(
+            repository.findAll(),
+            DevelopResponseDto.class
+        );
+
+        person.forEach(p -> {
+                try {
+                    p.add(
+                        linkTo(methodOn(DesenvolvedorController.class).findById(p.getKey())).withSelfRel()
+                    );
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        );
 
         return person;
     }
 
     public DevelopResponseDto findById(UUID id) {
-
         logger.info("Finding a Dev!");
-        var entity = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
-        var dto = DozerMapper.parseObject(entity, DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(id)).withSelfRel());
-        return dto;
+        DesenvolvedorModel entity = repository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("No records found for this id!")
+        );
+        DevelopResponseDto dto = DozerMapper.parseObject(entity, DevelopResponseDto.class);
+        dto.add(
+            linkTo(
+                methodOn(DesenvolvedorController.class)
+                    .findById(id)
+            ).withSelfRel()
+        );
 
+        return dto;
     }
 
     public DevelopResponseDto create(DevelopRequestDto person) {
         logger.info("Checking existence!");
+
         if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
         if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
 
@@ -72,28 +82,27 @@ public class DesenvolvedorService {
         perfilRepository.save(perfilModel);
 
         logger.info("Create a Dev!");
-        var entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
-        entity.setPerfil(perfilModel);
-        var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(dto.getKey())).withSelfRel());
-        return dto;
 
+        DesenvolvedorModel entity = DozerMapper.parseObject(person, DesenvolvedorModel.class);
+        entity.setPerfil(perfilModel);
+
+        DevelopResponseDto dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
+        dto.add(
+            linkTo(
+                methodOn(DesenvolvedorController.class)
+                    .findById(dto.getKey())
+            ).withSelfRel()
+        );
+
+        return dto;
     }
 
     public Boolean existByCpf(String cnpj) {
-
-        if (repository.existsByCpf(cnpj)) {
-            return true;
-        }
-        return false;
+        return repository.existsByCpf(cnpj);
     }
 
     public Boolean existByEmail(String email) {
-
-        if (repository.existsByEmailIgnoreCase(email)) {
-            return true;
-        }
-        return false;
+        return repository.existsByEmailIgnoreCase(email);
     }
 
     public DevelopResponseDto update(DevelopRequestDto person) {
@@ -101,8 +110,9 @@ public class DesenvolvedorService {
         if (person == null) throw new RequiredObjectIsNullException();
 
         logger.info("updating a Dev!");
-        var entity = repository.findById(person.getKey()).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
+        DesenvolvedorModel entity = repository.findById(person.getKey()).orElseThrow(
+            () -> new ResourceNotFoundException("No records found for this id!")
+        );
 
         if (!entity.getEmail().equalsIgnoreCase(person.getEmail())) {
             if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
@@ -112,23 +122,31 @@ public class DesenvolvedorService {
             if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
             entity.setCpf(person.getCpf().isEmpty() ? entity.getCpf() : person.getCpf());
         }
+
         entity.setNome(person.getNome().isEmpty() ? entity.getNome() : person.getNome());
         entity.setEstado(person.getEstado().isEmpty() ? entity.getEstado() : person.getEstado());
         entity.setCidade(person.getCidade().isEmpty() ? entity.getCidade() : person.getCidade());
         entity.setTelefone(person.getTelefone().isEmpty() ? entity.getTelefone() : person.getTelefone());
         entity.setDataNascimento(person.getDataNascimento() == null ? entity.getDataNascimento() : person.getDataNascimento());
 
-        var dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
-        dto.add(linkTo(methodOn(DesenvolvedorController.class).findById(dto.getKey())).withSelfRel());
-        return dto;
+        DevelopResponseDto dto = DozerMapper.parseObject(repository.save(entity), DevelopResponseDto.class);
+        dto.add(
+            linkTo(
+                methodOn(DesenvolvedorController.class)
+                    .findById(dto.getKey())
+            ).withSelfRel()
+        );
 
+        return dto;
     }
 
     public void delete(UUID id) {
-
         logger.info("Deleting one dev!");
-        var entity = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("No records found for this id!"));
+
+        DesenvolvedorModel entity = repository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("No records found for this id!")
+        );
+
         repository.delete(entity);
     }
 
