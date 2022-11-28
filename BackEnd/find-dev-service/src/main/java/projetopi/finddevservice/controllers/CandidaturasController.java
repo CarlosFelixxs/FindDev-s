@@ -62,7 +62,7 @@ public class CandidaturasController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public ResponseEntity<CandidaturaResponseDto> findById(int id) {
+    public ResponseEntity<CandidaturaResponseDto> findById(@PathVariable int id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -85,6 +85,32 @@ public class CandidaturasController {
     )
     public ResponseEntity<List<CandidaturaResponseDto>> findAll() {
         List<CandidaturaResponseDto> candidaturas = service.findAll();
+
+        return candidaturas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(candidaturas);
+    }
+
+    @GetMapping(
+        value = "/{idVaga}",
+        produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML}
+    )
+    @Operation(
+        summary = "Finds all Candidaturas from a Vaga", description = "Finds all Candidaturas from a Vaga",
+        tags = {"Candidaturas"},
+        responses = {
+            @ApiResponse(description = "Success", responseCode = "200", content = {
+                @Content(
+                    mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = CandidaturaRequestDto.class))
+                )
+            }),
+            @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+            @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+            @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<List<CandidaturaResponseDto>> findAllByIdVaga(@PathVariable int idVaga) {
+        List<CandidaturaResponseDto> candidaturas = service.findAllByIdVaga(idVaga);
 
         return candidaturas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(candidaturas);
     }
