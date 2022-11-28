@@ -22,17 +22,6 @@ export default function HeaderLogado({isDevOrCompany} : HeaderProps) {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        api.get(`/empresa/${sessionStorage.getItem("idUser")}`)
-        .then((resposta) => {
-            setNome(resposta.data.nome)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-    
-    }, [])
-
     const path = isDevOrCompany === "dev" ? "/menu-dev" : "/menu-company";
     useEffect(() => {
         api.get(`/dev/${sessionStorage.getItem("idUser")}`)
