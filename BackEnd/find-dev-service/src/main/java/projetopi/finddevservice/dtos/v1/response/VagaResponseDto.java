@@ -5,6 +5,7 @@ import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
+import projetopi.finddevservice.models.Candidatura;
 import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.EmpresaModel;
 
@@ -12,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
+import java.util.List;
 
 public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implements Serializable {
 
@@ -32,6 +34,8 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
     private boolean encerrado;
 
     private boolean avaliado;
+
+    private List<CandidaturaResponseDto> candidaturas;
 
     public VagaResponseDto() {
 
@@ -99,5 +103,13 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     public void setAvaliado(boolean avaliado) {
         this.avaliado = avaliado;
+    }
+
+    public List<CandidaturaResponseDto> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<CandidaturaResponseDto> candidaturas) {
+        this.candidaturas = candidaturas;
     }
 }
