@@ -92,7 +92,7 @@ public class VagasController {
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
 
-    @GetMapping(value = "/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @GetMapping(value = "/empresa/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
     @Operation(
         summary = "Finds all Vagas from a Empresa", description = "Finds a list of vaga from Empresa id",
         tags = {"Vagas"},
@@ -107,8 +107,8 @@ public class VagasController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID id) {
-        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(id);
+    public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID idEmpresa) {
+        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(idEmpresa);
 
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
