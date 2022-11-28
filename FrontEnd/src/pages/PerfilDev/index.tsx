@@ -13,7 +13,7 @@ export default function PerfilDev(props: any) {
 
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"dev"}/>
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>

@@ -6,8 +6,12 @@ import Logo from "../../../assets/images/Logo.png";
 import Voltar from "../../../assets/images/arrow-left.png";
 import api from '../../../services/api';
 
+type HeaderProps = {
+    isDevOrCompany: string;
+}
 
-export default function HeaderLogado() {
+
+export default function HeaderLogado({isDevOrCompany} : HeaderProps) {
 
     const [nome, setNome] = useState("");
 
@@ -27,12 +31,14 @@ export default function HeaderLogado() {
         });
     
     }, [])
+
+    const path = isDevOrCompany === "dev" ? "/menu-dev" : "/menu-company";
     
 
   return (
     <div className={styles.container}>
         <div className={styles.content}>
-            <img  className={styles.image} src={Logo} alt="logo do site" />
+            <img  className={styles.image} src={Logo} onClick={() => routeChange(path)} alt="logo do site" />
             <div className={styles.nome}>Bem vindo, {nome}</div>
         </div>
     </div>

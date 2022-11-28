@@ -184,7 +184,7 @@ export default function DevSearchVacancyResult() {
     
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"dev"}/>
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>

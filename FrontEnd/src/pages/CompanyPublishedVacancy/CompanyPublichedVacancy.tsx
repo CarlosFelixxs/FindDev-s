@@ -137,7 +137,7 @@ export default function CompanyPublichedVacancy() {
     
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>

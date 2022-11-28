@@ -76,7 +76,7 @@ export default function FormVacancy() {
 
   return (
     <>
-        <HeaderLogado />
+        <HeaderLogado isDevOrCompany={"company"}/>
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h1>DETALHES DA VAGA</h1>

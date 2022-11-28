@@ -89,7 +89,7 @@ export default function PerfilCompany() {
 
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>
