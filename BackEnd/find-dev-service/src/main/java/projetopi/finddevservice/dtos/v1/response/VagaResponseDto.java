@@ -25,10 +25,8 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     private String descricao;
 
-    @Enumerated(EnumType.STRING)
     private FuncaoDev funcao;
 
-    @Enumerated(EnumType.STRING)
     private SenioridadeDev senioridade;
 
     private boolean encerrado;

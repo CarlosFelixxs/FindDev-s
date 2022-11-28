@@ -73,7 +73,8 @@ public class AvaliacaoService {
         // aqui criamos um LocalDateTime com o valor de 6 meses atrás
         LocalDateTime ha6Meses = LocalDateTime.now().minusMonths(6);
 
-        return avaliacaoRepository.getMediaAvaliacoes(idUser, ha6Meses);
+        return avaliacaoRepository.getMediaAvaliacoes(idUser, ha6Meses).isEmpty()
+                ? Optional.of(0.0): avaliacaoRepository.getMediaAvaliacoes(idUser, ha6Meses);
     }
 
     public List<AvaliacaoResponseDto> getAssessmentByid(UUID idUser) {
