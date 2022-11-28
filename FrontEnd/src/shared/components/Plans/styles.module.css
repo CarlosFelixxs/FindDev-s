@@ -172,8 +172,10 @@
   cursor: pointer;
 }
 .contButton button:hover {
+  transform: scale(1.090, 1.090);
   cursor: pointer;
   background-color: #00b37e;
+  box-shadow: 0 5px 15px 0 rgba(228, 228, 228, 0.3);
 }
 .contButton2 {
   display: flex;
@@ -203,8 +205,10 @@
 }
 .contButton2 button:hover {
   cursor: pointer;
-  background-color: #00875f;
+  background-color: #00b37e;
   border: 2px solid #00875f;
+  transform: scale(1.090, 1.090);
+  box-shadow: 0 5px 15px 0 rgba(228, 228, 228, 0.3);
 }
 .contButton3 {
   display: flex;
@@ -234,8 +238,10 @@
 }
 .contButton3 button:hover {
   cursor: pointer;
-  background-color: #633bbc;
+  background-color: #8257e5;
   border: 2px solid #633bbc;
+  transform: scale(1.090, 1.090);
+  box-shadow: 0 5px 15px 0 rgba(228, 228, 228, 0.3);
 }
 .separador {
   width: 100%;

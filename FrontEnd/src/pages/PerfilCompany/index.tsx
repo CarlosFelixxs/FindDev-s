@@ -145,7 +145,7 @@ export default function PerfilCompany() {
               <button onClick={() => routeChanger("/colaboradores")}>colaboradores</button>
             </div>
             <div>
-              <button onClick={() => routeChanger("/")}>contratar</button>
+              <button onClick={() => routeChanger("/contratar-desenvolvedor")}>contratar</button>
             </div>
           </div>
         </section>
