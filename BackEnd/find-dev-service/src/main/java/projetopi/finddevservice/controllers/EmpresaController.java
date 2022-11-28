@@ -14,6 +14,7 @@ import projetopi.finddevservice.dtos.v1.request.EmpresaRequestDto;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.dtos.v1.response.EmpresaResponseDto;
 import projetopi.finddevservice.services.EmpresaService;
+import projetopi.finddevservice.services.ManipulacaoArquivo;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
@@ -27,6 +28,8 @@ public class EmpresaController {
 
     @Autowired
     private EmpresaService service;
+    @Autowired
+    private ManipulacaoArquivo manipulacaoArquivo;
 
     @GetMapping(value = "/validation")
     @Operation(
@@ -148,4 +151,28 @@ public class EmpresaController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+
+        @GetMapping(value = "/txt")
+    @Operation(
+            summary = "Generate txt file", description = "Generate txt file",
+            tags = {"Txt"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
+    )
+    public void geraTxt(@RequestBody String nome){
+        manipulacaoArquivo.gravaArquivoTxt("teste");
+    }
+
+
 }
