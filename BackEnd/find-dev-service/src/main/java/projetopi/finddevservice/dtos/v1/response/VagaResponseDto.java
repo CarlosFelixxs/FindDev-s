@@ -16,8 +16,6 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
     @JsonProperty("id")
     private int key;
 
-    private EmpresaModel empresa;
-
     private DesenvolvedorModel desenvolvedor;
 
     private String titulo;
@@ -42,14 +40,6 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     public void setKey(int key) {
         this.key = key;
-    }
-
-    public EmpresaModel getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(EmpresaModel empresa) {
-        this.empresa = empresa;
     }
 
     public DesenvolvedorModel getDesenvolvedor() {
