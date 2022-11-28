@@ -112,4 +112,23 @@ public class VagasController {
 
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
+
+    @GetMapping(value = "/nao-avaliadas/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @Operation(
+        summary = "Vagas não avaliadas", description = "Encontra vagas encerradas, mas não avaliadas",
+        tags = {"Vagas"},
+        responses = {
+            @ApiResponse(
+                description = "Success", responseCode = "200",
+                content = @Content(schema = @Schema(implementation = VagaRequestDto.class))
+            ),
+            @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+            @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+            @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+        }
+    )
+    public ResponseEntity<List<VagaResponseDto>> findAllNaoAvaliadas(@PathVariable UUID idEmpresa) {
+        return ResponseEntity.ok().build();
+    }
 }
