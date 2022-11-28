@@ -150,7 +150,7 @@
   width: 100%;
   height: 150px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .contButtonJobs {
@@ -162,7 +162,7 @@
   justify-content: center;
 }
 .buttonJobs {
-  width: 200px;
+  width: 215px;
   border: 2px solid #00b37e;
   border-radius: 8px;
   height: 90px;
