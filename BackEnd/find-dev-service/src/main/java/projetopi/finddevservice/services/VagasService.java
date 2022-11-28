@@ -105,7 +105,7 @@ public class VagasService {
 
         logger.info("Buscando vagas da empresa");
 
-        List<VagaResponseDto> responseDto = repository.findAllByIdEmpresa(idEmpresa)
+        List<VagaResponseDto> responseDto = repository.findByIdEmpresa(idEmpresa)
             .stream()
             .map(vaga -> DozerMapper.parseObject(vaga, VagaResponseDto.class))
             .collect(Collectors.toList());
