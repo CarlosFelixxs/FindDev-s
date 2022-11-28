@@ -16,7 +16,7 @@ export function Plans() {
             <span>$ 255,00 For</span>
           </div>
           <div className={styles.precoAtual}>
-            <span>$0,00</span>
+            <span>$00,00</span>
           </div>
           <div className={styles.contButton}>
             <button>COMEÇAR AGORA</button>
