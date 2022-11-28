@@ -148,7 +148,7 @@ public class VagasService {
         vaga.setDesenvolvedorContratado(desenvolvedor);
 
         VagaResponseDto vagaResponseDto = DozerMapper.parseObject(repository.save(vaga), VagaResponseDto.class);
-
+        vagaResponseDto.setDesenvolvedor(desenvolvedor);
         vagaResponseDto.add(
             linkTo(
                 methodOn(VagasController.class)
