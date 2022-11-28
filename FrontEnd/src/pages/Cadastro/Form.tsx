@@ -264,12 +264,12 @@ export default function Form() {
                             <div className={styles.labelInput}>
                                 <label>SENHA</label>
                                 <div className={styles.separador}></div>
-                                <input type="password" className={styles.input} {...register("senha")} placeholder="*************" />
+                                <input type="password" className={styles.input} {...register("senha")} placeholder="*****" />
                             </div>
                             <div className={styles.labelInput}>
                                 <label>CONFIRMAÇÃO DE SENHA</label>
                                 <div className={styles.separador}></div>
-                                <input type="password" className={styles.input} {...register("confirmacao")} placeholder="*************" />
+                                <input type="password" className={styles.input} {...register("confirmacao")} placeholder="*****" />
                             </div>
                             <button
                                 className={styles.submit}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import VacancyCard from '../../shared/components/VacancyCard';
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import VacancyCardDetailed from '../../shared/components/VacancyCardDetailed';
 import Modal from '../../shared/components/ModalResult/ModalResult';
+import api from '../../services/api';
 
 export default function CompanyPublichedVacancy() {
 
@@ -18,59 +19,7 @@ export default function CompanyPublichedVacancy() {
 
   const [isVacancySelected, setIsVacancySelected] = useState(false);
 
-  const [vacancies, setVacancies] = useState([
-    {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "salary": 2000.00,
-      "company": "Klein - Greenfelder",
-      "title": "Forward Program Technician",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 1
-     },
-     {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "company": "Strosin and Sons",
-      "title": "Human Program Supervisor",
-      "description": "jorge",
-      "id": 2
-     },
-     {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Bergstrom - Conn",
-      "title": "Investor Accounts Specialist",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 3
-     },
-     {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Kiehn, Adams and Hauck",
-      "title": "Chief Infrastructure Architect",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 4
-     },
-     {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 5
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 6
-    }
-  ]);
+  
   
   const [isModalVisible, setIsModalVisible] = useState(false);
   
@@ -114,6 +63,46 @@ export default function CompanyPublichedVacancy() {
         APAGAR VAGA
       </button>
   )
+
+  const[vacancies, setVacancies] = useState([
+    {
+      "senioridade": '',
+      "funcao": "",
+      "titulo": "",
+      "descricao": "",
+      "desenvolvedor": null,
+      "avaliado": false,
+      "encerrado": false,
+      "id": 0
+    },
+    ]);
+
+  useEffect(() => {
+    api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
+    .then((resposta) => {
+      let data = resposta.data;
+
+      const vagas = data.map((vaga: any) => {
+        const objVaga = vaga;
+        return {
+          senioridade: objVaga.senioridade,
+          funcao: objVaga.funcao,
+          titulo: objVaga.titulo,
+          descricao: objVaga.descricao,
+          desenvolvedor: objVaga.desenvolvedor,
+          avaliado: objVaga.avaliado,
+          encerrado: objVaga.encerrado,
+          id: objVaga.id,
+        }
+      });
+      console.log("teste")
+      setVacancies(vagas);
+      console.log(vacancies);
+    }).catch((error) => {
+      console.log(error)
+    });
+
+}, []);
   
   const showVacancySelected = () => {
     if (id !== -1) {
@@ -137,7 +126,7 @@ export default function CompanyPublichedVacancy() {
     
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>
@@ -145,25 +134,22 @@ export default function CompanyPublichedVacancy() {
           </div>
           <div className={styles.cardsContainer}>
             {
-            vacancies.map((vaga) => (
+            vacancies.length > 1 && vacancies.map((vaga) => (
               <>
                 <VacancyCard
                   id={vaga.id}
-                  stack={vaga.stack}
+                  stack={vaga.funcao}
                   senioridade={vaga.senioridade}
-                  company={vaga.company}
-                  salary={vaga.salary}
-                  title={vaga.title}
+                  title={vaga.titulo}
                   button={buttonCard(
                     vaga.senioridade,
-                    vaga.stack,
-                    vaga.title,
-                    vaga.company,
-                    vaga.description,
+                    vaga.funcao,
+                    vaga.titulo,
+                    "",
+                    vaga.descricao,
                     vaga.id,
-                    vaga.salary,
                   )}
-                  description={vaga.description}
+                  description={vaga.descricao}
                   key={vaga.id}
                 />
               </>

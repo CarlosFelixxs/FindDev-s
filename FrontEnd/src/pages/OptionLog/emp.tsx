@@ -15,7 +15,7 @@ export default function OptionEmp() {
 
    return (
       <>
-         <HeaderLogado />
+         <HeaderLogado isDevOrCompany={"company"}/>
          <div className={styles.container}>
             <div className={styles.findProfile} onClick={() => routeChange("/formulario-vaga")}>
                <div className={styles.div_imgFrase}>
