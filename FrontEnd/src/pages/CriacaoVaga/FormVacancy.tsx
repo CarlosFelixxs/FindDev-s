@@ -83,7 +83,6 @@ export default function FormVacancy() {
                 <form className={styles.form} onSubmit={handleSubmit(onSubmitVacancy)}>
                     <div className={styles.inputsGroupForm}>
                         <div className={styles.inputsLeft}>
-
                             <div className={styles.labelInput}>
                                 <label>TITULO DA VAGA</label>
                                 <input type="text" className={errors.titulo ? styles.inputError : styles.input} {...register("titulo")}/>
