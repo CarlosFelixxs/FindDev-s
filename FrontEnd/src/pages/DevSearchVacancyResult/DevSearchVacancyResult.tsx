@@ -81,7 +81,7 @@ export default function DevSearchVacancyResult() {
 
   const submitVacancySearch = async (e : any) => {
 
-    api.get(`/vagas/busca-filtrada/${e.stack}/${e.senioridade}`)
+    api.get(`/vagas/busca-filtrada/${e.stack.toUpperCase()}/${e.senioridade.toUpperCase()}`)
     .then((resposta) => {
     let data = resposta.data;
 
