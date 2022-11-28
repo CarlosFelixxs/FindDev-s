@@ -11,6 +11,7 @@ public class DevelopStatusRequest {
     private StatusPerfil statusDev;
 
     public DevelopStatusRequest() {
+
     }
 
     public UUID getIdUsuaio() {

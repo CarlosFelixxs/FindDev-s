@@ -32,11 +32,9 @@ public class VagaRequestDto extends RepresentationModel<VagaRequestDto> implemen
     private String descricao;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     private FuncaoDev funcao;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     private SenioridadeDev senioridade;
 
     public VagaRequestDto() {
