@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.DesenvolvedorController;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.request.DevelopStatusRequest;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.RequiredObjectIsNullException;
@@ -73,8 +74,14 @@ public class DesenvolvedorService {
     public DevelopResponseDto create(DevelopRequestDto person) {
         logger.info("Checking existence!");
 
-        if (existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
-        if (existByCpf(person.getCpf())) throw new RequiredExistingObjectException("Cpf already in use!");
+        if (existByEmail(person.getEmail())){
+            logger.info("Email already in use!!");
+            throw new RequiredExistingObjectException("Email already in use!");
+        }
+        if (existByCpf(person.getCpf())){
+            logger.info("Cpf already in use!!");
+            throw new RequiredExistingObjectException("Cpf already in use!");
+        }
 
         PerfilModel perfilModel = new PerfilModel();
         perfilModel.setTitulo("");
@@ -93,7 +100,7 @@ public class DesenvolvedorService {
                     .findById(dto.getKey())
             ).withSelfRel()
         );
-
+        logger.info("Dev successfully created!!");
         return dto;
     }
 
@@ -148,5 +155,6 @@ public class DesenvolvedorService {
 
         repository.delete(entity);
     }
+
 
 }

@@ -38,19 +38,19 @@ export function Footer() {
         <div className={styles.contRedes}>
           <span>Redes Sociais</span>
           <div className={styles.contImagens}>
-            <div>
+            <div id='instagram-icon-home'>
               <a target='_blank' className={styles.imgBanner} href="https://www.instagram.com/carloshfelix__/"><img src={Instagram} alt="Logo" /></a>
             </div>
-            <div>
+            <div id='git-icon-home'>
               <a target='_blank' className={styles.imgBanner} href="https://github.com/CarlosFelixxs/FindDev-s"><img src={Git} alt="Logo" /></a>
             </div>
-            <div>
+            <div id='linkedin-icon-home'>
               <a target='_blank' className={styles.imgBanner} href="https://www.linkedin.com/"><img src={Linkedin} alt="Logo" /></a>
             </div>
-            <div>
+            <div id='discord-icon-home'>
               <a target='_blank' className={styles.imgBanner} href="https://discord.gg/bwYbEbK7"><img src={Discord} alt="Logo" /></a>
             </div>
-            <div>
+            <div id='facebook-icon-home'>
               <a target='_blank' className={styles.imgBanner} href="https://www.facebook.com/"><img src={Facebook} alt="Logo" /></a>
             </div>
           </div>

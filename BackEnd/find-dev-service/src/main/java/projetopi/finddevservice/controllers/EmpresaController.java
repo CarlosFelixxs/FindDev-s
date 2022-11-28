@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
+import projetopi.finddevservice.dtos.v1.request.EmpresaRequestDto;
 import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
-import projetopi.finddevservice.dtos.v1.response.CompanyResponseDto;
-import projetopi.finddevservice.services.CompanyService;
+import projetopi.finddevservice.dtos.v1.response.EmpresaResponseDto;
+import projetopi.finddevservice.services.EmpresaService;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
@@ -26,7 +26,8 @@ import java.util.UUID;
 public class EmpresaController {
 
     @Autowired
-    private CompanyService service;
+    private EmpresaService service;
+
     @GetMapping(value = "/validation")
     @Operation(
             summary = "Find cnpj", description = "Check if cnpj already exists  ",
@@ -44,7 +45,7 @@ public class EmpresaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public ResponseEntity<Boolean> existsCnpj(@RequestBody String cnpj ){
+    public ResponseEntity<Boolean> existsCnpj(@RequestBody String cnpj){
         return ResponseEntity.ok(service.existByCnpj(cnpj));
     }
 
@@ -65,7 +66,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<CompanyResponseDto>> findAllDevs() {
+    public ResponseEntity<List<EmpresaResponseDto>> findAllDevs() {
         return ResponseEntity.ok(service.findAll());
     }
 
@@ -82,7 +83,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<CompanyResponseDto> findById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<EmpresaResponseDto> findById(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -104,7 +105,7 @@ public class EmpresaController {
         }
     )
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<CompanyResponseDto> post(@RequestBody @Valid CompanyRequestDto dev) throws Exception {
+    public ResponseEntity<EmpresaResponseDto> post(@RequestBody @Valid EmpresaRequestDto dev) throws Exception {
         return ResponseEntity.ok(service.create(dev));
     }
 
@@ -126,7 +127,7 @@ public class EmpresaController {
                 @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
         }
     )
-    public ResponseEntity<CompanyResponseDto> update(@RequestBody CompanyRequestDto person) {
+    public ResponseEntity<EmpresaResponseDto> update(@RequestBody EmpresaRequestDto person) {
         return ResponseEntity.ok(service.update(person));
     }
 
