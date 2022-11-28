@@ -5,10 +5,10 @@
   justify-content: space-between;
 }
 .plano1 {
-  width: 240px;
-  height: 535px;
+  width: 25%;
+  height: 520px;
   border: 2px solid #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #fff;
 }
 .plano1 h1 {
@@ -23,10 +23,10 @@
   padding: 10px;
 }
 .plano2 {
-  width: 240px;
-  height: 535px;
+  width: 25%;
+  height: 520px;
   border: 2px solid #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #fff;
 }
 .plano2 h1 {
@@ -41,10 +41,10 @@
   padding: 10px;
 }
 .plano3 {
-  width: 240px;
-  height: 535px;
+  width: 25%;
+  height: 520px;
   border: 2px solid #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #fff;
 }
 .plano3 h1 {
