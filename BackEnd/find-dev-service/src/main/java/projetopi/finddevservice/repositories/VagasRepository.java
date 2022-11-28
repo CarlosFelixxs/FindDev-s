@@ -10,5 +10,9 @@ public interface VagasRepository extends JpaRepository<Vaga, Integer> {
 
 
     List<Vaga> findByIdEmpresa(UUID id);
+
+    List<Vaga> findByDesenvolvedorContratado(UUID id);
+
+    List<Vaga> findByFuncaoAndSenioridade(String funcao, String senioridade);
 }
 
