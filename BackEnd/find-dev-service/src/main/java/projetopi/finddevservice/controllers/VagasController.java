@@ -113,9 +113,9 @@ public class VagasController {
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
 
-    @GetMapping(value = "/nao-avaliadas/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @GetMapping(value = "/desenvolvedor/{idDesenvolvedor}", produces = MediaType.APPLICATION_JSON)
     @Operation(
-        summary = "Vagas não avaliadas", description = "Encontra vagas encerradas, mas não avaliadas",
+        summary = "Finds all Vagas from a Desenvolvedor", description = "Finds a list of vaga from Desenvolvedor id",
         tags = {"Vagas"},
         responses = {
             @ApiResponse(
@@ -128,7 +128,7 @@ public class VagasController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<VagaResponseDto>> findAllNaoAvaliadas(@PathVariable UUID idEmpresa) {
+    public ResponseEntity<List<VagaResponseDto>> findAllByIdDesenvolvedor(@PathVariable UUID idEmpresa) {
         return ResponseEntity.ok().build();
     }
 }
