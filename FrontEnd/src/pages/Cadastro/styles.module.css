@@ -141,7 +141,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.titleStepTwo{
+.titleStepTwo {
   font-style: normal;
   font-weight: 700;
   font-size: 3rem;
@@ -162,7 +162,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.titleStepThree{
+.titleStepThree {
   font-style: normal;
   font-weight: 700;
   font-size: 3rem;
@@ -223,13 +223,15 @@
 
 .submit {
   width: 40%;
-  border: 1px solid #00b37e;
+  border: 2px solid #00b37e;
   border-radius: 5px;
   height: 40px;
   background-color: transparent;
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s;
+  font-variant: all-small-caps;
+  font-size: 1rem;
 }
 
 .submit:hover,
@@ -261,18 +263,23 @@
 }
 
 .finalSubmit {
-  width: 70%;
+  width: 40%;
   height: 13%;
   display: flex;
   justify-content: center;
-  border: 1px solid #00b37e;
-  border-radius: 15px;
-  font-size: 1.125rem;
+  border: 2px solid #00b37e;
+  border-radius: 8px;
+  font-size: 1rem;
   align-items: center;
   color: #ffffff;
   background-color: #121214;
   cursor: pointer;
   transition: 0.3s;
+  font-variant: all-small-caps;
+}
+.finalSubmit:hover{
+  background-color: #00b37e;
+  color: #121214;
 }
 
 .separador {
@@ -369,4 +376,7 @@
   align-items: center;
   justify-content: space-around;
   text-align: center;
+}
+.titleFinalCardSignup{
+  font-size: 4rem;
 }

@@ -15,7 +15,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-} = useForm();
+  } = useForm();
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export default function Login() {
       "senha": `${e.senha}`
     };
 
-      api.post('/user/login', login)
+    api.post('/user/login', login)
       .then((resposta) => {
         setLoginResult("Login efetuado com sucesso");
         console.log(resposta);
@@ -67,11 +67,13 @@ export default function Login() {
             <p>login</p>
             <div className={styles.labelInput}>
               <label>EMAIL</label>
+              <div className={styles.separador}></div>
               <input type="text" placeholder="exemplo@email.com" {...register("email")} />
             </div>
             <div className={styles.labelInput}>
               <label>SENHA</label>
-              <input type="password" placeholder="*************" {...register("senha")}/>
+              <div className={styles.separador}></div>
+              <input type="password" placeholder="*************" {...register("senha")} />
             </div>
             <input type="Submit" value="CONTINUAR" className={styles.submit}  />
             {loginResult !== "" && <div className={styles.errorMessage}>{loginResult}</div> }
