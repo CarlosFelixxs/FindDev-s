@@ -2,7 +2,12 @@ package projetopi.finddevservice.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
+import projetopi.finddevservice.exceptions.ResourceNotFoundException;
+import projetopi.finddevservice.models.ArquivosModel;
+import projetopi.finddevservice.models.EmpresaModel;
 import projetopi.finddevservice.models.Vaga;
+import projetopi.finddevservice.repositories.ArquivoRepository;
 import projetopi.finddevservice.repositories.EmpresaRepository;
 import projetopi.finddevservice.repositories.VagasRepository;
 
@@ -10,9 +15,19 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ManipulacaoArquivo {
+
+    @Autowired
+    VagasRepository vagasRepository;
+    @Autowired
+    EmpresaRepository empresaRepository;
+
+    @Autowired
+    ArquivoRepository arquivoRepository;
 
 
     public void gravaRegistro(String registro, String nomeArq) {
@@ -20,9 +35,8 @@ public class ManipulacaoArquivo {
 
         // try-catch para abrir o arquivo
         try {
-            saida = new BufferedWriter(new FileWriter(nomeArq,true));
-        }
-        catch (IOException erro) {
+            saida = new BufferedWriter(new FileWriter(nomeArq, true));
+        } catch (IOException erro) {
             System.out.println("Erro ao abrir o arquivo");
             erro.printStackTrace();
         }
@@ -31,29 +45,27 @@ public class ManipulacaoArquivo {
         try {
             saida.append(registro + "\n");
             saida.close();
-        }
-        catch (IOException erro) {
+        } catch (IOException erro) {
             System.out.println("Erro ao gravar o arquivo");
             erro.printStackTrace();
         }
     }
 
-    @Autowired
-    VagasRepository vagasRepository;
 
-    @Autowired
-    EmpresaRepository empresaRepository;
+    public String gravaArquivoTxt(UUID uuid) {
 
 
+        if(!empresaRepository.existsById(uuid)){
+            throw new RequiredExistingObjectException("No records for this id!");
+        }
 
-    public void gravaArquivoTxt(String nomeArq) {
-
+        String nomeArq = "Vagas.txt";
 
         List<Vaga> lista = vagasRepository.findAll();
         int contaRegDados = 0;
 
         // Monta o registro de header
-        String header = "00FIND-DEv20222";
+        String header = "00FIND-DEV20222";
         header += LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
         header += "01";
 
@@ -63,14 +75,16 @@ public class ManipulacaoArquivo {
         // Monta e grava os registros de corpo (ou de dados)
         String corpo;
         for (Vaga a : lista) {
+//            String empresa = empresaRepository.findById(a.getIdEmpresa()).get().getNome();
+
             corpo = "02";
-            corpo += String.format("%-10.10s", a.getFuncao());
-            corpo += String.format("%05d", a.getId());
-            corpo += String.format("%-20.20s", a.getDesenvolvedorContratado().getNome());
-            corpo += String.format("%-10.10s", a.getSenioridade());
-            corpo += String.format("%-20.20s", empresaRepository.findById(a.getIdEmpresa()).get().getNome());
-            corpo += String.format("%-50.50s", a.getTitulo());
-            corpo += String.format("%-50.50s", a.getDescricao());
+            corpo += String.format("%-10.10s", a.getFuncao() == null ? "" : a.getFuncao());
+            corpo += String.format("%05d", a.getId() == null ? 0 : a.getId());
+            corpo += String.format("%-20.20s", a.getDesenvolvedorContratado() == null ? "" : a.getDesenvolvedorContratado().getNome());
+            corpo += String.format("%-10.10s", a.getSenioridade() == null ? "" : a.getSenioridade());
+            corpo += String.format("%-20.20s", uuid);
+            corpo += String.format("%-50.50s", a.getTitulo().isEmpty() ? "" : a.getTitulo());
+            corpo += String.format("%-50.50s", a.getDescricao().isEmpty() ? "" : a.getDescricao());
             gravaRegistro(corpo, nomeArq);
             contaRegDados++;
         }
@@ -80,6 +94,20 @@ public class ManipulacaoArquivo {
         trailer += String.format("%010d", contaRegDados);
 
         gravaRegistro(trailer, nomeArq);
+
+
+        Optional<EmpresaModel> entity = empresaRepository.findById(uuid);
+
+        ArquivosModel arquivo = new ArquivosModel();
+        arquivo.setUsuario(entity.get());
+        ArquivosModel arq = arquivoRepository.save(arquivo);
+
+
+        arquivoRepository.setRelatorio(arq.getId(), nomeArq.getBytes());
+
+        String conteudoTexto = new String(arquivoRepository.getRelatorio(arq.getId()));
+       return conteudoTexto;
+
     }
 
 //    public static void leArquivoTxt(String nomeArq) {
@@ -179,7 +207,6 @@ public class ManipulacaoArquivo {
 //        }
 //
 //    }
-
 
 
 //    public static void main(String[] args) {

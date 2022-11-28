@@ -48,7 +48,9 @@ export default function PerfilCompany() {
         setEndereco(data.endereco);
         setIdPerfil(data.perfil.idPerfil);
         setTelefone(data.telefone);
-    })
+    }).catch((error) => {
+      console.log(error)
+    });
 
     api.get(`/avaliacoes/media/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
@@ -89,7 +91,7 @@ export default function PerfilCompany() {
 
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>

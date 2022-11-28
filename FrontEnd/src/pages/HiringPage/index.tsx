@@ -10,7 +10,7 @@ import '@smastrom/react-rating/style.css'
 import styles from './styles.module.css';
 
 import equipe from "../../assets/images/equipe.png";
-import close from "../../assets/images/x-close.png";
+import close from "../../assets/images/check.png";
 
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import Modal from '../../shared/components/ModalResult/ModalResult';
@@ -163,7 +163,7 @@ export default function HiringPage() {
 
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>

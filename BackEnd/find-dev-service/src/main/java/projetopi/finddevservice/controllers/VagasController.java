@@ -148,8 +148,8 @@ public class VagasController {
         }
     )
     public ResponseEntity<List<VagaResponseDto>> findAllByFiltros(
-        @PathVariable FuncaoDev funcao,
-        @PathVariable SenioridadeDev senioridade
+        @PathVariable String funcao,
+        @PathVariable String senioridade
     ) {
         return ResponseEntity.ok(service.findAllByFiltros(funcao, senioridade));
     }
