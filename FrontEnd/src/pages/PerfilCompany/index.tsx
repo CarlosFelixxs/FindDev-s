@@ -16,8 +16,8 @@ export default function PerfilCompany() {
   
   const [nome, setNome] = useState("");
   const [sigla,setSigla] = useState("");  
-  const [biografia,setBiografia] = useState("");  
-  const [titulo,setTitulo] = useState("");  
+  const [biografia,setBiografia] = useState("");
+  const [titulo,setTitulo] = useState("");
   const [estado,setEstado] = useState("");  
   const [cidade,setCidade] = useState("");
   const [endereco,setEndereco] = useState("");
@@ -25,6 +25,9 @@ export default function PerfilCompany() {
   const [telefone, setTelefone] = useState("");  
   const [rating,setRating] = useState(0);
   
+  const [biografiaPut,setBiografiaPut] = useState("");
+  const [tituloPut,setTituloPut] = useState("");
+
   const navigate = useNavigate();
 
   const routeChanger = (path: string) => {
@@ -34,12 +37,10 @@ export default function PerfilCompany() {
   useEffect(() => {
     api.get(`/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
-        console.log(resposta);
-        console.log('teste');
         
         let data = resposta.data;
         setNome(data.nome);
-        setSigla(data.nome.substr(0,2));
+        setSigla(data.nome.substr(0,1));
         setBiografia(data.perfil.descricao);
         setTitulo(data.perfil.titulo);
         setEstado(data.estado);
@@ -48,25 +49,35 @@ export default function PerfilCompany() {
         setIdPerfil(data.perfil.idPerfil);
         setTelefone(data.telefone);
     })
+
+    api.get(`/avaliacoes/media/${sessionStorage.getItem("idUser")}`)
+    .then((resposta) => {
+        let data = resposta.data;
+        console.log(data);
+    })
     .catch((error) => {
         console.log(error)
     });
 
-}, [biografia])
+}, [biografia, titulo]);
 
   let putUser = {
     "idUsuario" : `${sessionStorage.getItem("idUser")}`,
-      "descricao": `${biografia}`,
-      "titulo" : `${titulo}`
+      "descricao": `${biografiaPut}`,
+      "titulo" : `${tituloPut}`
   }
 
-  const submitBio = () => {
+  const submitBio = (e: any) => {
     console.log("Começou a função");
+
+    console.log(biografiaPut);
+
+    console.log(putUser);
     
     api.put(`/user/profile-update`, putUser)
     .then((resposta) => {
-        console.log(resposta);     
-        alert("Perfil atualizado!")   
+        console.log(resposta);
+        alert("Perfil atualizado!")
         const data = resposta.data;
     })
     .catch((error) => {
@@ -82,7 +93,9 @@ export default function PerfilCompany() {
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>
-            <img className={styles.imgInfo} src={FotoPerfil} alt="imagem do banner" />
+            <div className={styles.fotoPerfil}>
+              <h1>{sigla}</h1>
+            </div>
             <span className={styles.textInfo}>
               <h1>{nome}</h1>
               <h6>{titulo}</h6>
@@ -106,7 +119,7 @@ export default function PerfilCompany() {
                 placeholder={biografia === "" ? 'Conte um pouco sobre a sua empresa' : biografia}
                 className={editavel ? styles.inputBioEnable : "input-bio-disable"}
                 disabled={!editavel}
-                onChange={(e) => setBiografia(e.target.value)}
+                onBlur={(e: any) => setBiografiaPut(e.target.value)}
                 defaultValue={biografia}
               />
             </div>
@@ -139,8 +152,5 @@ export default function PerfilCompany() {
       </section>
     </>
   )
-}
-function routeChanger(arg0: string): void {
-  throw new Error('Function not implemented.');
 }
 
