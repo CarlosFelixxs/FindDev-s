@@ -6,12 +6,13 @@ import { Banner } from "../../shared/components/Banner";
 import { Footer } from "../../shared/components/Footer";
 import { Plans } from "../../shared/components/Plans";
 import Topo from "../../assets/images/VoltarTopo.png";
+import { Link } from "react-scroll";
 
 export default function Home() {
   return (
     <>
       <Header isLoginScreen = {false} isHomePage = {true}/>
-      <section className={styles.container}>
+      <section id="sectionTop" className={styles.container}>
         <Banner />
       </section>
       <section id="sectionTopics" className={styles.sectionTopics}>
@@ -51,7 +52,7 @@ export default function Home() {
         </div>
         <div className={styles.contButtonFooter}>
           <button>
-            <a className={styles.imgBanner} href="#"><img src={Topo} alt="Logo" /></a>
+            <a className={styles.imgBanner}><Link to={'sectionTop'} spy={true} smooth={true} offset={0} duration={500}><img src={Topo} alt="Logo" /></Link></a>
           </button>
         </div>
       </section>

@@ -72,15 +72,12 @@ export default function PerfilCompany(props: any) {
               <button onClick={() => routeChanger("/colaboradores")}>colaboradores</button>
             </div>
             <div>
-              <button onClick={() => routeChanger("/")}>contratar</button>
+              <button onClick={() => routeChanger("/contratar-desenvolvedor")}>contratar</button>
             </div>
           </div>
         </section>
       </section>
     </>
   )
-}
-function routeChanger(arg0: string): void {
-  throw new Error('Function not implemented.');
 }
 

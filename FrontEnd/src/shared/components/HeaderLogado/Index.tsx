@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.css';
 import Logo from "../../../assets/images/Logo.png";
+import Voltar from "../../../assets/images/arrow-left.png";
 
 type TypesHeader = {
     nome: string;
