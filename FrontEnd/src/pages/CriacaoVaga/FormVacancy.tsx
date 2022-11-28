@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 interface FormVacancyProps {
     titulo: string;
     senioridade: string;
-    frente:string,
+    frente: string,
     descricao: string,
 }
 
@@ -37,16 +37,16 @@ export default function FormVacancy() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    let vacancy = 
-        {
-            "id_empresa": `${sessionStorage.getItem("idUser")}`,
-            "descricao": "",
-            "funcao": "",
-            "senioridade": "",
-            "titulo": ""
-        }
+    let vacancy =
+    {
+        "id_empresa": `${sessionStorage.getItem("idUser")}`,
+        "descricao": "",
+        "funcao": "",
+        "senioridade": "",
+        "titulo": ""
+    }
 
-    const onSubmitVacancy = async (e : FormVacancyProps) => {
+    const onSubmitVacancy = async (e: FormVacancyProps) => {
 
         vacancy = {
             "id_empresa": `${sessionStorage.getItem("idUser")}`,
@@ -55,21 +55,21 @@ export default function FormVacancy() {
             "funcao": `${e.frente.toUpperCase()}`,
             "senioridade": `${e.senioridade.toUpperCase()}`,
         }
-        
+
         console.log(vacancy);
 
         await api.post('/vagas', vacancy)
-        .then((resposta) => {
-            console.log(resposta);
-            setIsModalVisible(true);
-            setTimeout(() => {
-                setIsModalVisible(false);
-                navigate("/menu-company");
-            }, 5000);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((resposta) => {
+                console.log(resposta);
+                setIsModalVisible(true);
+                setTimeout(() => {
+                    setIsModalVisible(false);
+                    navigate("/menu-company");
+                }, 5000);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial.";
@@ -99,31 +99,20 @@ export default function FormVacancy() {
                             </select>
                                 {errors.senioridade && <p> {errors.senioridade.message} </p>}
                             </div>
+                        </div>
 
-                            <div className={styles.labelInput}>
-                            <label htmlFor="frente">Frente</label>
-                            <select className={errors.titulo ? styles.inputError : styles.input} id="frente" {...register("frente")}>
-                                <option value="" selected disabled></option>
-                                <option>FrontEnd</option>
-                                <option>BackEnd</option>
-                                <option>DevOps</option>
-                            </select>
-                                {errors.frente && <p> {errors.frente.message} </p>}
+                            <div className={styles.leabelTextArea}>
+                                <label>DESCRIÇÃO</label>
+                                <div className={styles.separador}></div>
+                                <textarea placeholder='Descreva essa vaga...' className={errors.titulo ? styles.textAreaError : styles.textArea} {...register("descricao")} />
+                                {errors.descricao && <p> {errors.descricao.message} </p>}
                             </div>
-
                         </div>
-
-                        <div className={styles.leabelTextArea}>
-                            <label>DESCRIÇÃO</label>
-                            <textarea className={errors.titulo ? styles.textAreaError : styles.textArea} {...register("descricao")}/>
-                            {errors.descricao && <p> {errors.descricao.message} </p>}
-                        </div>
-                    </div>
-                    <input type="submit" value="PUBLICAR" className={styles.submit}/>
-                </form>
-            </div>  
-            {isModalVisible && <Modal title={"Parabéns!"} text={textModal} path={"/menu-company"}/>}
-        </div>  
-    </>
-  )
+                        <input type="submit" value="PUBLICAR" className={styles.submit} />
+                    </form>
+                </div>
+                {isModalVisible && <Modal title={"Parabéns!"} text={textModal} path={"/menu-company"} />}
+            </div>
+        </>
+    )
 }

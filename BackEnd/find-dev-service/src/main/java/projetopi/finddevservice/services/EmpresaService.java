@@ -72,9 +72,14 @@ public class EmpresaService {
     public EmpresaResponseDto create(EmpresaRequestDto person) throws Exception {
         logger.info("Checking existence!");
 
-        if(existByEmail(person.getEmail())) throw new RequiredExistingObjectException("Email already in use!");
-
-        if(existByCnpj(person.getCnpj())) throw new RequiredExistingObjectException("Cnpj already in use!");
+        if (existByEmail(person.getEmail())){
+            logger.info("Email already in use!!");
+            throw new RequiredExistingObjectException("Email already in use!");
+        }
+        if (existByCnpj(person.getCnpj())){
+            logger.info("Cpf already in use!!");
+            throw new RequiredExistingObjectException("Cnpj already in use!");
+        }
 
         PerfilModel perfilModel = new PerfilModel();
         perfilModel.setTitulo("");

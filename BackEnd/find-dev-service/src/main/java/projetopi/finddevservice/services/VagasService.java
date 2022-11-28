@@ -9,11 +9,14 @@ import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
 import projetopi.finddevservice.dtos.v1.response.CandidaturaResponseDto;
 import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
+import projetopi.finddevservice.enums.FuncaoDev;
+import projetopi.finddevservice.enums.SenioridadeDev;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
 import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.Vaga;
+import projetopi.finddevservice.repositories.DesenvolvedorRepository;
 import projetopi.finddevservice.repositories.VagasRepository;
 
 import java.util.List;
@@ -37,7 +40,7 @@ public class VagasService {
     private CandidaturasService candidaturasService;
 
     @Autowired
-    private DesenvolvedorService desenvolvedorService;
+    private DesenvolvedorRepository desenvolvedorRepository;
 
     private final Logger logger = Logger.getLogger(VagasService.class.getName());
 
@@ -69,6 +72,7 @@ public class VagasService {
         );
 
         VagaResponseDto vagaResponseDto = DozerMapper.parseObject(vagaEncontrada, VagaResponseDto.class);
+
         vagaResponseDto.add(
             linkTo(
                 methodOn(VagasController.class)
@@ -80,6 +84,7 @@ public class VagasService {
     }
 
     public List<VagaResponseDto> findAll() {
+
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(repository.findAll());
 
         addLinkToList(vagaResponseDto);
@@ -100,7 +105,9 @@ public class VagasService {
     }
 
     public List<VagaResponseDto> findAllByIdDesenvolvedor(UUID idDesenvolvedor) {
-        desenvolvedorService.findById(idDesenvolvedor);
+        desenvolvedorRepository.findById(idDesenvolvedor).orElseThrow(
+            () -> new ResourceNotFoundException("Nenhum desenvolvedor encontrado")
+        );
 
         logger.info("Buscando vagas do desenvolvedor");
 
@@ -111,14 +118,14 @@ public class VagasService {
         return vagaResponseDto;
     }
 
-    public List<VagaResponseDto> findAllByFiltros(FiltroRequest filtroRequest) {
-        String funcao = filtroRequest.getFuncao().toString();
-        String senioridade = filtroRequest.getFuncao().toString();
-
-        logger.info("Buscando vagas filtradas por " + funcao + " e " + senioridade);
+    public List<VagaResponseDto> findAllByFiltros(String funcaoRequest, String senioridadeRequest) {
+        logger.info("Buscando vagas filtradas por " + funcaoRequest + " e " + senioridadeRequest);
 
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(
-            repository.findByFuncaoAndSenioridade(funcao, senioridade)
+            repository.findByFuncaoAndSenioridade(
+                FuncaoDev.valueOf(funcaoRequest),
+                SenioridadeDev.valueOf(senioridadeRequest)
+            )
         );
 
         addLinkToList(vagaResponseDto);
@@ -130,23 +137,18 @@ public class VagasService {
         int idVaga = contratacaoRequest.getIdVaga();
         UUID idDesenvolvedor = contratacaoRequest.getIdDesenvolvedor();
 
-        DesenvolvedorModel desenvolvedor = DozerMapper.parseObject(
-            desenvolvedorService.findById(idDesenvolvedor),
-            DesenvolvedorModel.class
+        DesenvolvedorModel desenvolvedor = desenvolvedorRepository.findById(idDesenvolvedor).orElseThrow(
+            () -> new ResourceNotFoundException("Nenhum desenvolvedor encontrado")
         );
+
         Vaga vaga = DozerMapper.parseObject(findById(idVaga), Vaga.class);
 
         logger.info("Contratando desenvolvedor!");
 
-        if (vaga.getDesenvolvedorContratado() != null) {
-            throw new RequiredExistingObjectException("Vaga já ocupada por outro desenvolvedor!");
-        }
-
         vaga.setDesenvolvedorContratado(desenvolvedor);
 
         VagaResponseDto vagaResponseDto = DozerMapper.parseObject(repository.save(vaga), VagaResponseDto.class);
-        vagaResponseDto.setDesenvolvedor(DozerMapper.parseObject(desenvolvedor, DevelopResponseDto.class));
-        
+        vagaResponseDto.setDesenvolvedor(desenvolvedor);
         vagaResponseDto.add(
             linkTo(
                 methodOn(VagasController.class)

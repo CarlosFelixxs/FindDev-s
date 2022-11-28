@@ -111,7 +111,7 @@ export default function PerfilDev() {
                 </div>
               </div>
             </span>
-            <RateComponent rating={3} />
+            <RateComponent rating={rating} />
           </div>
         </div>
 
@@ -149,7 +149,12 @@ export default function PerfilDev() {
         <section className={styles.sectionComp}>
           <div className={styles.contButtonJobs}>
             <button onClick={() => routeChanger("/jobs-encerrados")} className={styles.buttonJobs}>
-              <div className={styles.textButton}>jobs encerrados</div>
+              <div className={styles.textButton}>avaliar jobs encerrados</div>
+            </button>
+          </div>
+          <div className={styles.contButtonJobs}>
+            <button onClick={() => routeChanger("/menu-dev")} className={styles.buttonJobs}>
+              <div className={styles.textButton}>voltar</div>
             </button>
           </div>
         </section>
