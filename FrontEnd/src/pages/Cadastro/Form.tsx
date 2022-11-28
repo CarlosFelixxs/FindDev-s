@@ -288,7 +288,7 @@ export default function Form() {
                     <div className={styles.titleDevOrCompany}>
                         <h2>Empresa ou Desenvolvedor?</h2>
                         <div className={styles.separador}></div>
-                        <h3>Você atuará como desenvolvedor ou como contratante na FindDev</h3>
+                        <h3>Você atuará como desenvolvedor ou como contratante na FindDev?</h3>
                     </div>
                     <div className={styles.imgStepTwo}>
                         <img src={signupImage} alt="" />
@@ -372,7 +372,7 @@ export default function Form() {
         } else if (step === 3 && userType === "dev") {
             return (
                 <>
-                    <h1>CADASTRO</h1>
+                    <h1 className={styles.titleStepTwo}>CADASTRO</h1>
                     <form className={styles.formSignupThridStepCompany} onSubmit={handleSubmit(onSubmitFourthStepDev)}>
                         <div className={styles.labelInput}>
                             <label htmlFor="state">ESTADO</label>
@@ -464,7 +464,7 @@ export default function Form() {
             return (
                 <>
                     <div className={styles.finalCardSignup}>
-                        <h1>PARABÉNS</h1>
+                        <h1 className={styles.titleFinalCardSignup}>PARABÉNS</h1>
                         <div className={styles.separador}></div>
                         <h3>SEU CADASTRO FOI REALIZADO COM SUCESSO</h3>
                         <button

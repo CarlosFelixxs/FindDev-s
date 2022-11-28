@@ -9,16 +9,28 @@ import api from '../../../services/api';
 
 export default function HeaderLogado() {
 
+    const routeChanger = (path: string) => {
+      navigate(path);
+    }
+
     const [nome, setNome] = useState("");
 
     const navigate = useNavigate();
 
-    const routeChange = (path: string) => {
-        navigate(path);
-    }
 
     useEffect(() => {
         api.get(`/empresa/${sessionStorage.getItem("idUser")}`)
+        .then((resposta) => {
+            setNome(resposta.data.nome)
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    
+    }, [])
+
+    useEffect(() => {
+        api.get(`/dev/${sessionStorage.getItem("idUser")}`)
         .then((resposta) => {
             setNome(resposta.data.nome)
         })
@@ -32,7 +44,7 @@ export default function HeaderLogado() {
   return (
     <div className={styles.container}>
         <div className={styles.content}>
-            <img  className={styles.image} src={Logo} alt="logo do site" />
+            <img onClick={() => routeChanger("/")} className={styles.image} src={Logo} alt="logo do site" />
             <div className={styles.nome}>Bem vindo, {nome}</div>
         </div>
     </div>
