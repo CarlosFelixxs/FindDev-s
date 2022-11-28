@@ -118,14 +118,11 @@ public class VagasService {
         return vagaResponseDto;
     }
 
-    public List<VagaResponseDto> findAllByFiltros(FuncaoDev funcaoRequest, SenioridadeDev senioridadeRequest) {
-        String funcao = funcaoRequest.toString();
-        String senioridade = senioridadeRequest.toString();
-
-        logger.info("Buscando vagas filtradas por " + funcao + " e " + senioridade);
+    public List<VagaResponseDto> findAllByFiltros(String funcaoRequest, String senioridadeRequest) {
+        logger.info("Buscando vagas filtradas por " + funcaoRequest + " e " + senioridadeRequest);
 
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(
-            repository.findByFuncaoAndSenioridade(funcao, senioridade)
+            repository.findByFuncaoAndSenioridade(funcaoRequest, senioridadeRequest)
         );
 
         addLinkToList(vagaResponseDto);
