@@ -35,6 +35,8 @@ export default function PerfilCompany() {
     api.get(`/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
         console.log(resposta);
+        console.log('teste');
+        
         let data = resposta.data;
         setNome(data.nome);
         setSigla(data.nome.substr(0,2));
@@ -50,37 +52,25 @@ export default function PerfilCompany() {
         console.log(error)
     });
 
-}, [])
+}, [biografia])
 
   let putUser = {
-    "nome" : `${nome}`,
-    "estado" : `${estado}`,
-    "cidade" : `${cidade}`,
-    "endereco" : `${endereco}`,
-    "complemento" : ``,
-    "telefone": `${telefone}`,
-    "perfil": {
-      "idPerfil": `${idPerfil}`,
+    "idUsuario" : `${sessionStorage.getItem("idUser")}`,
       "descricao": `${biografia}`,
-      "titulo" : `${titulo}`,
-      "status": null
-    }
+      "titulo" : `${titulo}`
   }
 
   const submitBio = () => {
-    api.put(`/empresa`, putUser)
+    console.log("Começou a função");
+    
+    api.put(`/user/profile-update`, putUser)
     .then((resposta) => {
-        alert("deu certo");
-        let data = resposta.data;
-        setNome(data.nome);
-        setSigla(data.nome.substr(0,2));
-        setBiografia(data.perfil.descricao);
-        setTitulo(data.perfil.titulo);
-        setEstado(data.estado);
-        setCidade(data.cidade);
-        setEndereco(data.endereco);
+        console.log(resposta);     
+        alert("Perfil atualizado!")   
+        const data = resposta.data;
     })
     .catch((error) => {
+      alert("Deu erro")
         console.log(error)
     });
     setEditavel(false);
@@ -114,7 +104,7 @@ export default function PerfilCompany() {
               <textarea
                 maxLength={1000}
                 placeholder={biografia === "" ? 'Conte um pouco sobre a sua empresa' : biografia}
-                className={editavel ? "input-bio-enable" : "input-bio-disable"}
+                className={editavel ? styles.inputBioEnable : "input-bio-disable"}
                 disabled={!editavel}
                 onChange={(e) => setBiografia(e.target.value)}
                 defaultValue={biografia}
