@@ -131,3 +131,8 @@
   background-color: #00b37e;
   color: #121214;
 }
+
+.errorMessage{
+  color: #F75A68;
+  font-size: 1rem;
+}

@@ -53,11 +53,11 @@ export default function PerfilCompany() {
     api.get(`/avaliacoes/media/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
         let data = resposta.data;
-        console.log(data);
-    })
-    .catch((error) => {
+        setRating(data);
+      })
+      .catch((error) => {
         console.log(error)
-    });
+      });
 
 }, [biografia, titulo]);
 
@@ -100,7 +100,7 @@ export default function PerfilCompany() {
               <h1>{nome}</h1>
               <h6>{titulo}</h6>
             </span>
-            <RateComponent rating={4} />
+            <RateComponent rating={rating} />
           </div>
         </div>
 

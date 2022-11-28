@@ -1,20 +1,43 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
-import HeaderLogado from '../../shared/components/HeaderLogado/Index';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
+import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import Modal from '../../shared/components/ModalResult/ModalResult';
+import api from '../../services/api';
 
 import styles from './styles.module.css';
+
+interface FormVacancyProps {
+    titulo: string;
+    senioridade: string;
+    frente:string,
+    descricao: string,
+}
+
+const formSchema = yup.object({
+    titulo: yup.string().max(45, "O título deve conter no maximo 45 caractéres").required("O título da vaga é obrigatório"),
+    senioridade: yup.string().required("Senioridade da vaga obrigatória"),
+    frente: yup.string().required("Frente de desenvolvimento obrigatória"),
+    descricao: yup.string().max(250, "A sua descrição deve conter até 250 caracteres").required("A descrição da vaga é obrigatória"),
+})
 
 export default function FormVacancy() {
 
     const navigate = useNavigate();
-    const {register, handleSubmit} = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<FormVacancyProps>({
+        resolver: yupResolver(formSchema)
+    });
+
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const [vacancy, setVacancy] = useState(
+    let vacancy = 
         {
             "id_empresa": `${sessionStorage.getItem("idUser")}`,
             "descricao": "",
@@ -22,31 +45,31 @@ export default function FormVacancy() {
             "senioridade": "",
             "titulo": ""
         }
-    )
 
-    const onSubmitVacancy = async (e : any) => {
-        console.log(e);
-        setVacancy({
-            ...vacancy,
-                descricao: vacancy.descricao = e.descricao,
-                funcao: vacancy.funcao = e.frente,
-                senioridade: vacancy.senioridade = e.senioridade,
-                titulo: vacancy.titulo = e.titulo,
-        });
+    const onSubmitVacancy = async (e : FormVacancyProps) => {
+
+        vacancy = {
+            "id_empresa": `${sessionStorage.getItem("idUser")}`,
+            "titulo": `${e.titulo}`,
+            "descricao": `${e.descricao}`,
+            "funcao": `${e.frente.toUpperCase()}`,
+            "senioridade": `${e.senioridade.toUpperCase()}`,
+        }
+        
+        console.log(vacancy);
 
         await api.post('/vagas', vacancy)
-            .then((resposta) => {
-                console.log(resposta);
-                setIsModalVisible(true);
-                setTimeout(() => {
-                    setIsModalVisible(false);
-                    navigate("/menu-company");
-                }, 5000);
-            })
-            .catch((error) => {
-                alert("erro")
-                console.log(error);
-            });
+        .then((resposta) => {
+            console.log(resposta);
+            setIsModalVisible(true);
+            setTimeout(() => {
+                setIsModalVisible(false);
+                navigate("/menu-company");
+            }, 5000);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial.";
@@ -63,34 +86,38 @@ export default function FormVacancy() {
 
                             <div className={styles.labelInput}>
                                 <label>TITULO DA VAGA</label>
-                                <input type="text" className={styles.input} {...register("titulo")}/>
+                                <input type="text" className={errors.titulo ? styles.inputError : styles.input} {...register("titulo")}/>
+                                {errors.titulo && <p> {errors.titulo.message} </p>}
                             </div>
                             
                             <div className={styles.labelInput}>
                             <label htmlFor="senioridade">SENIORIDADE</label>
-                            <select className={styles.input} id="senioridade" {...register("senioridade")}>
+                            <select className={errors.titulo ? styles.inputError : styles.input} id="senioridade" {...register("senioridade")}>
                                 <option value="" selected disabled></option>
                                 <option>Junior</option>
                                 <option>Pleno</option>
                                 <option>Senior</option>
                             </select>
+                                {errors.senioridade && <p> {errors.senioridade.message} </p>}
                             </div>
 
                             <div className={styles.labelInput}>
                             <label htmlFor="frente">Frente</label>
-                            <select className={styles.input} id="frente" {...register("frente")}>
+                            <select className={errors.titulo ? styles.inputError : styles.input} id="frente" {...register("frente")}>
                                 <option value="" selected disabled></option>
-                                <option>Front-End</option>
-                                <option>Back-End</option>
+                                <option>FrontEnd</option>
+                                <option>BackEnd</option>
                                 <option>DevOps</option>
                             </select>
+                                {errors.frente && <p> {errors.frente.message} </p>}
                             </div>
 
                         </div>
 
                         <div className={styles.leabelTextArea}>
                             <label>DESCRIÇÃO</label>
-                            <textarea className={styles.textArea} {...register("descricao")}/>
+                            <textarea className={errors.titulo ? styles.textAreaError : styles.textArea} {...register("descricao")}/>
+                            {errors.descricao && <p> {errors.descricao.message} </p>}
                         </div>
                     </div>
                     <input type="submit" value="PUBLICAR" className={styles.submit}/>
