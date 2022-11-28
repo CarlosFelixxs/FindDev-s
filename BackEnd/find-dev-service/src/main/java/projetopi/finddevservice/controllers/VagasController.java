@@ -14,6 +14,8 @@ import projetopi.finddevservice.dtos.v1.request.ContratacaoRequest;
 import projetopi.finddevservice.dtos.v1.request.FiltroRequest;
 import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
+import projetopi.finddevservice.enums.FuncaoDev;
+import projetopi.finddevservice.enums.SenioridadeDev;
 import projetopi.finddevservice.services.VagasService;
 import projetopi.finddevservice.util.MediaType;
 
@@ -89,9 +91,7 @@ public class VagasController {
         }
     )
     public ResponseEntity<List<VagaResponseDto>> findAll() {
-        List<VagaResponseDto> vagas = service.findAll();
-
-        return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(value = "/empresa/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
@@ -110,9 +110,7 @@ public class VagasController {
         }
     )
     public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID idEmpresa) {
-        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(idEmpresa);
-
-        return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
+        return ResponseEntity.ok(service.findAllByIdEmpresa(idEmpresa));
     }
 
     @GetMapping(value = "/desenvolvedor/{idDesenvolvedor}", produces = MediaType.APPLICATION_JSON)
@@ -131,12 +129,10 @@ public class VagasController {
         }
     )
     public ResponseEntity<List<VagaResponseDto>> findAllByIdDesenvolvedor(@PathVariable UUID idDesenvolvedor) {
-        List<VagaResponseDto> vagas = service.findAllByIdDesenvolvedor(idDesenvolvedor);
-
-        return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
+        return ResponseEntity.ok(service.findAllByIdDesenvolvedor(idDesenvolvedor));
     }
 
-    @GetMapping(value = "/busca-filtrada", produces = MediaType.APPLICATION_JSON)
+    @GetMapping(value = "/busca-filtrada/{funcao}/{senioridade}", produces = MediaType.APPLICATION_JSON)
     @Operation(
         summary = "Busca vagas com filtro", description = "Busca vagas com filtro de senioridade e funcao",
         tags = {"Vagas"},
@@ -151,10 +147,11 @@ public class VagasController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<VagaResponseDto>> findAllByFiltros(@RequestBody FiltroRequest filtroRequest) {
-        List<VagaResponseDto> vagas = service.findAllByFiltros(filtroRequest);
-
-        return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
+    public ResponseEntity<List<VagaResponseDto>> findAllByFiltros(
+        @PathVariable FuncaoDev funcao,
+        @PathVariable SenioridadeDev senioridade
+    ) {
+        return ResponseEntity.ok(service.findAllByFiltros(funcao, senioridade));
     }
 
     @PatchMapping(value = "/contratacao", produces = MediaType.APPLICATION_JSON)

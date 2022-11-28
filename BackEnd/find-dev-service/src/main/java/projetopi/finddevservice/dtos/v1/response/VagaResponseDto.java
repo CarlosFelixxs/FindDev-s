@@ -5,6 +5,7 @@ import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
+import projetopi.finddevservice.models.DesenvolvedorModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +16,7 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
     @JsonProperty("id")
     private int key;
 
-    private DevelopResponseDto desenvolvedor;
+    private DesenvolvedorModel desenvolvedor;
 
     private String titulo;
 
@@ -43,11 +44,11 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
         this.key = key;
     }
 
-    public DevelopResponseDto getDesenvolvedor() {
+    public DesenvolvedorModel getDesenvolvedor() {
         return desenvolvedor;
     }
 
-    public void setDesenvolvedor(DevelopResponseDto desenvolvedor) {
+    public void setDesenvolvedor(DesenvolvedorModel desenvolvedor) {
         this.desenvolvedor = desenvolvedor;
     }
 
