@@ -65,6 +65,7 @@ export default function DevSearchVacancyResult() {
   }
 
   const registerToVacancy = () => {
+    console.log(id)
     api.post('/candidaturas', registerObj)
         .then((resposta) => {
           console.log(resposta.data);
@@ -87,16 +88,19 @@ export default function DevSearchVacancyResult() {
 
     const vagas = data.map((vaga: any) => {
       const objVaga = vaga;
-      return {
-        senioridade: objVaga.senioridade,
-        funcao: objVaga.funcao,
-        titulo: objVaga.titulo,
-        descricao: objVaga.descricao,
-        desenvolvedor: objVaga.desenvolvedor,
-        avaliado: objVaga.avaliado,
-        encerrado: objVaga.encerrado,
-        id: objVaga.id,
+      if (objVaga.desenvolvedor == null) {
+        return {
+          senioridade: objVaga.senioridade,
+          funcao: objVaga.funcao,
+          titulo: objVaga.titulo,
+          descricao: objVaga.descricao,
+          desenvolvedor: objVaga.desenvolvedor,
+          avaliado: objVaga.avaliado,
+          encerrado: objVaga.encerrado,
+          id: objVaga.id,
+        }
       }
+      return null;
     });
     setVacancies(vagas);
     }).catch((error) => {
