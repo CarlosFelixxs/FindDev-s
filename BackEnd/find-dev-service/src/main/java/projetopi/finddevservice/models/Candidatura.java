@@ -9,7 +9,7 @@ public class Candidatura implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int idCandidatura;
 
     @OneToOne
     private DesenvolvedorModel desenvolvedor;
@@ -17,11 +17,11 @@ public class Candidatura implements Serializable {
     private int idVaga;
 
     public int getIdCandidatura() {
-        return id;
+        return idCandidatura;
     }
 
-    public void setIdCandidatura(int id) {
-        this.id = id;
+    public void setIdCandidatura(int idCandidatura) {
+        this.idCandidatura = idCandidatura;
     }
 
     public DesenvolvedorModel getDesenvolvedor() {
