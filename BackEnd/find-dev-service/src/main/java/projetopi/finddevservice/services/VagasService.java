@@ -122,7 +122,10 @@ public class VagasService {
         logger.info("Buscando vagas filtradas por " + funcaoRequest + " e " + senioridadeRequest);
 
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(
-            repository.findByFuncaoAndSenioridade(funcaoRequest, senioridadeRequest)
+            repository.findByFuncaoAndSenioridade(
+                FuncaoDev.valueOf(funcaoRequest),
+                SenioridadeDev.valueOf(senioridadeRequest)
+            )
         );
 
         addLinkToList(vagaResponseDto);
