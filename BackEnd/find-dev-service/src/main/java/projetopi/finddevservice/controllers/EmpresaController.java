@@ -153,7 +153,7 @@ public class EmpresaController {
     }
 
 
-        @GetMapping(value = "/txt")
+    @GetMapping(value = "/txt")
     @Operation(
             summary = "Generate txt file", description = "Generate txt file",
             tags = {"Txt"},
