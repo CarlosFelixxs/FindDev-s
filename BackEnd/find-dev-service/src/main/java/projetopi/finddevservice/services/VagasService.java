@@ -103,7 +103,7 @@ public class VagasService {
 
         logger.info("Buscando vagas do desenvolvedor");
 
-        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(repository.findByIdDesenvolvedor(idDesenvolvedor));
+        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(repository.findByDesenvolvedorContratado(idDesenvolvedor));
 
         addLinkToList(vagaResponseDto);
 
