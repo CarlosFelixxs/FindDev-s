@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 import projetopi.finddevservice.models.DesenvolvedorModel;
-import projetopi.finddevservice.models.Vaga;
 
 import java.io.Serializable;
 
@@ -16,7 +15,7 @@ public class CandidaturaResponseDto extends RepresentationModel<CandidaturaRespo
 
     private DesenvolvedorModel desenvolvedor;
 
-    private Vaga vaga;
+    private int idVaga;
 
     public int getKey() {
         return key;
@@ -34,11 +33,11 @@ public class CandidaturaResponseDto extends RepresentationModel<CandidaturaRespo
         this.desenvolvedor = desenvolvedor;
     }
 
-    public Vaga getIdVaga() {
-        return vaga;
+    public int getIdVaga() {
+        return idVaga;
     }
 
-    public void setVaga(Vaga vaga) {
-        this.vaga = vaga;
+    public void setIdVaga(int idVaga) {
+        this.idVaga = idVaga;
     }
 }

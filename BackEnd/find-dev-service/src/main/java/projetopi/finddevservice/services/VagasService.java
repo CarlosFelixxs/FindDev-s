@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.VagasController;
 import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
+import projetopi.finddevservice.dtos.v1.response.CandidaturaResponseDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
-import projetopi.finddevservice.models.EmpresaModel;
 import projetopi.finddevservice.models.Vaga;
 import projetopi.finddevservice.repositories.EmpresaRepository;
 import projetopi.finddevservice.repositories.VagasRepository;
@@ -28,6 +28,9 @@ public class VagasService {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private CandidaturasService candidaturasService;
 
     private final Logger logger = Logger.getLogger(VagasService.class.getName());
 
@@ -79,10 +82,11 @@ public class VagasService {
 
         responseDto.forEach(v -> {
                 try {
+                    v.setCandidaturas(findAllCandidaturas(v.getKey()));
                     v.add(
                         linkTo(
                             methodOn(VagasController.class)
-                                    .findById(v.getKey())
+                                .findById(v.getKey())
                         ).withSelfRel()
                     );
                 } catch (Exception e) {
@@ -108,6 +112,7 @@ public class VagasService {
 
         responseDto.forEach(v -> {
                 try {
+                    v.setCandidaturas(findAllCandidaturas(v.getKey()));
                     v.add(
                         linkTo(
                             methodOn(VagasController.class)
@@ -121,5 +126,9 @@ public class VagasService {
         );
 
         return responseDto;
+    }
+
+    public List<CandidaturaResponseDto> findAllCandidaturas(int idVaga) {
+        return candidaturasService.findAllByIdVaga(idVaga);
     }
 }

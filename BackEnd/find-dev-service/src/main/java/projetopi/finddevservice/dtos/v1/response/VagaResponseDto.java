@@ -32,7 +32,7 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     private boolean avaliado;
 
-    private List<Candidatura> candidaturas;
+    private List<CandidaturaResponseDto> candidaturas;
 
     public VagaResponseDto() {
 
@@ -100,5 +100,13 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     public void setAvaliado(boolean avaliado) {
         this.avaliado = avaliado;
+    }
+
+    public List<CandidaturaResponseDto> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<CandidaturaResponseDto> candidaturas) {
+        this.candidaturas = candidaturas;
     }
 }

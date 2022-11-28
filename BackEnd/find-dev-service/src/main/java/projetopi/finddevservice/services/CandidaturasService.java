@@ -60,7 +60,6 @@ public class CandidaturasService {
             CandidaturaResponseDto.class
         );
         candidaturaResponse.setDesenvolvedor(desenvolvedor);
-        candidaturaResponse.setVaga(vaga);
         candidaturaResponse.add(
             linkTo(
                 methodOn(CandidaturasController.class)
@@ -96,6 +95,30 @@ public class CandidaturasService {
         logger.info("Consultando todas as candidaturas");
 
         List<CandidaturaResponseDto> candidaturas = repository.findAll()
+            .stream()
+            .map(c -> DozerMapper.parseObject(c, CandidaturaResponseDto.class))
+            .collect(Collectors.toList());
+
+        candidaturas.forEach(c -> {
+            try {
+                c.add(
+                    linkTo(
+                        methodOn(CandidaturasController.class)
+                            .findById(c.getKey())
+                    ).withSelfRel()
+                );
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        return candidaturas;
+    }
+
+    public List<CandidaturaResponseDto> findAllByIdVaga(int idVaga) {
+        logger.info("Consultando candidaturas da vaga");
+
+        List<CandidaturaResponseDto> candidaturas = repository.findAllByIdVaga(idVaga)
             .stream()
             .map(c -> DozerMapper.parseObject(c, CandidaturaResponseDto.class))
             .collect(Collectors.toList());
