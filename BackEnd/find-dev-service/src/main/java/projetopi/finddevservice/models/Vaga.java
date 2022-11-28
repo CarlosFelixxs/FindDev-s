@@ -7,6 +7,7 @@ import projetopi.finddevservice.enums.SenioridadeDev;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -17,9 +18,7 @@ public class Vaga {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "idEmpresa")
-    private EmpresaModel empresa;
+    private UUID idEmpresa;
 
     @OneToOne
     @JoinColumn(name = "idDesenvolvedor")

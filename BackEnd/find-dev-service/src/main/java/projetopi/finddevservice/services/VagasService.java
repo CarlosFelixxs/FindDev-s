@@ -44,7 +44,7 @@ public class VagasService {
         logger.info("Criando vaga da empresa " + empresa.getNome());
 
         Vaga vaga = DozerMapper.parseObject(vagaRequest, Vaga.class);
-        vaga.setEmpresa(empresa);
+        vaga.setIdEmpresa(empresa.getId());
 
         VagaResponseDto responseDto = DozerMapper.parseObject(repository.save(vaga), VagaResponseDto.class);
         responseDto.add(
@@ -74,6 +74,29 @@ public class VagasService {
         return responseDto;
     }
 
+    public List<VagaResponseDto> findAll() {
+        List<VagaResponseDto> responseDto = repository.findAll()
+            .stream()
+            .map(vaga -> DozerMapper.parseObject(vaga, VagaResponseDto.class))
+            .collect(Collectors.toList());
+
+        responseDto.forEach(v -> {
+                try {
+                    v.add(
+                        linkTo(
+                            methodOn(VagasController.class)
+                                    .findById(v.getKey())
+                        ).withSelfRel()
+                    );
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        );
+
+        return responseDto;
+    }
+
     public List<VagaResponseDto> findAllByIdEmpresa(UUID idEmpresa) {
         if (!empresaRepository.existsById(idEmpresa)) {
             throw new ResourceNotFoundException("Empresa com id " + idEmpresa + " não encontrada");
@@ -82,9 +105,9 @@ public class VagasService {
         logger.info("Buscando vagas da empresa");
 
         List<VagaResponseDto> responseDto = repository.findAllByIdEmpresa(idEmpresa)
-                .stream()
-                .map(vaga -> DozerMapper.parseObject(vaga, VagaResponseDto.class))
-                .collect(Collectors.toList());
+            .stream()
+            .map(vaga -> DozerMapper.parseObject(vaga, VagaResponseDto.class))
+            .collect(Collectors.toList());
 
         responseDto.forEach(v -> {
                 try {
