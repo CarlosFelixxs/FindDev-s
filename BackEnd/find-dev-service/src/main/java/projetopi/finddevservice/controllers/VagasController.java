@@ -61,7 +61,7 @@ public class VagasController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<VagaResponseDto> findById(@PathParam(value = "id") int id) {
+    public ResponseEntity<VagaResponseDto> findById(@PathVariable int id) {
         return ResponseEntity.ok(service.findById(id));
     }
 }

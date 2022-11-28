@@ -5,6 +5,8 @@ import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
+import projetopi.finddevservice.models.DesenvolvedorModel;
+import projetopi.finddevservice.models.EmpresaModel;
 
 import java.io.Serializable;
 
@@ -14,9 +16,9 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
     @JsonProperty("id")
     private int key;
 
-    private EmpresaResponseDto empresaResponseDto;
+    private EmpresaModel empresa;
 
-    private DevelopResponseDto developResponseDto;
+    private DesenvolvedorModel desenvolvedor;
 
     private String titulo;
 
@@ -42,20 +44,20 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
         this.key = key;
     }
 
-    public EmpresaResponseDto getCompanyResponseDto() {
-        return empresaResponseDto;
+    public EmpresaModel getEmpresa() {
+        return empresa;
     }
 
-    public void setCompanyResponseDto(EmpresaResponseDto empresaResponseDto) {
-        this.empresaResponseDto = empresaResponseDto;
+    public void setEmpresa(EmpresaModel empresa) {
+        this.empresa = empresa;
     }
 
-    public DevelopResponseDto getDevelopResponseDto() {
-        return developResponseDto;
+    public DesenvolvedorModel getDesenvolvedor() {
+        return desenvolvedor;
     }
 
-    public void setDevelopResponseDto(DevelopResponseDto developResponseDto) {
-        this.developResponseDto = developResponseDto;
+    public void setDesenvolvedor(DesenvolvedorModel desenvolvedor) {
+        this.desenvolvedor = desenvolvedor;
     }
 
     public String getTitulo() {
