@@ -3,16 +3,16 @@ package projetopi.finddevservice.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.models.Vaga;
+import projetopi.finddevservice.repositories.EmpresaRepository;
 import projetopi.finddevservice.repositories.VagasRepository;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class manipulacaoArquivo {
+public class ManipulacaoArquivo {
 
 
     public void gravaRegistro(String registro, String nomeArq) {
@@ -39,15 +39,17 @@ public class manipulacaoArquivo {
     }
 
     @Autowired
-    VagasRepository repository;
+    VagasRepository vagasRepository;
+
+    @Autowired
+    EmpresaRepository empresaRepository;
 
 
 
     public void gravaArquivoTxt(String nomeArq) {
 
 
-        List<Vaga> lista = repository.findAll();
-
+        List<Vaga> lista = vagasRepository.findAll();
         int contaRegDados = 0;
 
         // Monta o registro de header
@@ -66,7 +68,7 @@ public class manipulacaoArquivo {
             corpo += String.format("%05d", a.getId());
             corpo += String.format("%-20.20s", a.getDesenvolvedorContratado().getNome());
             corpo += String.format("%-10.10s", a.getSenioridade());
-            corpo += String.format("%-20.20s", a.getEmpresa().getNome());
+            corpo += String.format("%-20.20s", empresaRepository.findById(a.getIdEmpresa()).get().getNome());
             corpo += String.format("%-50.50s", a.getTitulo());
             corpo += String.format("%-50.50s", a.getDescricao());
             gravaRegistro(corpo, nomeArq);
@@ -180,19 +182,19 @@ public class manipulacaoArquivo {
 
 
 
-    public static void main(String[] args) {
-        List<Vaga> lista = new ArrayList();
-
-
-
-//        System.out.println("Lista original:");
-//        for (Aluno a : lista) {
-//            System.out.println(a);
-//        }
-
-//        gravaArquivoTxt(lista, "alunos.txt");
-//        leArquivoTxt("alunos.txt");
-    }
+//    public static void main(String[] args) {
+//        List<Vaga> lista = new ArrayList();
+//
+//
+//
+////        System.out.println("Lista original:");
+////        for (Aluno a : lista) {
+////            System.out.println(a);
+////        }
+//
+//        gravaArquivoTxt( "vagas.txt");
+////        leArquivoTxt("alunos.txt");
+//    }
 }
 
 
