@@ -8,6 +8,9 @@ import projetopi.finddevservice.enums.SenioridadeDev;
 import projetopi.finddevservice.models.DesenvolvedorModel;
 import projetopi.finddevservice.models.EmpresaModel;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.io.Serializable;
 
 public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implements Serializable {
@@ -22,8 +25,10 @@ public class VagaResponseDto extends RepresentationModel<VagaResponseDto> implem
 
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
     private FuncaoDev funcao;
 
+    @Enumerated(EnumType.STRING)
     private SenioridadeDev senioridade;
 
     private boolean encerrado;
