@@ -163,7 +163,7 @@ export default function HiringPage() {
 
   return (
     <>
-      <HeaderLogado nome="Danilo" />
+      <HeaderLogado />
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>
