@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import VacancyCard from '../../shared/components/VacancyCard';
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import VacancyCardDetailed from '../../shared/components/VacancyCardDetailed';
 import Modal from '../../shared/components/ModalResult/ModalResult';
+import api from '../../services/api';
 
 export default function CompanyPublichedVacancy() {
 
@@ -20,56 +21,13 @@ export default function CompanyPublichedVacancy() {
 
   const [vacancies, setVacancies] = useState([
     {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "salary": 2000.00,
-      "company": "Klein - Greenfelder",
-      "title": "Forward Program Technician",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 1
-     },
-     {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "company": "Strosin and Sons",
-      "title": "Human Program Supervisor",
-      "description": "jorge",
-      "id": 2
-     },
-     {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Bergstrom - Conn",
-      "title": "Investor Accounts Specialist",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 3
-     },
-     {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Kiehn, Adams and Hauck",
-      "title": "Chief Infrastructure Architect",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 4
-     },
-     {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 5
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 6
-    }
+      "senioridade": '',
+      "stack": "",
+      "company": "",
+      "title": "",
+      "description": "",
+      "id": 0
+     }
   ]);
   
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -114,6 +72,17 @@ export default function CompanyPublichedVacancy() {
         APAGAR VAGA
       </button>
   )
+
+  useEffect(() => {
+    api.get(`/vagas/empresa`)
+    .then((resposta) => {
+        let data = resposta.data;
+        setVacancies(data);
+    }).catch((error) => {
+      console.log(error)
+    });
+
+}, []);
   
   const showVacancySelected = () => {
     if (id !== -1) {
@@ -152,7 +121,6 @@ export default function CompanyPublichedVacancy() {
                   stack={vaga.stack}
                   senioridade={vaga.senioridade}
                   company={vaga.company}
-                  salary={vaga.salary}
                   title={vaga.title}
                   button={buttonCard(
                     vaga.senioridade,
@@ -161,7 +129,6 @@ export default function CompanyPublichedVacancy() {
                     vaga.company,
                     vaga.description,
                     vaga.id,
-                    vaga.salary,
                   )}
                   description={vaga.description}
                   key={vaga.id}
