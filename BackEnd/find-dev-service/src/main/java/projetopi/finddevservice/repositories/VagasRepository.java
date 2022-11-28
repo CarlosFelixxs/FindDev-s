@@ -9,6 +9,6 @@ import java.util.UUID;
 public interface VagasRepository extends JpaRepository<Vaga, Integer> {
 
 
-    List<Vaga> findAllByIdEmpresa(UUID id);
+    List<Vaga> findByIdEmpresa(UUID id);
 }
 

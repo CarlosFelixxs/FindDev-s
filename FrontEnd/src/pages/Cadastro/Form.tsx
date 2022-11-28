@@ -156,7 +156,6 @@ export default function Form() {
                 .then((resposta) => {
                     setStep(step + 1);
                     console.log(resposta);
-                    routeChange("/login");
                 })
                 .catch((error) => {
                     alert("Deu erro");
@@ -197,7 +196,6 @@ export default function Form() {
                 .then((resposta) => {
                     setStep(step + 1);
                     console.log(resposta);
-                    routeChange("/login");
                 })
                 .catch((error) => {
                     alert("Deu erro");

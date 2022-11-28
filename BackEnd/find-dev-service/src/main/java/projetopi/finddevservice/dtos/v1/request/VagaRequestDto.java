@@ -7,6 +7,9 @@ import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
 import projetopi.finddevservice.models.EmpresaModel;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

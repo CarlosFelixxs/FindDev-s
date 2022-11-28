@@ -138,3 +138,7 @@
 .separador {
   height: 5px;
 }
+.errorMessage{
+  color: #F75A68;
+  font-size: 1rem;
+}

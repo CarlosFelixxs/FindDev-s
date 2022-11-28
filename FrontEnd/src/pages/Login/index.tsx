@@ -7,6 +7,7 @@ import { Footer } from "../../shared/components/Footer";
 import { useForm } from 'react-hook-form';
 // import { api, signIn } from '../../services/api';
 import api from '../../services/api';
+import { useState } from 'react';
 
 
 export default function Login() {
@@ -22,7 +23,9 @@ export default function Login() {
     navigate(path);
   }
 
-  const onSubmit = async (e: any) => {
+  const [loginResult, setLoginResult] = useState("");
+
+  const onSubmit = async (e : any) => {
     console.log(e)
     const login = {
       "email": `${e.email}`,
@@ -31,13 +34,13 @@ export default function Login() {
 
     api.post('/user/login', login)
       .then((resposta) => {
-        alert("Funcionou");
+        setLoginResult("Login efetuado com sucesso");
         console.log(resposta);
         resposta.data.cnpj ? routeChange("/menu-company") : routeChange("/menu-dev");
         sessionStorage.setItem("idUser", resposta.data.id);
       })
       .catch((error) => {
-        alert("Email ou senha não existem");
+        setLoginResult("Email e senha não existem");
         console.log(error)
       });
   }
@@ -72,7 +75,8 @@ export default function Login() {
               <div className={styles.separador}></div>
               <input type="password" placeholder="*************" {...register("senha")} />
             </div>
-            <input type="Submit" value="CONTINUAR" className={styles.submit} />
+            <input type="Submit" value="CONTINUAR" className={styles.submit}  />
+            {loginResult !== "" && <div className={styles.errorMessage}>{loginResult}</div> }
           </form>
         </div>
       </section>

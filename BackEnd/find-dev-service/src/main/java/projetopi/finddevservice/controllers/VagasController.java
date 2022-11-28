@@ -10,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
 import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
 import projetopi.finddevservice.services.VagasService;
 import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,7 +38,7 @@ public class VagasController {
         responses = {
             @ApiResponse(
                 description = "Success", responseCode = "200",
-                content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                content = @Content(schema = @Schema(implementation = VagaRequestDto.class))
             ),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -59,7 +57,7 @@ public class VagasController {
         responses = {
             @ApiResponse(
                 description = "Success", responseCode = "200",
-                content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                content = @Content(schema = @Schema(implementation = VagaRequestDto.class))
             ),
             @ApiResponse(description = "No content", responseCode = "204", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -79,7 +77,7 @@ public class VagasController {
             @ApiResponse(description = "Success", responseCode = "200", content = {
                 @Content(
                     mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = DevelopRequestDto.class))
+                    array = @ArraySchema(schema = @Schema(implementation = VagaRequestDto.class))
                 )
             }),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -94,14 +92,14 @@ public class VagasController {
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
 
-    @GetMapping(value = "/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @GetMapping(value = "/empresa/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
     @Operation(
         summary = "Finds all Vagas from a Empresa", description = "Finds a list of vaga from Empresa id",
         tags = {"Vagas"},
         responses = {
             @ApiResponse(
                 description = "Success", responseCode = "200",
-                content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                content = @Content(schema = @Schema(implementation = VagaRequestDto.class))
             ),
             @ApiResponse(description = "No content", responseCode = "204", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -109,8 +107,8 @@ public class VagasController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         }
     )
-    public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID id) {
-        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(id);
+    public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID idEmpresa) {
+        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(idEmpresa);
 
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
