@@ -4,18 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
-import projetopi.finddevservice.dtos.v1.PerfilDto;
 import projetopi.finddevservice.models.PerfilModel;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @JsonPropertyOrder(
         {"id", "nome", "email", "senha", "cnpj", "estado", "cidade", "telefone","bairro", "endereco","perfil"}
 )
-public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> implements Serializable {
+public class EmpresaResponseDto extends RepresentationModel<EmpresaResponseDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +30,7 @@ public class CompanyResponseDto extends RepresentationModel<CompanyResponseDto> 
     private String cnpj;
     private PerfilModel perfil;
 
-    public CompanyResponseDto() {
+    public EmpresaResponseDto() {
 
     }
 
