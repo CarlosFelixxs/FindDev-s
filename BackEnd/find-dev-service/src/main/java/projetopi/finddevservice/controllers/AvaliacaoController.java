@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/vi/avaliacoes")
+@RequestMapping("/api/v1/avaliacoes")
 public class AvaliacaoController {
 
     @Autowired

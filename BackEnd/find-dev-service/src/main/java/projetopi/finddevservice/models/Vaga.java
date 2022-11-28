@@ -1,17 +1,12 @@
 package projetopi.finddevservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
 public class Vaga {
 
     @Id
@@ -54,5 +49,77 @@ public class Vaga {
 
     public Vaga() {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UUID getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(UUID idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public DesenvolvedorModel getDesenvolvedorContratado() {
+        return desenvolvedorContratado;
+    }
+
+    public void setDesenvolvedorContratado(DesenvolvedorModel desenvolvedorContratado) {
+        this.desenvolvedorContratado = desenvolvedorContratado;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public FuncaoDev getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(FuncaoDev funcao) {
+        this.funcao = funcao;
+    }
+
+    public SenioridadeDev getSenioridade() {
+        return senioridade;
+    }
+
+    public void setSenioridade(SenioridadeDev senioridade) {
+        this.senioridade = senioridade;
+    }
+
+    public boolean isEncerrado() {
+        return encerrado;
+    }
+
+    public void setEncerrado(boolean encerrado) {
+        this.encerrado = encerrado;
+    }
+
+    public boolean isAvaliado() {
+        return avaliado;
+    }
+
+    public void setAvaliado(boolean avaliado) {
+        this.avaliado = avaliado;
     }
 }

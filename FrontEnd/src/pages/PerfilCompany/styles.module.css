@@ -1,31 +1,32 @@
 .container {
   width: 100%;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .contInfo {
   width: 100%;
-  height: 120px;
+  height: 9.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .info {
-  width: 90%;
-  border-radius: 8px;
-  border: 1px solid #9747ff;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid #9747ff;
   background-color: #121214;
   display: flex;
   flex-direction: row;
-  padding: 1% 2%;
+  align-items: center;
+  padding: 1%;
 }
 .textInfo {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 1%;
 }
 .textInfo h1 {
   width: 50%;
@@ -34,28 +35,47 @@
   font-size: 1.5rem;
   line-height: 29px;
   color: #ffffff;
-  letter-spacing: 0.5px;
+  font-variant: small-caps;
 }
 .textInfo h6 {
   font-weight: 400;
   font-size: 1rem;
   line-height: 20px;
   color: #ffffff;
-  letter-spacing: 0.5px;
+}
+
+.textInfo textarea{
+  resize: none;
+  width: 91%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #ffffff;
+  font-variant: all-small-caps;
+  padding-top: 5px;
+}
+.titulo{
+  width: 97.6%;
+  display: flex;
+  justify-content: space-between;
 }
 .imgInfo {
   width: 8%;
   padding: 10px;
 }
 .sectionBio {
-  height: 150px;
+  height: 9.375rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
 }
 .contBio {
-  width: 60%;
+  width: 70%;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -65,31 +85,31 @@
   display: flex;
   justify-content: space-between;
 }
-.contBio img {
-  width: 20px;
+.icon img {
+  width: 19px;
 }
 .contBio h1 {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.25rem;
   font-variant: small-caps;
   line-height: 20px;
   color: #ffffff;
-  letter-spacing: 0.5px;
 }
 .bio {
   width: 100%;
-  height: 80px;
 }
 .bio textarea {
-  resize: none;
   color: #ffffff;
   width: 100%;
-  height: 80px;
+  height: 100px;
   background-color: #121214;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #00b37e;
+  border-radius: 5px;
+  border: 2px solid #00b37e;
+  resize: none;
+  font-variant: all-small-caps;
+  font-size: 1rem;
 }
 .inputBioEnable{
   resize: none;
@@ -104,7 +124,7 @@
 }
 .contLoc {
   width: 30%;
-  height: 75%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -112,19 +132,19 @@
 }
 .contLoc h1 {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.25rem;
-  font-variant: small-caps;
-  line-height: 30px;
+  font-variant: all-small-caps;
+  line-height: 25px;
   color: #ffffff;
-  margin-right: 68px;
+  margin-right: 90px;
 }
 .loc {
   padding: 10px;
-  width: 50%;
-  height: 100px;
-  border-radius: 8px;
-  border: 1px solid #00b37e;
+  width: 70%;
+  height: 105px;
+  border-radius: 5px;
+  border: 2px solid #00b37e;
   background-color: #121214;
   display: flex;
   flex-direction: column;
@@ -133,8 +153,9 @@
 .loc li {
   font-style: normal;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.90rem;
   color: #ffffff;
+  font-variant: all-small-caps;
 }
 .insideLoc {
   width: 100%;
@@ -148,7 +169,7 @@
   align-items: center;
 }
 .contButtons {
-  width: 90%;
+  width: 100%;
   height: 200px;
   display: flex;
   align-items: center;
@@ -156,28 +177,28 @@
 }
 .contButtons button {
   width: 200px;
-  border: 1px solid #00b37e;
+  border: 2px solid #00b37e;
   border-radius: 8px;
   height: 60px;
-  background-color: transparent;
+  background-color: #121214;
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s;
   font-size: 1.2rem;
   font-variant: small-caps;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 400;
 }
 .contButtons button:hover {
+  transform: scale(1.1, 1.1);
   background-color: #00b37e;
   color: #121214;
+  transition: 0.30s;
 }
 
 .fotoPerfil{
-  height: 5.5rem;
-  width: 7rem;
+  height: 10%;
+  width: 12.5%;
   border-radius: 50%;
-  margin-right: 0.5rem;
   background-color: #323238;
   border: 2px solid #00B37E;
   display: flex;
@@ -187,4 +208,7 @@
 
 .fotoPerfil h1{
   font-size: 4rem;
+  font-variant: all-small-caps;
+  height: 70px;
+  margin-bottom: 10%;
 }

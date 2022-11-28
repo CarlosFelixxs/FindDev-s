@@ -7,6 +7,7 @@ import { Footer } from "../../shared/components/Footer";
 import { useForm } from 'react-hook-form';
 // import { api, signIn } from '../../services/api';
 import api from '../../services/api';
+import { useState } from 'react';
 
 
 export default function Login() {
@@ -14,13 +15,15 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-} = useForm();
+  } = useForm();
 
   const navigate = useNavigate();
 
   const routeChange = (path: string) => {
     navigate(path);
   }
+
+  const [loginResult, setLoginResult] = useState("");
 
   const onSubmit = async (e : any) => {
     console.log(e)
@@ -29,15 +32,15 @@ export default function Login() {
       "senha": `${e.senha}`
     };
 
-      api.post('/user/login', login)
+    api.post('/user/login', login)
       .then((resposta) => {
-        alert("Funcionou");
+        setLoginResult("Login efetuado com sucesso");
         console.log(resposta);
         resposta.data.cnpj ? routeChange("/menu-company") : routeChange("/menu-dev");
         sessionStorage.setItem("idUser", resposta.data.id);
       })
       .catch((error) => {
-        alert("Email ou senha não existem");
+        setLoginResult("Email e senha não existem");
         console.log(error)
       });
   }
@@ -64,13 +67,16 @@ export default function Login() {
             <p>login</p>
             <div className={styles.labelInput}>
               <label>EMAIL</label>
+              <div className={styles.separador}></div>
               <input type="text" placeholder="exemplo@email.com" {...register("email")} />
             </div>
             <div className={styles.labelInput}>
               <label>SENHA</label>
-              <input type="password" placeholder="*************" {...register("senha")}/>
+              <div className={styles.separador}></div>
+              <input type="password" placeholder="*************" {...register("senha")} />
             </div>
             <input type="Submit" value="CONTINUAR" className={styles.submit}  />
+            {loginResult !== "" && <div className={styles.errorMessage}>{loginResult}</div> }
           </form>
         </div>
       </section>

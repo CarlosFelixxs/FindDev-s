@@ -15,7 +15,7 @@ export default function OptionDev() {
 
    return (
       <>
-         <HeaderLogado />
+         <HeaderLogado isDevOrCompany={"dev"}/>
          <div className={styles.container}>
             <div className={styles.findProfile}>
                <div className={styles.div_imgFrase} onClick={() => routeChange("/resultado-busca-vaga")}>

@@ -48,16 +48,18 @@ export default function PerfilCompany() {
         setEndereco(data.endereco);
         setIdPerfil(data.perfil.idPerfil);
         setTelefone(data.telefone);
-    })
+    }).catch((error) => {
+      console.log(error)
+    });
 
     api.get(`/avaliacoes/media/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
         let data = resposta.data;
-        console.log(data);
-    })
-    .catch((error) => {
+        setRating(data);
+      })
+      .catch((error) => {
         console.log(error)
-    });
+      });
 
 }, [biografia, titulo]);
 
@@ -89,7 +91,7 @@ export default function PerfilCompany() {
 
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"company"}/>
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>
@@ -98,9 +100,24 @@ export default function PerfilCompany() {
             </div>
             <span className={styles.textInfo}>
               <h1>{nome}</h1>
-              <h6>{titulo}</h6>
+              <div className={styles.titulo}>
+                <textarea
+                  maxLength={50}
+                  placeholder={titulo === "" ? 'escreva um resumo da sua empresa' : biografia}
+                  className={editavel ? styles.inputBioEnable : "input-bio-disable"}
+                  disabled={!editavel}
+                  onBlur={(e: any) => setTituloPut(e.target.value)}
+                  defaultValue={titulo}
+                />
+                <div className={styles.icon}>
+                  <div>
+                    <img src={editIcon} alt="" style={{ cursor: 'pointer' }} onClick={() => setEditavel(true)} />
+                    <img src={checkIcon} alt="" style={{ cursor: 'pointer' }} onClick={submitBio} />
+                  </div>
+                </div>
+              </div>
             </span>
-            <RateComponent rating={4} />
+            <RateComponent rating={rating} />
           </div>
         </div>
 

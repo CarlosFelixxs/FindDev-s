@@ -122,7 +122,6 @@ export default function JobsEncerrados() {
   
   const submitRateCompany = async (e : any) => {
     console.log(e);
-    alert(rating);
     setisRateModalVisible(false);
     setIsModalSuccessVisible(true);
     setTimeout(() => {
@@ -196,7 +195,7 @@ export default function JobsEncerrados() {
     
   return (
     <>
-      <HeaderLogado />
+      <HeaderLogado isDevOrCompany={"dev"}/>
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>
