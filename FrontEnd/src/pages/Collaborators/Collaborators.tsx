@@ -106,7 +106,6 @@ export default function Colaborators() {
 
   const submitRateCompany = async (e: any) => {
     console.log(e);
-    alert(rating);
     setIsRateModalVisible(false);
     setIsModalSuccessVisible(true);
     setTimeout(() => {

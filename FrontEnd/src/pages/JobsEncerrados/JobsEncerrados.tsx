@@ -122,7 +122,6 @@ export default function JobsEncerrados() {
   
   const submitRateCompany = async (e : any) => {
     console.log(e);
-    alert(rating);
     setisRateModalVisible(false);
     setIsModalSuccessVisible(true);
     setTimeout(() => {

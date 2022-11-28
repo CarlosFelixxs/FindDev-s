@@ -38,32 +38,6 @@ export default function DevSearchVacancyResult() {
   
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const [senioridadeSearch, setSenioridadeSearch] = useState("");
-  const [stackSeach, setStackSearch] = useState("");
-  
-
-  api.get(`/vagas/busca-filtrada/${stackSeach}/${senioridadeSearch}`)
-  .then((resposta) => {
-    let data = resposta.data;
-
-    const vagas = data.map((vaga: any) => {
-      const objVaga = vaga;
-      return {
-        senioridade: objVaga.senioridade,
-        funcao: objVaga.funcao,
-        titulo: objVaga.titulo,
-        descricao: objVaga.descricao,
-        desenvolvedor: objVaga.desenvolvedor,
-        avaliado: objVaga.avaliado,
-        encerrado: objVaga.encerrado,
-        id: objVaga.id,
-      }
-    });
-    setVacancies(vagas);
-  }).catch((error) => {
-      console.log(error)
-  });
-
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(true);
   
   const [senioridade, setSenioridade] = useState("");
@@ -106,7 +80,28 @@ export default function DevSearchVacancyResult() {
   }
 
   const submitVacancySearch = async (e : any) => {
-    console.log(e);
+
+    api.get(`/vagas/busca-filtrada/${e.stack}/${e.senioridade}`)
+    .then((resposta) => {
+    let data = resposta.data;
+
+    const vagas = data.map((vaga: any) => {
+      const objVaga = vaga;
+      return {
+        senioridade: objVaga.senioridade,
+        funcao: objVaga.funcao,
+        titulo: objVaga.titulo,
+        descricao: objVaga.descricao,
+        desenvolvedor: objVaga.desenvolvedor,
+        avaliado: objVaga.avaliado,
+        encerrado: objVaga.encerrado,
+        id: objVaga.id,
+      }
+    });
+    setVacancies(vagas);
+    }).catch((error) => {
+        console.log(error)
+    });
     setIsSearchModalVisible(false);
   }
 
@@ -153,8 +148,8 @@ export default function DevSearchVacancyResult() {
                           <label>Senioridade</label>
                           <select className={styles.input} {...register("stack")}>
                           <option value="" selected disabled>Selecione uma frente de desenvolvimento...</option>
-                                  <option >Front-End</option>
-                                  <option>Back-End</option>
+                                  <option>FrontEnd</option>
+                                  <option>BackEnd</option>
                                   <option>DevOps</option>
                           </select>
                       </div>
@@ -190,7 +185,7 @@ export default function DevSearchVacancyResult() {
           </div>
           <div className={styles.cardsContainer}>
             {
-            vacancies.map((vaga) => (
+            vacancies.length > 1 && vacancies.map((vaga) => (
               <>
                 <VacancyCard
                   id={vaga.id}
