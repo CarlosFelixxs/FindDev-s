@@ -131,9 +131,9 @@ public class VagasService {
         logger.info("Buscando vagas filtradas por " + funcaoRequest + " e " + senioridadeRequest);
 
         List<Vaga> allVagas = repository.findByFuncaoAndSenioridade(
-                FuncaoDev.valueOf(funcaoRequest),
-                SenioridadeDev.valueOf(senioridadeRequest)
-        ).stream().filter(v -> v.getDesenvolvedorContratado() == null).collect(Collectors.toList());
+            FuncaoDev.valueOf(funcaoRequest),
+            SenioridadeDev.valueOf(senioridadeRequest)
+        );
 
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(allVagas);
 
