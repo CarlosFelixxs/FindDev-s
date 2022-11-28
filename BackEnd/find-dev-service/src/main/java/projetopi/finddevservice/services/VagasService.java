@@ -7,6 +7,7 @@ import projetopi.finddevservice.dtos.v1.request.ContratacaoRequest;
 import projetopi.finddevservice.dtos.v1.request.FiltroRequest;
 import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
 import projetopi.finddevservice.dtos.v1.response.CandidaturaResponseDto;
+import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
 import projetopi.finddevservice.exceptions.RequiredExistingObjectException;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
@@ -144,7 +145,8 @@ public class VagasService {
         vaga.setDesenvolvedorContratado(desenvolvedor);
 
         VagaResponseDto vagaResponseDto = DozerMapper.parseObject(repository.save(vaga), VagaResponseDto.class);
-
+        vagaResponseDto.setDesenvolvedor(DozerMapper.parseObject(desenvolvedor, DevelopResponseDto.class));
+        
         vagaResponseDto.add(
             linkTo(
                 methodOn(VagasController.class)
