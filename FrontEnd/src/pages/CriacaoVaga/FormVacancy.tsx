@@ -46,7 +46,7 @@ export default function FormVacancy() {
             "titulo": ""
         }
 
-    const onSubmitVacancy = (e : FormVacancyProps) => {
+    const onSubmitVacancy = async (e : FormVacancyProps) => {
 
         vacancy = {
             "id_empresa": `${sessionStorage.getItem("idUser")}`,
@@ -58,7 +58,7 @@ export default function FormVacancy() {
         
         console.log(vacancy);
 
-        api.post('/vagas', vacancy)
+        await api.post('/vagas', vacancy)
         .then((resposta) => {
             console.log(resposta);
             setIsModalVisible(true);
@@ -68,7 +68,6 @@ export default function FormVacancy() {
             }, 5000);
         })
         .catch((error) => {
-            alert("erro");
             console.log(error);
         });
     }
@@ -106,8 +105,8 @@ export default function FormVacancy() {
                             <label htmlFor="frente">Frente</label>
                             <select className={errors.titulo ? styles.inputError : styles.input} id="frente" {...register("frente")}>
                                 <option value="" selected disabled></option>
-                                <option>Front-End</option>
-                                <option>Back-End</option>
+                                <option>FrontEnd</option>
+                                <option>BackEnd</option>
                                 <option>DevOps</option>
                             </select>
                                 {errors.frente && <p> {errors.frente.message} </p>}
