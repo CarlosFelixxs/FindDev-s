@@ -2,6 +2,7 @@ package projetopi.finddevservice.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 public class Candidatura implements Serializable {
@@ -13,8 +14,7 @@ public class Candidatura implements Serializable {
     @OneToOne
     private DesenvolvedorModel desenvolvedor;
 
-    @OneToOne
-    private EmpresaModel empresa;
+    private int idVaga;
 
     public int getIdCandidatura() {
         return idCandidatura;
@@ -32,11 +32,11 @@ public class Candidatura implements Serializable {
         this.desenvolvedor = desenvolvedor;
     }
 
-    public EmpresaModel getEmpresa() {
-        return empresa;
+    public int getIdEmpresa() {
+        return idVaga;
     }
 
-    public void setEmpresa(EmpresaModel empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(int idVaga) {
+        this.idVaga = idVaga;
     }
 }

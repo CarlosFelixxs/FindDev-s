@@ -39,12 +39,9 @@ public class VagasService {
             throw new ResourceNotFoundException("Nenhuma empresa encontrada");
         }
 
-        EmpresaModel empresa = empresaRepository.findById(idEmpresa).get();
-
-        logger.info("Criando vaga da empresa " + empresa.getNome());
+        logger.info("Criando vaga para a empresa");
 
         Vaga vaga = DozerMapper.parseObject(vagaRequest, Vaga.class);
-        vaga.setIdEmpresa(empresa.getId());
 
         VagaResponseDto responseDto = DozerMapper.parseObject(repository.save(vaga), VagaResponseDto.class);
         responseDto.add(
