@@ -19,16 +19,7 @@ export default function CompanyPublichedVacancy() {
 
   const [isVacancySelected, setIsVacancySelected] = useState(false);
 
-  const [vacancies, setVacancies] = useState([
-    {
-      "senioridade": '',
-      "stack": "",
-      "company": "",
-      "title": "",
-      "description": "",
-      "id": 0
-     }
-  ]);
+  
   
   const [isModalVisible, setIsModalVisible] = useState(false);
   
@@ -73,11 +64,40 @@ export default function CompanyPublichedVacancy() {
       </button>
   )
 
+  const[vacancies, setVacancies] = useState([
+    {
+      "senioridade": '',
+      "funcao": "",
+      "titulo": "",
+      "descricao": "",
+      "desenvolvedor": null,
+      "avaliado": false,
+      "encerrado": false,
+      "id": 0
+    },
+    ]);
+
   useEffect(() => {
-    api.get(`/vagas/empresa`)
+    api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
-        let data = resposta.data;
-        setVacancies(data);
+      let data = resposta.data;
+
+      const vagas = data.map((vaga: any) => {
+        const objVaga = vaga;
+        return {
+          senioridade: objVaga.senioridade,
+          funcao: objVaga.funcao,
+          titulo: objVaga.titulo,
+          descricao: objVaga.descricao,
+          desenvolvedor: objVaga.desenvolvedor,
+          avaliado: objVaga.avaliado,
+          encerrado: objVaga.encerrado,
+          id: objVaga.id,
+        }
+      });
+      console.log("teste")
+      setVacancies(vagas);
+      console.log(vacancies);
     }).catch((error) => {
       console.log(error)
     });
@@ -114,23 +134,22 @@ export default function CompanyPublichedVacancy() {
           </div>
           <div className={styles.cardsContainer}>
             {
-            vacancies.map((vaga) => (
+            vacancies.length > 1 && vacancies.map((vaga) => (
               <>
                 <VacancyCard
                   id={vaga.id}
-                  stack={vaga.stack}
+                  stack={vaga.funcao}
                   senioridade={vaga.senioridade}
-                  company={vaga.company}
-                  title={vaga.title}
+                  title={vaga.titulo}
                   button={buttonCard(
                     vaga.senioridade,
-                    vaga.stack,
-                    vaga.title,
-                    vaga.company,
-                    vaga.description,
+                    vaga.funcao,
+                    vaga.titulo,
+                    "",
+                    vaga.descricao,
                     vaga.id,
                   )}
-                  description={vaga.description}
+                  description={vaga.descricao}
                   key={vaga.id}
                 />
               </>

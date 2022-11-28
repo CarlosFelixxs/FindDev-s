@@ -10,7 +10,7 @@ type VacancyCardTypes = {
   id: number,
   stack: string,
   senioridade: string,
-  company: string,
+  company?: string,
   title: string,
   salary?: number,
   button: JSX.Element|JSX.Element[],
@@ -38,7 +38,7 @@ export default function VacancyCard({stack, senioridade, company, title, salary,
           </div>
           <div className={styles.details}>
             <span className={styles.title}>{title}</span>
-            <span className={styles.companyName}>{company}</span>
+            {company !== "" && <span className={styles.companyName}>{company}</span>}
             {salary && <span className={styles.salary}>Remuneração: R$ {salary}</span>}
             <div className={styles.stackSenioridade}>
               <div className={styles.stack}>{stack}</div>

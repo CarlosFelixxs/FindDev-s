@@ -25,12 +25,6 @@ export default function VacancyCardDetailed({stack, senioridade, nomeDev, title,
             <span>{stack}</span>
             <span>{senioridade}</span>
           </div>
-          {salary !== -1 ? (
-            <div>
-              Remuneração:
-              <span>{salary}</span>
-            </div>
-          ): null}
         </div>
       </div>
       <div className={styles.description}>

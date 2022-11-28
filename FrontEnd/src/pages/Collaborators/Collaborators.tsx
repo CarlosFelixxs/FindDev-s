@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -16,6 +16,7 @@ import CollaboratorCard from '../../shared/components/CollaboratorCard';
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import CollaboratorCardDetailed from '../../shared/components/CollaboratorCardDetailed';
 import Modal from '../../shared/components/ModalResult/ModalResult';
+import api from '../../services/api';
 
 export default function Colaborators() {
 
@@ -35,53 +36,6 @@ export default function Colaborators() {
       "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
       "id": 1
     },
-    {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "company": "Strosin and Sons",
-      "title": "Human Program Supervisor",
-      "devName": "Victor",
-      "description": "jorge",
-      "id": 2
-    },
-    {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Bergstrom - Conn",
-      "title": "Investor Accounts Specialist",
-      "devName": "Lucas",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 3
-    },
-    {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Kiehn, Adams and Hauck",
-      "title": "Chief Infrastructure Architect",
-      "devName": "Danilo",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 4
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "devName": "Paulo",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 5
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "devName": "Carlos",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 6
-    }
   ]);
 
   const [isRateModalVisible, setIsRateModalVisible] = useState(false);
@@ -107,6 +61,33 @@ export default function Colaborators() {
     inactiveFillColor: '#121214',
     inactiveStrokeColor: '#00B37E'
   }
+
+  useEffect(() => {
+    api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
+    .then((resposta) => {
+      let data = resposta.data;
+
+      const vagas = data.map((vaga: any) => {
+        const objVaga = vaga;
+        return {
+          senioridade: objVaga.senioridade,
+          funcao: objVaga.funcao,
+          titulo: objVaga.titulo,
+          descricao: objVaga.descricao,
+          desenvolvedor: objVaga.desenvolvedor.nome,
+          avaliado: objVaga.avaliado,
+          encerrado: objVaga.encerrado,
+          id: objVaga.id,
+        }
+      });
+      console.log("teste")
+      setVacancies(vagas);
+      console.log(vacancies);
+    }).catch((error) => {
+      console.log(error)
+    });
+
+}, []);
 
   const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
     setIsVacancySelected(true);
