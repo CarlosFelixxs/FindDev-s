@@ -70,4 +70,5 @@
   cursor: pointer;
   background-color: rgb(151, 71, 255);
   color: black;
+  transition: 0.5s;
 }

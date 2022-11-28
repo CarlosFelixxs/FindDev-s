@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 
 import Modal from '../../shared/components/ModalResult/ModalResult';
@@ -13,21 +14,46 @@ export default function FormVacancy() {
     const {register, handleSubmit} = useForm();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const onSubmitVacancy = (e : any) => {
-        console.log(e);
-        setIsModalVisible(true);
+    const [vacancy, setVacancy] = useState(
+        {
+            "id_empresa": `${sessionStorage.getItem("idUser")}`,
+            "descricao": "",
+            "funcao": "",
+            "senioridade": "",
+            "titulo": ""
+        }
+    )
 
-        setTimeout(() => {
-            setIsModalVisible(false);
-            navigate("/menu-company")
-        }, 5000);
+    const onSubmitVacancy = async (e : any) => {
+        console.log(e);
+        setVacancy({
+            ...vacancy,
+                descricao: vacancy.descricao = e.descricao,
+                funcao: vacancy.funcao = e.frente,
+                senioridade: vacancy.senioridade = e.senioridade,
+                titulo: vacancy.titulo = e.titulo,
+        });
+
+        await api.post('/vagas', vacancy)
+            .then((resposta) => {
+                console.log(resposta);
+                setIsModalVisible(true);
+                setTimeout(() => {
+                    setIsModalVisible(false);
+                    navigate("/menu-company");
+                }, 5000);
+            })
+            .catch((error) => {
+                alert("erro")
+                console.log(error);
+            });
     }
 
     const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial.";
 
   return (
     <>
-        <HeaderLogado nome={"X-Team"}/>
+        <HeaderLogado />
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h1>DETALHES DA VAGA</h1>

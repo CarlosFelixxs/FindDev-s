@@ -1,0 +1,95 @@
+.card {
+  height: 90%;
+  width: 70%;
+  background-color: #121214;
+  border: 2px solid #9747ff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topicContent {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #9747ff;
+}
+
+.title {
+  height: 35%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+.topics {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.stackSenioridade {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.titleDescription {
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+.description {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  justify-content: space-around;
+}
+
+.textDescription {
+  font-weight: 400;
+  font-size: 0.89rem;
+  line-height: 160%;
+}
+
+.button {
+  width: 25%;
+  height: 8%;
+  background-color: #121214;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.7rem 0;
+  border: 1px solid #633bbc;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background-color: #633bbc;
+}
