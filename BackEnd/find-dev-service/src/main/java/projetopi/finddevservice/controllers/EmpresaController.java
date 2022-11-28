@@ -151,6 +151,7 @@ public class EmpresaController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
 
     @GetMapping(value = "/relatorio-txt/{id}", produces = "text/csv")
     @Operation(
