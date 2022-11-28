@@ -16,7 +16,6 @@ public class DesenvolvedorModel extends UsuarioModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "plano_assinatura")
     private PlanoDev plano;
-
     private String cpf;
 
     public DesenvolvedorModel() {

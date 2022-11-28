@@ -6,6 +6,7 @@ import java.util.UUID;
 
 public class NovaAvaliacaoRequestDto {
 
+    private Integer idAvaliacao;
     private UUID idAvaliador;
     private UUID idAvaliado;
     @Min(1)
@@ -14,8 +15,13 @@ public class NovaAvaliacaoRequestDto {
     private String comentario;
     private boolean isCompany;
 
-
     public NovaAvaliacaoRequestDto() {
+    }
+
+
+
+    public void setIdAvaliacao(Integer idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
     }
 
     public UUID getIdAvaliador() {
@@ -42,18 +48,19 @@ public class NovaAvaliacaoRequestDto {
         this.nota = nota;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
     public boolean isCompany() {
         return isCompany;
     }
 
-    public void setCompany(boolean company) {
-        isCompany = company;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public void setCompany(boolean iscompany) {
+        isCompany = iscompany;
     }
 }

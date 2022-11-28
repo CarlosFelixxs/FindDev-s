@@ -1,13 +1,10 @@
 package projetopi.finddevservice.models;
 
-import lombok.*;
-import projetopi.finddevservice.enums.StatusDesenvolvedor;
+import projetopi.finddevservice.enums.StatusPerfil;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Optional;
 
 @Entity
 @Table(name = "Perfil")
@@ -22,10 +19,9 @@ public class PerfilModel implements Serializable {
     @Size(max = 2600)
     @Column(length = 2600)
     private String descricao;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 25)
-    private StatusDesenvolvedor status;
+    private StatusPerfil status;
 
 
     public PerfilModel() {
@@ -56,11 +52,11 @@ public class PerfilModel implements Serializable {
         this.descricao = descricao;
     }
 
-    public StatusDesenvolvedor getStatus() {
+    public StatusPerfil getStatus() {
         return status;
     }
 
-    public void setStatus(StatusDesenvolvedor status) {
+    public void setStatus(StatusPerfil status) {
         this.status = status;
     }
 }

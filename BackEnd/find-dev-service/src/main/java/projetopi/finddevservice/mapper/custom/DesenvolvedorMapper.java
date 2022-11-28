@@ -2,15 +2,16 @@ package projetopi.finddevservice.mapper.custom;
 
 
 import org.springframework.stereotype.Service;
-import projetopi.finddevservice.dtos.v1.request.CompanyRequestDto;
-import projetopi.finddevservice.models.EmpresaModel;
+import projetopi.finddevservice.dtos.v1.request.DevelopRequestDto;
+import projetopi.finddevservice.dtos.v1.response.DevelopResponseDto;
+import projetopi.finddevservice.models.DesenvolvedorModel;
 
 @Service
-public class CompanyMapper {
+public class DesenvolvedorMapper {
 
-    public CompanyRequestDto convertEntityToDto(EmpresaModel person){
+    public DevelopResponseDto convertEntityToDto(DesenvolvedorModel person){
 
-        CompanyRequestDto dto = new CompanyRequestDto();
+        DevelopResponseDto dto = new DevelopResponseDto();
         dto.setKey(person.getId());
         dto.setNome(person.getNome());
         dto.setEmail(person.getEmail());
@@ -18,16 +19,13 @@ public class CompanyMapper {
         dto.setEstado(person.getEstado());
         dto.setCidade(person.getCidade());
         dto.setTelefone(person.getTelefone());
-        dto.setBairro(person.getBairro());
-        dto.setEndereco(person.getEndereco());
-        dto.setCnpj(person.getCnpj());
+        dto.setCpf(person.getCpf());
         return dto;
 
     }
+    public DesenvolvedorModel convertDtoToEntity(DevelopRequestDto person){
 
-    public EmpresaModel convertDtoToEntity(CompanyRequestDto person){
-
-        EmpresaModel entity = new EmpresaModel();
+        DesenvolvedorModel entity = new DesenvolvedorModel();
         entity.setId(person.getKey());
         entity.setNome(person.getNome());
         entity.setEmail(person.getEmail());
@@ -35,9 +33,7 @@ public class CompanyMapper {
         entity.setEstado(person.getEstado());
         entity.setCidade(person.getCidade());
         entity.setTelefone(person.getTelefone());
-        entity.setBairro(person.getBairro());
-        entity.setEndereco(person.getEndereco());
-        entity.setCnpj(person.getCnpj());
+        entity.setCpf(person.getCpf());
         return entity;
 
     }

@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "avaliacao")
@@ -15,15 +16,11 @@ public class AvaliacaoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAvaliacao;
-
-    @ManyToOne
-    private UsuarioModel avaliador;
-    @ManyToOne
-    private UsuarioModel avaliado;
+    private UUID idAvaliador;
+    private UUID idAvaliado;
     @Min(1)
     @Max(5)
     private Integer nota;
-
     @Column(length = 2600)
     private String comentario;
 
@@ -43,20 +40,20 @@ public class AvaliacaoModel implements Serializable {
         this.idAvaliacao = idAvaliacao;
     }
 
-    public UsuarioModel getAvaliador() {
-        return avaliador;
+    public UUID getIdAvaliador() {
+        return idAvaliador;
     }
 
-    public void setAvaliador(UsuarioModel avaliador) {
-        this.avaliador = avaliador;
+    public void setIdAvaliador(UUID idAvaliador) {
+        this.idAvaliador = idAvaliador;
     }
 
-    public UsuarioModel getCompany() {
-        return avaliado;
+    public UUID getIdAvaliado() {
+        return idAvaliado;
     }
 
-    public void setAvaliado(UsuarioModel avaliado) {
-        this.avaliado = avaliado;
+    public void setIdAvaliado(UUID idAvaliado) {
+        this.idAvaliado = idAvaliado;
     }
 
     public Integer getNota() {
@@ -75,19 +72,19 @@ public class AvaliacaoModel implements Serializable {
         this.comentario = comentario;
     }
 
+    public boolean isCompany() {
+        return isCompany;
+    }
+
+    public void setCompany(boolean company) {
+        isCompany = company;
+    }
+
     public LocalDateTime getDataHoraAvaliacao() {
         return dataHoraAvaliacao;
     }
 
     public void setDataHoraAvaliacao(LocalDateTime dataHoraAvaliacao) {
         this.dataHoraAvaliacao = dataHoraAvaliacao;
-    }
-
-    public boolean getAvaliado() {
-        return isCompany;
-    }
-
-    public void setCompany(boolean company) {
-        isCompany = company;
     }
 }

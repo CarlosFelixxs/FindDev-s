@@ -1,7 +1,7 @@
 package projetopi.finddevservice.dtos.v1;
 
 import org.springframework.hateoas.RepresentationModel;
-import projetopi.finddevservice.enums.StatusDesenvolvedor;
+import projetopi.finddevservice.enums.StatusPerfil;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ public class PerfilDto extends RepresentationModel<PerfilDto> implements Seriali
     private String titulo;
     @Size(max = 2600)
     private String descricao;
-    private StatusDesenvolvedor status = StatusDesenvolvedor.DISPONIVEL;
+    private StatusPerfil status = StatusPerfil.DISPONIVEL;
 
 
     public PerfilDto() {
@@ -42,11 +42,11 @@ public class PerfilDto extends RepresentationModel<PerfilDto> implements Seriali
         this.descricao = descricao;
     }
 
-    public StatusDesenvolvedor getStatus() {
+    public StatusPerfil getStatus() {
         return status;
     }
 
-    public void setStatus(StatusDesenvolvedor status) {
+    public void setStatus(StatusPerfil status) {
         this.status = status;
     }
 
