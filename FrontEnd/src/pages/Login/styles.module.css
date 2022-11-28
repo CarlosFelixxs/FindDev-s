@@ -108,14 +108,16 @@
   outline: 0;
   color: #ffffff;
   font-size: 0.8rem;
+  font-variant: all-small-caps;
 }
 .labelInput input:focus {
   border: 2px solid #9747ff;
 }
 .labelInput input::placeholder {
   color: #8e8e8e;
-  text-transform: uppercase;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+  font-variant: all-small-caps;
+
 }
 .contForm .submit {
   width: 31%;
