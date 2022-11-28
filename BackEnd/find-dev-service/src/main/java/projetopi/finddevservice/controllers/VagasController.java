@@ -92,7 +92,7 @@ public class VagasController {
         return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
 
-    @GetMapping(value = "/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @GetMapping(value = "/idEmpresa/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
     @Operation(
         summary = "Finds all Vagas from a Empresa", description = "Finds a list of vaga from Empresa id",
         tags = {"Vagas"},
