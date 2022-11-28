@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.VagasController;
 import projetopi.finddevservice.dtos.v1.request.VagaRequestDto;
-import projetopi.finddevservice.dtos.v1.response.EmpresaResponseDto;
 import projetopi.finddevservice.dtos.v1.response.VagaResponseDto;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;
 import projetopi.finddevservice.mapper.DozerMapper;
@@ -13,12 +12,13 @@ import projetopi.finddevservice.models.Vaga;
 import projetopi.finddevservice.repositories.EmpresaRepository;
 import projetopi.finddevservice.repositories.VagasRepository;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class VagasService {
@@ -69,6 +69,35 @@ public class VagasService {
                 methodOn(VagasController.class)
                     .findById(id)
             ).withSelfRel()
+        );
+
+        return responseDto;
+    }
+
+    public List<VagaResponseDto> findAllByIdEmpresa(UUID idEmpresa) {
+        if (!empresaRepository.existsById(idEmpresa)) {
+            throw new ResourceNotFoundException("Empresa com id " + idEmpresa + " não encontrada");
+        }
+
+        logger.info("Buscando vagas da empresa");
+
+        List<VagaResponseDto> responseDto = repository.findAllByIdEmpresa(idEmpresa)
+                .stream()
+                .map(vaga -> DozerMapper.parseObject(vaga, VagaResponseDto.class))
+                .collect(Collectors.toList());
+
+        responseDto.forEach(v -> {
+                try {
+                    v.add(
+                        linkTo(
+                            methodOn(VagasController.class)
+                                .findById(v.getKey())
+                        ).withSelfRel()
+                    );
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         );
 
         return responseDto;

@@ -29,8 +29,12 @@ public class Vaga {
 
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "funcao")
     private FuncaoDev funcao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "senioridade")
     private SenioridadeDev senioridade;
 
     private boolean encerrado;

@@ -17,6 +17,8 @@ import projetopi.finddevservice.util.MediaType;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/vagas")
@@ -63,5 +65,24 @@ public class VagasController {
     )
     public ResponseEntity<VagaResponseDto> findById(@PathVariable int id) {
         return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping(value = "/{idEmpresa}", produces = MediaType.APPLICATION_JSON)
+    @Operation(
+            summary = "Finds all Vagas from a Empresa", description = "Finds a list of vaga from Empresa id",
+            tags = {"Vagas"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = DevelopRequestDto.class))
+                    ),
+                    @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
+    )
+    public ResponseEntity<List<VagaResponseDto>> findAllByIdEmpresa(@PathVariable UUID id) {
+        List<VagaResponseDto> vagas = service.findAllByIdEmpresa(id);
+
+        return vagas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(vagas);
     }
 }
