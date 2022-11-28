@@ -39,9 +39,10 @@
   height: auto;
   display: flex;
   justify-content: space-evenly;
+  cursor: pointer;
 }
 
-.nav a {
+.nav .link {
   position: relative;
   line-height: 22px;
   font-style: normal;
@@ -53,11 +54,8 @@
   font-size: 1rem;
   transition: 0.5s;
 }
-.nav a:target{
-  transition: 0.5s;
-}
-.nav a:before,
-.nav a:after {
+.nav .link:before,
+.nav .link:after {
   content: "";
   position: absolute;
   height: 3px;
@@ -65,20 +63,20 @@
   background-color: #00b37e;
   transition: 0.5s;
 }
-.nav a:after {
+.nav .link:after {
   left: 0;
   bottom: -5px;
   transition: 0.5s;
 }
-.nav a:before{
+.nav .link:before{
   right: 0;
   top: -5px;
 }
-.nav a:hover {
+.nav .link:hover {
   color: #ffffff;
 }
-.nav a:hover:after,
-.nav a:hover:before{
+.nav .link:hover:after,
+.nav .link:hover:before{
   width: 100%;
 }
 .btnLogin {

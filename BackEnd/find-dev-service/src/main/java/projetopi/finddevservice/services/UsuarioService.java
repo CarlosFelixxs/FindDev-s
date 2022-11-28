@@ -111,14 +111,18 @@ public class UsuarioService {
     }
 
     public String changeStatus(DevelopStatusRequest statusRequest) {
-        if (statusRequest == null) throw new RequiredObjectIsNullException();
-        logger.info("updating Status!");
+        if (statusRequest == null){
+            throw new RequiredObjectIsNullException();
+        }
 
+        logger.info("updating Status!");
         UsuarioModel entity = userRepository.findById(statusRequest.getIdUsuaio()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this id!")
         );
+        logger.info("updating Status!");
         entity.getPerfil().setStatus(statusRequest.getStatus());
 
+        logger.info("Staus update!");
         return "Staus update!";
     }
 }

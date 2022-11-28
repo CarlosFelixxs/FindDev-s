@@ -1,16 +1,18 @@
 .container {
   width: 100%;
   height: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .contInfo {
   width: 100%;
-  height: 120px;
+  height: 9.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .info {
-  width: 90%;
+  width: 100%;
   border-radius: 5px;
   border: 1px solid #9747ff;
   background-color: #121214;
@@ -42,14 +44,14 @@
   padding: 10px;
 }
 .sectionBio {
-  height: 150px;
+  height: 9.375rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
 }
 .contBio {
-  width: 60%;
+  width: 70%;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -72,12 +74,11 @@
 }
 .bio {
   width: 100%;
-  height: 80px;
 }
 .bio textarea {
   color: #ffffff;
   width: 100%;
-  height: 80px;
+  height: 100px;
   background-color: #121214;
   padding: 10px;
   border-radius: 5px;
@@ -85,7 +86,7 @@
 }
 .contLoc {
   width: 30%;
-  height: 75%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -98,11 +99,11 @@
   font-variant: small-caps;
   line-height: 30px;
   color: #ffffff;
-  margin-right: 68px;
+  margin-right: 90px;
 }
 .loc {
   padding: 10px;
-  width: 50%;
+  width: 70%;
   height: 100px;
   border-radius: 5px;
   border: 1px solid #00b37e;
@@ -124,38 +125,6 @@
   justify-content: center;
   align-items: center;
 }
-.contCompetencias {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-.contCompetencias h1 {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.25rem;
-  font-variant: small-caps;
-  line-height: 0px;
-  color: #ffffff;
-  margin-right: 68px;
-}
-.competencias {
-  padding: 10px;
-  width: 100%;
-  height: 100px;
-  border-radius: 5px;
-  border: 1px solid #00b37e;
-  background-color: #121214;
-  display: flex;
-  justify-content: space-between;
-}
-.competencias li {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.875rem;
-  color: #ffffff;
-}
 .contButtonJobs {
   width: 30%;
   height: 75%;
@@ -165,9 +134,8 @@
   justify-content: center;
 }
 .buttonJobs {
-  padding: 10px;
   width: 50%;
-  height: 100px;
+  height: 50%;
   border-radius: 5px;
   border: 1px solid #00b37e;
   background-color: #121214;
@@ -176,16 +144,24 @@
   justify-content: center;
   cursor: pointer;
 }
-.buttonJobs:hover{
-  border: 1px solid #9747ff;
-  background-color: #9747ff;
+.buttonJobs:hover,
+.textButton:hover {
+  border: 1px solid #00b37e;
+  transition: 0.5s;
+  background-color: #00b37e;
+  color: #121214;
 }
 .textButton {
   color: #ffffff;
   font-variant: small-caps;
   font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-style: normal;
   font-size: 1.25rem;
   text-align: center;
   color: #ffffff;
+  width: 100%;
+  height: 100%;
 }

@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 import Logo from "../../../assets/images/Logo.png";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-scroll";
+
 
 export function Header(props: any) {
 
@@ -28,10 +30,10 @@ export function Header(props: any) {
         <img onClick={() => routeChanger("/")} className={styles.image} src={Logo} alt="logo do site" />
         {props.isHomePage && (
           <ul className={styles.nav}>
-            <a href="#">INICIO</a>
-            <a href="#sectionTopics">CONHEÇA</a>
-            <a href="#sectionCards">COMO FUNCIONA</a>
-            <a href="#sectionPlans">PLANOS</a>
+            <a><Link className={styles.link} to={'sectionTop'} spy={true} smooth={true} offset={0} duration={500}>INICIO</Link></a>
+            <a><Link className={styles.link} to={'sectionTopics'} spy={true} smooth={true} offset={-70} duration={500}>CONHEÇA</Link></a>
+            <a><Link className={styles.link} to={'sectionCards'} spy={true} smooth={true} offset={-60} duration={500}>COMO FUNCIONA</Link></a>
+            <a><Link className={styles.link} to={'sectionPlans'} spy={true} smooth={true} offset={-60} duration={500}>PLANOS</Link></a>
           </ul>
         )
         }

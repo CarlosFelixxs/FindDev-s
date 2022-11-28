@@ -3,13 +3,14 @@ package projetopi.finddevservice.dtos.v1.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
-import projetopi.finddevservice.dtos.v1.response.EmpresaResponseDto;
 import projetopi.finddevservice.enums.FuncaoDev;
 import projetopi.finddevservice.enums.SenioridadeDev;
+import projetopi.finddevservice.models.EmpresaModel;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.UUID;
 
 public class VagaRequestDto extends RepresentationModel<VagaRequestDto> implements Serializable {
 
@@ -18,7 +19,8 @@ public class VagaRequestDto extends RepresentationModel<VagaRequestDto> implemen
     private int key;
 
     @NotNull
-    private EmpresaResponseDto empresaResponseDto;
+    @JsonProperty("id_empresa")
+    private UUID idEmpresa;
 
     @NotBlank
     private String titulo;
@@ -44,12 +46,12 @@ public class VagaRequestDto extends RepresentationModel<VagaRequestDto> implemen
         this.key = key;
     }
 
-    public EmpresaResponseDto getEmpresaResponseDto() {
-        return empresaResponseDto;
+    public UUID getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresaResponseDto(EmpresaResponseDto empresaResponseDto) {
-        this.empresaResponseDto = empresaResponseDto;
+    public void setIdEmpresa(UUID idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public String getTitulo() {
