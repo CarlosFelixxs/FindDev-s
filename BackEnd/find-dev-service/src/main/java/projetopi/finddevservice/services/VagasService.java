@@ -72,7 +72,7 @@ public class VagasService {
         );
 
         VagaResponseDto vagaResponseDto = DozerMapper.parseObject(vagaEncontrada, VagaResponseDto.class);
-
+        vagaResponseDto.setDesenvolvedor(vagaEncontrada.getDesenvolvedorContratado());
         vagaResponseDto.add(
             linkTo(
                 methodOn(VagasController.class)
@@ -84,8 +84,12 @@ public class VagasService {
     }
 
     public List<VagaResponseDto> findAll() {
-
+        List<Vaga> allVagas = repository.findAll();
         List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(repository.findAll());
+
+        for (int i = 0; i < allVagas.size(); i++) {
+            vagaResponseDto.get(i).setDesenvolvedor(allVagas.get(i).getDesenvolvedorContratado());
+        }
 
         addLinkToList(vagaResponseDto);
 
@@ -97,7 +101,12 @@ public class VagasService {
 
         logger.info("Buscando vagas da empresa");
 
-        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(repository.findByIdEmpresa(idEmpresa));
+        List<Vaga> allVagas = repository.findByIdEmpresa(idEmpresa);
+        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(allVagas);
+
+        for (int i = 0; i < allVagas.size(); i++) {
+            vagaResponseDto.get(i).setDesenvolvedor(allVagas.get(i).getDesenvolvedorContratado());
+        }
 
         addLinkToList(vagaResponseDto);
 
@@ -121,12 +130,12 @@ public class VagasService {
     public List<VagaResponseDto> findAllByFiltros(String funcaoRequest, String senioridadeRequest) {
         logger.info("Buscando vagas filtradas por " + funcaoRequest + " e " + senioridadeRequest);
 
-        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(
-            repository.findByFuncaoAndSenioridade(
-                FuncaoDev.valueOf(funcaoRequest),
-                SenioridadeDev.valueOf(senioridadeRequest)
-            )
+        List<Vaga> allVagas = repository.findByFuncaoAndSenioridade(
+            FuncaoDev.valueOf(funcaoRequest),
+            SenioridadeDev.valueOf(senioridadeRequest)
         );
+
+        List<VagaResponseDto> vagaResponseDto = vagaListToDtoList(allVagas);
 
         addLinkToList(vagaResponseDto);
 
