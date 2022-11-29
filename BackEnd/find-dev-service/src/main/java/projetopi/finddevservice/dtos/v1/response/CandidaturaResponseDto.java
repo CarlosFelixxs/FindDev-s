@@ -9,8 +9,8 @@ import java.io.Serializable;
 
 public class CandidaturaResponseDto extends RepresentationModel<CandidaturaResponseDto> implements Serializable {
 
-    @Mapping("id")
-    @JsonProperty("id")
+    @Mapping("idCandidatura")
+    @JsonProperty("idCandidatura")
     private int key;
 
     private DesenvolvedorModel desenvolvedor;

@@ -3,7 +3,6 @@ package projetopi.finddevservice.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetopi.finddevservice.controllers.CandidaturasController;
-import projetopi.finddevservice.controllers.VagasController;
 import projetopi.finddevservice.dtos.v1.request.CandidaturaRequestDto;
 import projetopi.finddevservice.dtos.v1.response.CandidaturaResponseDto;
 import projetopi.finddevservice.exceptions.ResourceNotFoundException;

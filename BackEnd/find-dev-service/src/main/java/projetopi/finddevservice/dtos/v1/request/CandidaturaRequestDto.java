@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public class CandidaturaRequestDto extends RepresentationModel<CandidaturaRequestDto> implements Serializable {
 
-    @Mapping("id")
-    @JsonProperty("id")
+    @Mapping("idCandidatura")
+    @JsonProperty("idCandidatura")
     private int key;
 
     private UUID idDesenvolvedor;
