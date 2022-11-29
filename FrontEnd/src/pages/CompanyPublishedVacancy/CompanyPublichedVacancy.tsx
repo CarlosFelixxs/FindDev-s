@@ -43,11 +43,17 @@ export default function CompanyPublichedVacancy() {
   };
 
   const deleteToVacancy = () => {
-    setIsModalVisible(true);
-    setTimeout(() => {
-        setIsModalVisible(false);
-        navigate("/menu-company");
-    }, 4000);
+    api.delete(`/vagas/${id}`)
+                .then((resposta) => {
+                  setIsModalVisible(true);
+                  setTimeout(() => {
+                      setIsModalVisible(false);
+                      navigate("/menu-company");
+                  }, 4000);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
   }
 
   const buttonCard = (senioridade: string, stack: string, title: string, company: string, description: string, id: number, salary?: number ) => {

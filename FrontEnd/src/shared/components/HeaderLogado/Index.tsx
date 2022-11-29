@@ -23,8 +23,9 @@ export default function HeaderLogado({isDevOrCompany} : HeaderProps) {
 
 
     const path = isDevOrCompany === "dev" ? "/menu-dev" : "/menu-company";
+
     useEffect(() => {
-        api.get(`/dev/${sessionStorage.getItem("idUser")}`)
+        api.get(`/${isDevOrCompany === "dev" ? "dev" : "empresa"}/${sessionStorage.getItem("idUser")}`)
         .then((resposta) => {
             setNome(resposta.data.nome)
         })
