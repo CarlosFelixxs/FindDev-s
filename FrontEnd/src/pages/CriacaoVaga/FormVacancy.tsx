@@ -74,32 +74,48 @@ export default function FormVacancy() {
 
     const textModal = "Você acaba de anunciar uma vaga! Consulte as vagas abertas para ver os desenvolvedores interessados na sua vaga! Redirecionando para o menu inicial.";
 
-  return (
-    <>
-        <HeaderLogado isDevOrCompany={"company"}/>
-        <div className={styles.container}>
-            <div className={styles.formContainer}>
-                <h1>DETALHES DA VAGA</h1>
-                <form className={styles.form} onSubmit={handleSubmit(onSubmitVacancy)}>
-                    <div className={styles.inputsGroupForm}>
-                        <div className={styles.inputsLeft}>
-                            <div className={styles.labelInput}>
-                                <label>TITULO DA VAGA</label>
-                                <input type="text" className={errors.titulo ? styles.inputError : styles.input} {...register("titulo")}/>
-                                {errors.titulo && <p> {errors.titulo.message} </p>}
+    return (
+        <>
+            <HeaderLogado isDevOrCompany='company'/>
+            <div className={styles.container}>
+                <div className={styles.formContainer}>
+                    <h1>DETALHES DA VAGA</h1>
+                    <form className={styles.form} onSubmit={handleSubmit(onSubmitVacancy)}>
+                        <div className={styles.inputsGroupForm}>
+                            <div className={styles.inputsLeft}>
+
+                                <div className={styles.labelInput}>
+                                    <label>TITULO DA VAGA</label>
+                                    <div className={styles.separador}></div>
+                                    <input placeholder='Ex: Desenvolvedor mobile' type="text" className={errors.titulo ? styles.inputError : styles.input} {...register("titulo")} />
+                                    {errors.titulo && <p> {errors.titulo.message} </p>}
+                                </div>
+
+                                <div className={styles.labelInput}>
+                                    <label htmlFor="senioridade">SENIORIDADE</label>
+                                    <div className={styles.separador}></div>
+                                    <select className={errors.titulo ? styles.inputError : styles.input} id="senioridade" {...register("senioridade")}>
+                                        <option value="" selected disabled>Selecione a senioridade</option>
+                                        <option>Junior</option>
+                                        <option>Pleno</option>
+                                        <option>Senior</option>
+                                    </select>
+                                    {errors.senioridade && <p> {errors.senioridade.message} </p>}
+                                </div>
+
+                                <div className={styles.labelInput}>
+                                    <label htmlFor="frente">FRENTE</label>
+                                    <div className={styles.separador}></div>
+                                    <select className={errors.titulo ? styles.inputError : styles.input} id="frente" {...register("frente")}>
+                                        <option value="" selected disabled>frente de desenvolvimento</option>
+                                        <option>FrontEnd</option>
+                                        <option>BackEnd</option>
+                                        <option>DevOps</option>
+                                    </select>
+                                    {errors.frente && <p> {errors.frente.message} </p>}
+                                </div>
+
                             </div>
-                            
-                            <div className={styles.labelInput}>
-                            <label htmlFor="senioridade">SENIORIDADE</label>
-                            <select className={errors.titulo ? styles.inputError : styles.input} id="senioridade" {...register("senioridade")}>
-                                <option value="" selected disabled></option>
-                                <option>Junior</option>
-                                <option>Pleno</option>
-                                <option>Senior</option>
-                            </select>
-                                {errors.senioridade && <p> {errors.senioridade.message} </p>}
-                            </div>
-                        </div>
 
                             <div className={styles.leabelTextArea}>
                                 <label>DESCRIÇÃO</label>
