@@ -155,7 +155,6 @@ export default function Form() {
             await api.post('/dev', signUpDevData)
                 .then((resposta) => {
                     setStep(step + 1);
-                    alert("Funcionou");
                     console.log(resposta);
                     routeChange("/login");
                 })
@@ -197,7 +196,6 @@ export default function Form() {
             await api.post('/empresa', signUpCompanyData)
                 .then((resposta) => {
                     setStep(step + 1);
-                    alert("Funcionou");
                     console.log(resposta);
                     routeChange("/login");
                 })

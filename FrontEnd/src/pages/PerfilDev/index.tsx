@@ -13,7 +13,7 @@ export default function PerfilDev(props: any) {
 
   return (
     <>
-      <HeaderLogado nome={"danilo"} />
+      <HeaderLogado />
       <section className={styles.container}>
         <div className={styles.contInfo}>
           <div className={styles.info}>
@@ -22,7 +22,7 @@ export default function PerfilDev(props: any) {
               <h1>Danilo Amorim</h1>
               <h6>Dev | Intern | Backend | C6 Bank | SPTech</h6>
             </span>
-            <RateComponent />
+            <RateComponent rating={3}/>
           </div>
         </div>
 
@@ -47,7 +47,9 @@ export default function PerfilDev(props: any) {
             </div>
           </div>
           <div className={styles.contLoc}>
+            <div className={styles.contTextLoc}>
             <h1>localização</h1>
+            </div>
             <div className={styles.loc}>
               <li>São Paulo</li>
               <li>Campinas</li>
@@ -56,30 +58,6 @@ export default function PerfilDev(props: any) {
         </section>
 
         <section className={styles.sectionComp}>
-          <div className={styles.contCompetencias}>
-            <h1>competências</h1>
-            <div className={styles.competencias}>
-              <div>
-                <li>React</li>
-                <li>React Native</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Javascript</li>
-              </div>
-              <div>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>React</li>
-                <li>React Native</li>
-                <li>HTML</li>
-              </div>
-              <div>
-                <li>React</li>
-                <li>React Native</li>
-                <li>CSS</li>
-              </div>
-            </div>
-          </div>
           <div className={styles.contButtonJobs}>
             <button className={styles.buttonJobs}>
               <div className={styles.textButton}>jobs encerrados</div>
