@@ -1,5 +1,5 @@
 import styles from './styles.module.css';
-import Logo from "../../../assets/images/Logo.png";
+import Logo from "../../../assets/images/logo-roxo.png";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-scroll";
 
