@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "http://ec2-44-214-40-119.compute-1.amazonaws.com:8080/api/v1"
+  baseURL: "https://finddevback.hopto.org/api/v1"
 })
 
 export default api;
