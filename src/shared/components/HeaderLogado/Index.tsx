@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.css';
 import Logo from "../../../assets/images/Logo.png";
-import Voltar from "../../../assets/images/arrow-left.png";
 import api from '../../../services/api';
 
 type HeaderProps = {

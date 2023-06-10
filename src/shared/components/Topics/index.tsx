@@ -1,5 +1,4 @@
 import styles from './styles.module.css';
-import Logo from "../../../assets/images/Logo.png";
 import Estrela from "../../../assets/images/estrela.png";
 import Prancheta from "../../../assets/images/prancheta.png";
 import List from "../../../assets/images/list.png";

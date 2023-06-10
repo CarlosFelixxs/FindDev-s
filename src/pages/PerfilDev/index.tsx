@@ -1,6 +1,5 @@
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import styles from './styles.module.css'
-import FotoPerfil from "../../assets/images/DevPerfil.png";
 import { RateComponent } from '../../shared/components/RateComponent';
 import checkIcon from "../../assets/images/check.png";
 import editIcon from "../../assets/images/edit-3.png";
@@ -27,6 +26,7 @@ export default function PerfilDev() {
   const [tituloPut, setTituloPut] = useState("");
 
   const navigate = useNavigate();
+
 
   const routeChanger = (path: string) => {
     navigate(path);

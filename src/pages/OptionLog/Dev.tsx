@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-import logo from "../../assets/images/Logo@2x.png";
 import jobs from "../../assets/images/Job hunt-amico 1.png";
 import profileImg from "../../assets/images/Personal data-cuate 1.png";
 import HeaderLogado from "../../shared/components/HeaderLogado/Index";

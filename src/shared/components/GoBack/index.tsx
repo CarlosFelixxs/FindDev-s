@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 import Seta from "../../../assets/images/arrow-left.png";
-import { useNavigate, unstable_HistoryRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function GoBack(props: any) {
 

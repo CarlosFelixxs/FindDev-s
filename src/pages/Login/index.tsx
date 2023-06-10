@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { Header } from '../../shared/components/Header';
 import signupImage from "../../assets/images/signup-img.png";
-import { Footer } from "../../shared/components/Footer";
 
 import { useForm } from 'react-hook-form';
 // import { api, signIn } from '../../services/api';
