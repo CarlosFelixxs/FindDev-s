@@ -65,7 +65,7 @@ export default function Colaborators() {
   useEffect(() => {
     api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
-      let data = resposta.data;
+      const data = resposta.data;
 
       const vagas = data.map((vaga: any) => {
         const objVaga = vaga;
@@ -87,7 +87,7 @@ export default function Colaborators() {
       console.log(error)
     });
 
-}, []);
+}, [vacancies]);
 
   const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
     setIsVacancySelected(true);

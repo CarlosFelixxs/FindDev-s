@@ -14,6 +14,8 @@ export default function Cadastro() {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
+// eslint-disable-next-line
+  console.log(setStep)
 
 
   const routeChange = (path: string) => {

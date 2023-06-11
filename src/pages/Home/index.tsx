@@ -11,7 +11,7 @@ import { Link } from "react-scroll";
 export default function Home() {
   return (
     <>
-      <Header isLoginScreen = {false} isHomePage = {true}/>
+      <Header isLoginScreen={false} isHomePage={true} />
       <section id="sectionTop" className={styles.container}>
         <Banner />
       </section>
@@ -51,9 +51,11 @@ export default function Home() {
           <Footer />
         </div>
         <div className={styles.contButtonFooter}>
-          <button>
-            <a className={styles.imgBanner}><Link to={'sectionTop'} spy={true} smooth={true} offset={0} duration={500}><img src={Topo} alt="Logo" /></Link></a>
-          </button>
+          <Link to="sectionTop" spy={true} smooth={true} offset={0} duration={500}>
+            <button className={styles.imgBanner}>
+              <img src={Topo} alt="Logo" />
+            </button>
+          </Link>
         </div>
       </section>
     </>

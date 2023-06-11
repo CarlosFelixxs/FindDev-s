@@ -105,7 +105,7 @@ export default function Form() {
 
     const onSubmitThirdStepDev = (e: any) => {
         if (validateName(e.nome) === "ok" && validateCPF(e.CPF) === "ok" && validateTelefone(e.telefone) === "ok") {
-            let cpfFormated = e.CPF.replace(/[\s.-]*/igm, '');
+            const cpfFormated = e.CPF.replace(/[\s.-]*/igm, '');
             setSignUpDevData({
                 ...signUpDevData,
                 nome: signUpDevData.nome = e.nome,
@@ -125,7 +125,7 @@ export default function Form() {
 
     const onSubmitThirdStepCompany = (e: any) => {
         if (validateRazaoSocial(e.nome) === "ok" && validateTelefone(e.telefone) === "ok" && validateCNPJ(e.CNPJ) === "ok") {
-            let cnpjFormated = e.CNPJ.replace(/[^\d]+/g, '');
+            const cnpjFormated = e.CNPJ.replace(/[^\d]+/g, '');
             setSignUpCompanyData({
                 ...signUpCompanyData,
                 nome: signUpCompanyData.nome = e.nome,

@@ -78,6 +78,9 @@ export default function JobsEncerrados() {
       "id": 6
     }
   ]);
+
+  // eslint-disable-next-line
+  console.log(setVacancies)
   
   const [isModalSuccessVisible, setIsModalSuccessVisible] = useState(false);
   const [isRateModalVisible, setisRateModalVisible] = useState(false);

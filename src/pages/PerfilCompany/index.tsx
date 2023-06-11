@@ -1,6 +1,5 @@
 import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import styles from './styles.module.css'
-import FotoPerfil from "../../assets/images/DevPerfil.png";
 import { RateComponent } from '../../shared/components/RateComponent';
 import checkIcon from "../../assets/images/check.png";
 import editIcon from "../../assets/images/edit-3.png";
@@ -24,6 +23,10 @@ export default function PerfilCompany() {
   const [idPerfil, setIdPerfil] = useState("");  
   const [telefone, setTelefone] = useState("");  
   const [rating,setRating] = useState(0);
+
+  // eslint-disable-next-line
+  console.log(idPerfil)
+  console.log(telefone)
   
   const [biografiaPut,setBiografiaPut] = useState("");
   const [tituloPut,setTituloPut] = useState("");
@@ -69,7 +72,7 @@ export default function PerfilCompany() {
       "titulo" : `${tituloPut}`
   }
 
-  const submitBio = (e: any) => {
+  const submitBio = () => {
     console.log("Começou a função");
 
     console.log(biografiaPut);
@@ -80,7 +83,6 @@ export default function PerfilCompany() {
     .then((resposta) => {
         console.log(resposta);
         alert("Perfil atualizado!")
-        const data = resposta.data;
     })
     .catch((error) => {
       alert("Deu erro")

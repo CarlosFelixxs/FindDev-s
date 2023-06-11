@@ -32,7 +32,7 @@ export default function HeaderLogado({isDevOrCompany} : HeaderProps) {
             console.log(error)
         });
     
-    }, [])
+    }, [isDevOrCompany])
     
 
   return (

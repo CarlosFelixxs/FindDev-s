@@ -86,7 +86,7 @@ export default function CompanyPublichedVacancy() {
   useEffect(() => {
     api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
-      let data = resposta.data;
+      const data = resposta.data;
 
       const vagas = data.map((vaga: any) => {
         const objVaga = vaga;
@@ -108,7 +108,7 @@ export default function CompanyPublichedVacancy() {
       console.log(error)
     });
 
-}, []);
+}, [vacancies]);
   
   const showVacancySelected = () => {
     if (id !== -1) {

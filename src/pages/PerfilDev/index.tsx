@@ -21,6 +21,13 @@ export default function PerfilDev() {
   const [idPerfil, setIdPerfil] = useState("");
   const [telefone, setTelefone] = useState("");
   const [rating, setRating] = useState(0);
+  
+// eslint-disable-next-line
+  console.log(endereco)
+  console.log(setEndereco)
+  console.log(idPerfil)
+  console.log(telefone)
+  console.log(setRating)
 
   const [biografiaPut, setBiografiaPut] = useState("");
   const [tituloPut, setTituloPut] = useState("");
@@ -74,7 +81,6 @@ export default function PerfilDev() {
       .then((resposta) => {
         console.log(resposta);
         alert("Perfil atualizado!")
-        const data = resposta.data;
       })
       .catch((error) => {
         alert("Deu erro")
