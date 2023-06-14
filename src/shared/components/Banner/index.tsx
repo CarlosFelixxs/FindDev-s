@@ -7,7 +7,7 @@ export function Banner() {
       <section className={styles.container}>
         <div className={styles.container_banner}>
           <div className={styles.contText}>
-            <h1 className={styles.h1}>conectando quem sabe com quem precisa</h1>
+            <h1 className={styles.h1}> <span className={styles.span}>conectando</span> quem <span className={styles.span}>sabe</span> com quem <span className={styles.span}>precisa</span></h1>
             <p className={styles.p}>a plataforma ideal para encontrar seus desenvolvedores freelancers</p>
             <button id='button-como-funciona-banner' className={styles.btnComoFunciona}>como funciona</button>
           </div>
