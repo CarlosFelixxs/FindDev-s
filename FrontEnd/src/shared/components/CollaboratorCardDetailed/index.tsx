@@ -10,7 +10,8 @@ type VacancyCardTypes = {
   description: string,
   salary?: number,
   button: JSX.Element|JSX.Element[],
-  id: number,
+  id: string,
+  idVaga:number
 }
 
 export default function VacancyCardDetailed({stack, senioridade, nomeDev, title, salary,description, button} : VacancyCardTypes) {
@@ -18,9 +19,9 @@ export default function VacancyCardDetailed({stack, senioridade, nomeDev, title,
   return (
     <div className={styles.card}>
       <div className={styles.topicContent}>
-        <span className={styles.title}>{title}</span>
+        <span className={styles.title}>{description}</span>
         <div className={styles.topics}>
-          <span className={styles.nomeDev}>{nomeDev}</span>
+          <span className={styles.nomeDev}>{title}</span>
           <div className={styles.stackSenioridade}>
             <span>{stack}</span>
             <span>{senioridade}</span>
@@ -38,7 +39,7 @@ export default function VacancyCardDetailed({stack, senioridade, nomeDev, title,
           Detalhes da vaga:
         </div>
         <div className={styles.textDescription}>
-          {description}
+          {nomeDev}
         </div>
       </div>
       {button}

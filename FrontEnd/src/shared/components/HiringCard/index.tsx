@@ -7,7 +7,8 @@ import devOpsStack from "../../../assets/images/devopsStack.png";
 import frontEndStack from "../../../assets/images/FrontEndStack.png";
 
 type HiringCardTypes = {
-  id: number,
+  id: string,
+  idVaga: number,
   stack: string,
   senioridade: string,
   title: string,
@@ -15,25 +16,12 @@ type HiringCardTypes = {
   devName: string,
 }
 
-export default function HiringCard({ stack, senioridade, title, id, devName, button }: HiringCardTypes) {
-
-  const imageStack = () => {
-    if (stack === "DEVOPS") {
-      return devOpsStack
-    } else if (stack === "FRONTEND") {
-      return frontEndStack
-    } else {
-      return backendStack
-    }
-  }
+export default function HiringCard({ stack, senioridade, title, id, devName, button, idVaga }: HiringCardTypes) {
 
   return (
     <>
       <div className={styles.card}>
         <div className={styles.content}>
-          <div className={styles.imageCardContainer}>
-            <img src={imageStack()} alt="" />
-          </div>
           <div className={styles.details}>
             <span className={styles.title}>{title}</span>
             <div className={styles.devName}>{devName}</div>

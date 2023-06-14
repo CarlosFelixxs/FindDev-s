@@ -7,7 +7,7 @@ import devOpsStack from "../../../assets/images/devopsStack.png";
 import frontEndStack from "../../../assets/images/FrontEndStack.png";
 
 type VacancyCardTypes = {
-  id: number,
+  id: string,
   stack: string,
   title: string,
   button: JSX.Element|JSX.Element[],
