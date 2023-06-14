@@ -20,6 +20,8 @@ import api from '../../services/api';
 
 export default function Colaborators() {
 
+  const idEmpresa = sessionStorage.getItem('idUser');
+
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -27,14 +29,13 @@ export default function Colaborators() {
 
   const [vacancies, setVacancies] = useState([
     {
-      "senioridade": 'SENIOR',
+      "senioridade": 'senior',
       "stack": "FRONTEND",
-      "salary": 2000.00,
-      "company": "Klein - Greenfelder",
-      "title": "Forward Program Technician",
-      "devName": "Josias",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 1
+      "title": "Desenvolvedor Front-end",
+      "devName": "Roberto",
+      "description":"Vaga para desenvolvedor front-end",
+      "id": "2",
+      "idVaga": 2,
     },
   ]);
 
@@ -47,7 +48,8 @@ export default function Colaborators() {
   const [nomeDev, setNomeDev] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [id, setId] = useState(-1);
+  const [id, setId] = useState("-1");
+  const [idVaga, setIdVaga] = useState(-1);
 
   const [rating, setRating] = useState(0);
 
@@ -65,22 +67,29 @@ export default function Colaborators() {
   useEffect(() => {
     api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
     .then((resposta) => {
-      let data = resposta.data;
+      const data = resposta.data;
+      let vagas = [];
 
-      const vagas = data.map((vaga: any) => {
-        const objVaga = vaga;
-        return {
-          senioridade: objVaga.senioridade,
-          funcao: objVaga.funcao,
-          titulo: objVaga.titulo,
-          descricao: objVaga.descricao,
-          desenvolvedor: objVaga.desenvolvedor.nome,
-          avaliado: objVaga.avaliado,
-          encerrado: objVaga.encerrado,
-          id: objVaga.id,
+      for (let i = 0; i < data.length; i++) {
+        const vaga = data[i];
+      
+        if (!vaga.encerrado && !vaga.avaliado && vaga.desenvolvedor) {
+          const objetoVaga = {
+            idVaga: vaga.id,
+            title: vaga.titulo,
+            description: vaga.descricao,
+            stack: vaga.funcao,
+            senioridade: vaga.senioridade,
+            encerrado: vaga.encerrado,
+            avaliado: vaga.avaliado,
+            id: vaga.desenvolvedor ? vaga.desenvolvedor.id : null,
+            devName: vaga.desenvolvedor ? vaga.desenvolvedor.nome : null,
+          };
+          vagas.push(objetoVaga);
         }
-      });
-      console.log("teste")
+      }
+
+      
       setVacancies(vagas);
       console.log(vacancies);
     }).catch((error) => {
@@ -89,23 +98,40 @@ export default function Colaborators() {
 
 }, []);
 
-  const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
-    setIsVacancySelected(true);
-    setSenioridade(senioridade);
-    setStack(stack);
-    setTitle(title);
-    setNomeDev(nomeDev);
-    setDescription(description);
-    setId(id);
-    salary ? setSalary(salary) : setSalary(-1);
-  };
+const selectCard = (senioridade: string, stack: string,description: string,title: string, nomeDev: string, id: string, idVaga: number,) => {
+  setIsVacancySelected(true);
+  setSenioridade(senioridade);
+  setStack(stack);
+  setTitle(title);
+  setNomeDev(nomeDev);
+  setId(id);
+  setIdVaga(idVaga)
+  setDescription(description);
+};
 
   const rateDeveloper = () => {
     setIsRateModalVisible(true);
   }
 
-  const submitRateCompany = async (e: any) => {
-    console.log(e);
+  const submitRateCompany = async (idAvaliador: string | null, idAvaliado: string, nota: number, isCompany: boolean) => {
+
+    const url = '/avaliacoes';
+    const corpoRequisicao = {
+      idAvaliador: idAvaliador, // ID do avaliador
+      idAvaliado: idAvaliado, // ID do avaliado
+      nota: nota, // Nota da avaliação
+      isCompany: true // Indica se é uma avaliação da empresa
+    };
+
+  api.post(url, corpoRequisicao)
+    .then(response => {
+      console.log('Requisição POST enviada com sucesso!');
+      console.log('Resposta:', response.data);
+  })
+    .catch(error => {
+      console.error('Ocorreu um erro ao enviar a requisição POST:', error);
+  });
+
     setIsRateModalVisible(false);
     setIsModalSuccessVisible(true);
     setTimeout(() => {
@@ -120,7 +146,7 @@ export default function Colaborators() {
         <div className={styles.containerModal}>
           <div className={styles.content}>
             <span className={styles.title}>Avaliar Contratante</span>
-            <form className={styles.form} onSubmit={handleSubmit(submitRateCompany)}>
+            <div className={styles.form} >
               <div className={styles.labelInput}>
                 <label>Conte-nos brevemente como foi sua relação com o contratante:</label>
                 <Rating
@@ -132,19 +158,19 @@ export default function Colaborators() {
                 <label>Comentario:</label>
                 <input type="text" className={styles.input} {...register("comentario")} />
               </div>
-              <button className={styles.buttonModal}>
+              <button className={styles.buttonModal} onClick={() => submitRateCompany(idEmpresa, id, 4, true)}>
                 AVALIAR
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     )
   }
 
-  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
+  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, description:string, id: string, idVaga: number) => {
     return (
-      <button onClick={() => selectCard(senioridade, stack, title, nomeDev, description, id, salary)} className={styles.button}>
+      <button onClick={() => selectCard(senioridade, stack, title, nomeDev, description, id, idVaga)} className={styles.button}>
         <img src={close} alt="check" />
       </button>
     )
@@ -157,16 +183,17 @@ export default function Colaborators() {
   )
 
   const showVacancySelected = () => {
-    if (id !== -1) {
+    if (id !== "-1") {
       return (
         <CollaboratorCardDetailed
           id={id}
           senioridade={senioridade}
           stack={stack}
-          salary={salary}
+          salary={-1}
           nomeDev={nomeDev}
           title={title}
           description={description}
+          idVaga={idVaga}
           button={buttonCardDetailed}
         />
       )
@@ -190,6 +217,7 @@ export default function Colaborators() {
                 <>
                   <CollaboratorCard
                     id={vaga.id}
+                    devName={vaga.devName}
                     stack={vaga.stack}
                     title={vaga.title}
                     button={buttonCard(
@@ -199,9 +227,8 @@ export default function Colaborators() {
                       vaga.devName,
                       vaga.description,
                       vaga.id,
-                      vaga.salary,
+                      vaga.idVaga,
                     )}
-                    devName={vaga.devName}
                     key={vaga.id}
                   />
                 </>

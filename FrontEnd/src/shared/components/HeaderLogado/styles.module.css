@@ -27,3 +27,12 @@
     font-size: 1.20rem;
     font-variant: small-caps;
 }
+
+.imageLogout{
+    margin-top: 15px;
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+}

@@ -8,12 +8,14 @@ type HiringCardTypes = {
   senioridade: string,
   nomeDev: string,
   title: string,
-  description: string,
+  email: string,
+  telefone: string,
   salary?: number,
   button: JSX.Element|JSX.Element[],
-  id: number,
+  id: string,
+  idVaga: number
 }
-export default function VacancyCardDetailed({stack, senioridade, nomeDev, title, salary, description, button} : HiringCardTypes) {
+export default function VacancyCardDetailed({stack, senioridade, nomeDev, title, salary, email, button, telefone, idVaga} : HiringCardTypes) {
 
   return (
     <div className={styles.card}>
@@ -29,10 +31,13 @@ export default function VacancyCardDetailed({stack, senioridade, nomeDev, title,
       </div>
       <div className={styles.description}>
         <div className={styles.titleDescription}>
-          Detalhes do desenvolvedor:
+          Detalhes do candidato:
         </div>
         <div className={styles.textDescription}>
-          {description}
+          Email: {email}
+        </div>
+        <div className={styles.textDescription}>
+          Telefone: {telefone}
         </div>
       </div>
       {button}
