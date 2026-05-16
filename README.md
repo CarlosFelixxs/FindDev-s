@@ -1,50 +1,78 @@
 # FindDev-s
-![image](https://user-images.githubusercontent.com/89035290/202961702-5169d838-9327-4d55-a460-52ea7787c3d0.png)
 
-SOMOS UMA PLATAFORMA DE EMPREGO PARA FREELANCERS, ONDE 
-CONECTAMOS QUEM SABE FAZER COM QUEM PRECISA.
+Full-stack platform prototype created to connect freelance developers with companies looking for short-term or long-term technology talent.
 
-# Projeto
-O projeto FindDev e um projeto criado com o intuito de montar uma plataforma para desenvolvedores em geral, que por sua maior parte estão sem empregos ou que também estejam empregados e estejam a fim de aumentar sua renda. Conectando-os a empresas que buscam novos funcionários tanto para um trabalho rápido e específico como para uma possível efetivação.
-Com foco em freelancer tantas nossas empresas como nosso devs podem escolher onde desejam trabalhar. E se for de agrado de ambos os lados eles podem fechar uma parceria pelo nosso site.
-# Entrelinhas:
-Esse projeto tem como fundamento aprendizado e avaliação da faculdade São Paulo Tech School, onde por meio de um grupo de alunos composto por 5 máximo 6 integrantes, elaborem uma solução de escolha compartilhada para algum problema da sociedade. E que siga os padrões atendidos do projeto. 
-Grupo composto por:
+This is an older academic project, but it remains a useful public case study for React, TypeScript, API integration, Java, Spring Boot and SQL Server.
 
--	LUCAS ALVES – FULLSTACK
-lucas.aferreira@bandtec.com.br
--	DANILO AMORIM – BACKEND
-danilo.ferreira@bandtec.com.br
--	VICTOR VENITI – FRONTEND
-victor.smelo@bandtec.com.br
--	PAULO GABRIEL- FRONTEND
-paulo.asouza@bandtec.com.br
--	CARLOS FELIX – FRONTEND
-carlos.fsilva@bandtec.com.br
--	JOSIAS FLORÊNCIO – NEGÓCIOS
-josias.silva@bandtec.com.br
+## Project Context
 
-# Ferramentas
-![Badge](https://img.shields.io/badge/Code-react-0366d6?&logo=react) 
-![Badge](https://img.shields.io/badge/Figma-layout-76608a?&logo=api)
-![Badge](https://img.shields.io/badge/API-integration-4c9d1f?&logo=api)
-![Badge](https://img.shields.io/badge/Java-11-red)
-![Badge](https://img.shields.io/badge/SpringBoot-2.7-green)
+FindDev-s was built as a web platform where developers can create profiles, companies can publish opportunities and both sides can interact around job/freelance opportunities.
 
-Foi utilizado para esse projeto:
+The repository is kept public as a portfolio example of early full-stack product development, including frontend screens, routing, API consumption, forms, SQL scripts and backend-oriented architecture decisions.
 
-**FrontEnd**
-- React 
+## Main Features
+
+- Developer and company profile flows
+- Job/opportunity listing screens
+- Vacancy creation and search flows
+- Login and registration screens
+- Reusable React components for cards, headers, plans and modals
+- API integration with an external backend endpoint
+- SQL script for database structure/reference
+
+## My Contribution
+
+I worked mainly on the frontend side, contributing to the user interface, page structure, component implementation and integration with backend APIs.
+
+Relevant responsibilities included:
+
+- Building React pages and reusable UI components
+- Implementing navigation and user flows
+- Connecting frontend screens to REST API services
+- Supporting visual consistency and user experience improvements
+- Collaborating with backend and business teammates during the project lifecycle
+
+## Tech Stack
+
+### Frontend
+
+- React
 - TypeScript
-- Node, NPM
+- React Router
+- React Hook Form
+- Yup validation
+- Axios
+- CSS Modules
 
-**Backend**
+### Backend / Data
+
 - Java 11
-- Spring Boot
-- SqlServer
+- Spring Boot 2.7
+- SQL Server
 - JPA
 
-**Desnvolvimento**
-- IntelliJ
-- Postman 
+### Tooling
+
+- Node.js / npm
+- Firebase Hosting configuration
+- Postman
+- IntelliJ IDEA
 - Visual Studio Code
+
+## Local Setup
+
+```bash
+cd FrontEnd
+npm install
+npm start
+```
+
+The frontend runs on `http://localhost:3000`.
+
+## Status
+
+This repository represents an academic full-stack project and is not maintained as a production application. It is pinned as a React/TypeScript and full-stack case study within my GitHub portfolio.
+
+## Current Professional Focus
+
+AI / GenAI Software Engineer | Full-Stack Developer | Python, FastAPI, React, AWS Bedrock, LangChain, LangGraph

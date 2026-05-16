@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -16,6 +16,7 @@ import HeaderLogado from '../../shared/components/HeaderLogado/Index';
 import Modal from '../../shared/components/ModalResult/ModalResult';
 import HiringCard from '../../shared/components/HiringCard';
 import HiringCardDetailed from '../../shared/components/HiringCardDetailed';
+import api from '../../services/api';
 
 export default function HiringPage() {
 
@@ -26,63 +27,54 @@ export default function HiringPage() {
 
   const [vacancies, setVacancies] = useState([
     {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "salary": 2000.00,
-      "company": "Klein - Greenfelder",
-      "title": "Forward Program Technician",
-      "devName": "Josias",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 1
+      "senioridade": '',
+      "stack": "",
+      "company": "",
+      "title": "",
+      "devName": "",
+      "email": "",
+      "telefone": "",
+      "id": "-2",
+      "idVaga": -2
     },
-    {
-      "senioridade": 'SENIOR',
-      "stack": "FRONTEND",
-      "company": "Strosin and Sons",
-      "title": "Human Program Supervisor",
-      "devName": "Victor",
-      "description": "jorge",
-      "id": 2
-    },
-    {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Bergstrom - Conn",
-      "title": "Investor Accounts Specialist",
-      "devName": "Lucas",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 3
-    },
-    {
-      "senioridade": 'PLENO',
-      "stack": "BACKEND",
-      "company": "Kiehn, Adams and Hauck",
-      "title": "Chief Infrastructure Architect",
-      "devName": "Danilo",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 4
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "devName": "Paulo",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 5
-    },
-    {
-      "senioridade": 'JUNIOR',
-      "stack": "DEVOPS",
-      "salary": 2000.00,
-      "company": "Bernier, Auer and Koss",
-      "title": "Future Assurance Coordinator",
-      "devName": "Carlos",
-      "description": "Desenvolvimento e manutenção de aplicações mobile; Definição de padrões e colaboração em resolução de problemas; Garantir a qualidade do código, organização e automação, além da performance, qualidade e responsividade das aplicações; Realizar a publicação de APP Mobile nas lojas Apple Store e Google Play.",
-      "id": 6
-    }
   ]);
+
+  useEffect(() => {
+    api.get(`/vagas/empresa/${sessionStorage.getItem("idUser")}`)
+    .then((resposta) => {
+      let data = resposta.data;
+
+      let vagas = []
+
+      for (let i = 0; i < data.length; i++) {
+        const vaga = data[i];
+
+        for (let j = 0; j < vaga.candidaturas.length; j++) {
+          const candidatura = vaga.candidaturas[j];
+          if (vaga.idVaga >= 0) {
+            vagas.push({
+              senioridade: vaga.senioridade,
+              stack: vaga.funcao,
+              company: '',
+              title: vaga.titulo,
+              devName: candidatura.desenvolvedor.nome,
+              email: candidatura.desenvolvedor.email,
+              telefone: candidatura.desenvolvedor.telefone,
+              id: vaga.desenvolvedor.id,
+              idVaga: vaga.id
+            });
+          }
+        }
+      }
+
+      
+      setVacancies(vagas);
+      console.log(vacancies);
+    }).catch((error) => {
+      console.log(error)
+    });
+
+}, []);
 
   const [isModalSuccessVisible, setIsModalSuccessVisible] = useState(false);
 
@@ -91,67 +83,73 @@ export default function HiringPage() {
   const [salary, setSalary] = useState(-1);
   const [nomeDev, setNomeDev] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [id, setId] = useState(-1);
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [id, setId] = useState("-1");
+  const [idVaga, setIdVaga] = useState(-1);
 
-  const [rating, setRating] = useState(0);
-
-  const Star = <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-
-  const starStyles = {
-    itemShapes: Star,
-    itemStrokeWidth: 2,
-    activeFillColor: '#00B37E',
-    activeStrokeColor: '#00B37E',
-    inactiveFillColor: '#121214',
-    inactiveStrokeColor: '#00B37E'
-  }
-
-  const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
+  const selectCard = (senioridade: string, stack: string, title: string, nomeDev: string, telefone:string, email:string, id: string, idVaga: number, salary?: number) => {
     setIsVacancySelected(true);
     setSenioridade(senioridade);
     setStack(stack);
     setTitle(title);
     setNomeDev(nomeDev);
-    setDescription(description);
+    setEmail(email);
+    setTelefone(telefone)
     setId(id);
+    setIdVaga(idVaga)
     salary ? setSalary(salary) : setSalary(-1);
   };
 
-  const rateDeveloper = () => {
-    setIsModalSuccessVisible(true);
-    setTimeout(() => {
-      setIsModalSuccessVisible(false);
-      navigate("/menu-company");
-    }, 5000);
+  const contratar = (id: string, idVaga: number) => {
+    const corpoRequisicao = {
+      idVaga: idVaga, // ID da vaga
+      idDev: id // ID do desenvolvedor
+    };
+    
+    api.patch("/vagas/contratacao", corpoRequisicao)
+      .then(response => {
+        console.log('Contratação com sucesso!');
+        console.log('Resposta:', response.data);
+        setIsModalSuccessVisible(true);
+        setTimeout(() => {
+          setIsModalSuccessVisible(false);
+          navigate("/menu-company");
+        }, 5000);
+      })
+      .catch(error => {
+        console.error('Ocorreu um erro ao enviar a requisição PATCH:', error);
+      });
   }
 
 
-  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, description: string, id: number, salary?: number) => {
+  const buttonCard = (senioridade: string, stack: string, title: string, nomeDev: string, telefone:string, email:string, id: string, idVaga: number, salary?: number) => {
     return (
-      <button onClick={() => selectCard(senioridade, stack, title, nomeDev, description, id, salary)} className={styles.button}>
+      <button onClick={() => selectCard(senioridade, stack, title, nomeDev, telefone, email, id, idVaga)} className={styles.button}>
         <img src={close} alt="check" />
       </button>
     )
   };
 
   const buttonCardDetailed = (
-    <button onClick={() => rateDeveloper()} className={styles.buttonCardDetailed}>
+    <button onClick={() => contratar(id, idVaga)} className={styles.buttonCardDetailed}>
       CONTRATAR
     </button>
   )
 
   const showVacancySelected = () => {
-    if (id !== -1) {
+    if (id !== "-1") {
       return (
         <HiringCardDetailed
           id={id}
+          idVaga={idVaga}
           senioridade={senioridade}
           stack={stack}
           salary={salary}
           nomeDev={nomeDev}
           title={title}
-          description={description}
+          email={email}
+          telefone={telefone}
           button={buttonCardDetailed}
         />
       )
@@ -167,7 +165,7 @@ export default function HiringPage() {
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.titleLeft}>
-            Aqui estão seus colaboradores.
+            Aqui estão seus candidatos.
           </div>
           <div className={styles.cardsContainer}>
             {
@@ -175,6 +173,7 @@ export default function HiringPage() {
                 <>
                   <HiringCard
                     id={vaga.id}
+                    idVaga={vaga.idVaga}
                     devName={vaga.devName}
                     stack={vaga.stack}
                     title={vaga.title}
@@ -183,9 +182,10 @@ export default function HiringPage() {
                       vaga.stack,
                       vaga.title,
                       vaga.devName,
-                      vaga.description,
+                      vaga.email,
+                      vaga.telefone,
                       vaga.id,
-                      vaga.salary
+                      vaga.idVaga,
                     )}
                     key={vaga.id}
                     senioridade={vaga.senioridade}
